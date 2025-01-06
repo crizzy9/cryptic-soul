@@ -1,0 +1,10 @@
+---
+title: "Home Lab"
+description: "Created a Home Lab with CasaOS, WireGuard, Jellyfin and AdGuardon on a Raspberry Pi with Nix"
+pubDate: "Jan 05 2025"
+category: "Hardware"
+heroImage: "/post_img.webp"
+githubUrl: "https://github.com/crizzy9/.dotfiles"
+badge: "New"
+tags: ["home-lab", "raspberry-pi"]
+---

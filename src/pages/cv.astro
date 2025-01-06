@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+---
+
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Profile</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    I am an Software Engineer by Heart and love to tinker with stuff. I am a Builder and a Budding Robotics Enthusiast.
+    I often devle into concepts involving Software Engineering at Large Scale and solve problems related to
+    Web Development, Big Data, AI, Robotics and Networking.
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="Northeastern University"
+      subtitle="Sept 2016 to Dec 2019 at Khoury CCIS, Boston, USA"
+    />
+    <TimeLineElement
+      title="Mumbai University"
+      subtitle="Sept 2012 to Mar 2016 at Fr. Conceicao Rodrigues College of Engineering, Mumbai, India"
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Experience</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Senior Software Engineer at Intuit"
+      subtitle="From Jan 2025 at Intuit, Mountain View, California"
+    >
+      <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. -->
+    </TimeLineElement>
+    <TimeLineElement
+      title="Software Engineer 2 at Intuit"
+      subtitle="From Jan 2021 to Jan 2025 at Intuit, Mountain View, California"
+    >
+      <li class="ml-4">Formalized a maven library with open contribution for creating and maintaining Service Now change requests</li>
+      <li class="ml-4">Introduced a Communication module for consolidating user data and notifying different types of customers about their subscription changes, automating the last step in the price change process</li>
+      <li class="ml-4">Built a Big Data pipeline using PySpark on EMR to calculate customer reach for special offers created by marketers, reducing time to make by 25%</li>
+      <li class="ml-4 mb-1">Led a small project to build a wrapper around Apache POI for working with excel files on Java quickly adopted by other teams</li>
+    </TimeLineElement>
+    <TimeLineElement
+      title="Software Engineer at Intuit"
+      subtitle="From Jan 2020 to Jan 2021 at Intuit, Mountain View, California"
+    >
+      <li class="ml-4">Created a tool with React.js on the Appfabric framework to gather Quickbooks offer data and streamline the price change process for all regions boosting the marketing revenue by more than 70%</li>
+      <li class="ml-4">Designed a Simulation Engine with AWS Lambdas to provide success estimations for price change executions, improving overall success rate for executions by 40%</li>
+      <li class="ml-4">Launched an End to End AWS Glue pipeline with PySpark to automatically identify eligible customers for price increase reducing weeks of manual effort into minutes</li>
+      <li class="ml-4 mb-1">Incorporated specialized error validations, and strengthened the build pipeline with integration tests and monitoring dashboards</li>
+    </TimeLineElement>
+    <TimeLineElement
+      title="Software Engineering Intern at Intuit"
+      subtitle="From May 2018 to Dec 2018 and May 2019 to Aug 2019 at Intuit, Mountain View, California"
+    >
+      <li class="ml-4">Introduced faster OCR W2 PDF Upload in Income topic in the form of an AB Test resulting in 20% reduced tax prep time</li>
+      <li class="ml-4">Integrated Decision Engine for intent classification, replacing third party solutions and decreasing latency by 30%</li>
+      <li class="ml-4">Built a Case Deduplication Service with AWS Lambdas improving response times by 45% while mitigating 7% of duplicate cases</li>
+      <li class="ml-4">Created Smart Fields with React and PHP streamlining content publishing to prod by 30 mins and reducing 10% of case creations</li>
+      <li class="ml-4 mb-1">Constructed a highly scalable General Redirect Service with AWS Lambdas and DynamoDB with 35% more efficiency</li>
+    </TimeLineElement>
+    <TimeLineElement
+      title="Software Developer at VoterCircle"
+      subtitle="From Nov 2016 to May 2017 at VoterCircle, Bangalore, India"
+    >
+      <li class="ml-4">Developed a flagship feature for building distributed campaign organizers with Meteor.js and Angular, boosting canvassing efficiency and voter turnouts by 15%</li>
+      <li class="ml-4">Integrated contact matching with ElasticSearch between voter files and social media contacts increasing effective outreach by 10%</li>
+      <li class="ml-4 mb-1">Designed highly customizable email templates for sending notifications to and from supporters using SendGrid</li>
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Certifications</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>
+      <a href="#" target="_blank">Data Science Training Program by General Assembly</a>
+    </li>
+    <!-- <li> -->
+    <!--   <a href="#" target="_blank"> Certification Name (with link)</a> -->
+    <!-- </li> -->
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Skills</div>
+  </div>
+
+  <ul class="list-disc md:columns-5 columns-2 mx-6">
+    <li>Big Data</li>
+    <li>Nix</li>
+    <li>Python</li>
+    <li>Java</li>
+    <li>AWS</li>
+    <li>PyTorch</li>
+    <li>Prompt Engneering</li>
+    <li>Go</li>
+    <li>Lua</li>
+    <li>React</li>
+    <li>KIE</li>
+    <li>Spring Boot</li>
+    <li>ROS2</li>
+    <li>Arduino</li>
+    <li>JavaScript</li>
+  </ul>
+</BaseLayout>
