@@ -1,6 +1,6 @@
 ---
 title: "Home Lab"
-description: "Created a Home Lab with Tailscale, Jellyfin and on a Raspberry Pi with Nix"
+description: "Intsalled a Home Server on a N100 mini PC and a Raspberry Pi cluster using Proxmox, Pfsense, Home Assistant, Open Media Vault, Tailscale and Cloudflare DNS"
 pubDate: "Jan 05 2025"
 category: "Hardware"
 heroImage: "/homelab.webp"
