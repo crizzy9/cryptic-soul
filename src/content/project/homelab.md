@@ -4,7 +4,7 @@ description: "Intsalled a Home Server on a N100 mini PC and a Raspberry Pi clust
 pubDate: "Jan 05 2025"
 category: "Hardware"
 heroImage: "/homelab.webp"
-githubUrl: "https://github.com/crizzy9/.dotfiles"
+githubUrl: "https://github.com/crizzy9/lumino"
 badge: "New"
 tags: ["home-lab", "raspberry-pi"]
 ---
