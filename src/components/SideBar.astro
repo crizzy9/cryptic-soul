@@ -22,6 +22,9 @@ const { sideBarActiveItemID } = Astro.props;
         </div>
       </a>
     </div>
+    <div class="text-center mb-4">
+      <h2 class="text-lg font-bold text-base-content">Shyam Padia</h2>
+    </div>
     <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} />
     <SideBarFooter />
   </aside>
@@ -32,7 +35,7 @@ const { sideBarActiveItemID } = Astro.props;
     const aside = document.querySelector('aside.sidebar');
     const toggleBtn = document.getElementById('sidebar-toggle');
 
-    const applyCollapsedState = (collapsed) => {
+    const applyCollapsedState = (collapsed: boolean) => {
       if (!aside) return;
       aside.classList.toggle('collapsed', collapsed);
     };
@@ -74,6 +77,11 @@ const { sideBarActiveItemID } = Astro.props;
 
   /* Hide large avatar when collapsed */
   :global(.sidebar.collapsed .avatar) {
+    display: none;
+  }
+
+  /* Hide name and subtitle when collapsed */
+  :global(.sidebar.collapsed .text-center) {
     display: none;
   }
 
