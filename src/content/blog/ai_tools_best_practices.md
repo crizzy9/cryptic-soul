@@ -1,12 +1,12 @@
 ---
-title: "Coding with an AI Copilot: A Practical Guide"
+title: "Vibe Coding Best Practices"
 description: "A developer's guide to the essential Do's and Don'ts of using agentic AI tools for coding, with real-world code examples."
 pubDate: "Aug 22 2025"
 heroImage: "/ai_copilot.jpg"
-tags: ["ai", "coding", "best-practices", "devops", "agentic-ai"]
+tags: ["ai", "vibe-coding", "best-practices", "devops", "agentic-ai"]
 ---
 
-# Coding with an AI Copilot: A Practical Guide
+# Vibe Coding Best Practices
 
 Agentic AI tools are no longer a novelty; they are powerful copilots integrated into our daily coding workflows. They can accelerate development, but blindly trusting them can introduce bugs, security flaws, and technical debt. To truly leverage these tools, you must act as the pilot, guiding your AI assistant with precision and skill.
 
