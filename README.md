@@ -4,8 +4,9 @@ A modern portfolio website and blog built with Astro, showcasing projects, blog 
 
 ## About
 
-This site serves as the personal portfolio of **Shyam Padia**, a Software Engineer and Entrepreneur with expertise in Web Development, Big Data, AI, Robotics, and Networking. The site features:
+This site serves as the personal portfolio of **Shyam Padia**, a Software Engineer and Entrepreneur with expertise in Web Development, Big Data, AI, Robotics, and Networking.
 
+The site features:
 - **Portfolio**: Showcase of technical projects and professional work
 - **Blog**: Technical articles and insights on software engineering
 - **CV**: Professional experience and skills
