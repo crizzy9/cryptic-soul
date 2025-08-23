@@ -5,6 +5,6 @@ pubDate: "Jan 05 2025"
 category: "Hardware"
 heroImage: "/homelab.webp"
 githubUrl: "https://github.com/crizzy9/lumino"
-badge: "New"
+badges: ["Featured", "Hardware"]
 tags: ["home-lab", "raspberry-pi"]
 ---

@@ -25,7 +25,8 @@ const projects = groupBy(await getCollection("project"), p => p.data.category);
                 desc={proj.data.description}
                 url={proj.data.githubUrl}
                 target="_blank"
-                badge={proj.data.badge}
+                badges={proj.data.badges}
+                pubDate={proj.data.pubDate}
                 tags={proj.data.tags}
               />
               <div class="divider my-0" />

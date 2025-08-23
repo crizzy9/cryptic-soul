@@ -1,20 +1,34 @@
 ---
-const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+const { title, img, desc, url, badges, tags, pubDate, target = "_blank" } = Astro.props;
 import { Image } from "astro:assets";
+import { getBadges, getBadgeClass } from "../lib/helpers";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+
+const displayBadges = getBadges(pubDate, badges);
+dayjs.extend(localizedFormat);
+const displayDate = dayjs(pubDate).format("MMM DD, YYYY");
 ---
 
 <div class="md:w-1/3 w-full">
   <a href={url} target={target}>
     <div class="card bg-base-100 transition ease-in-out hover:shadow-xl mx-6 my-2 hover:scale-[102%]">
       <Image width={750} height={422} format="webp" src={img} alt={title} />
-      <div class="card-body">
-        <h2 class="card-title">
-          {title}
-          {badge && <div class="badge badge-secondary">{badge}</div>}
-        </h2>
-        <p>{desc}</p>
-        <div class="card-actions justify-end">
-          {tags && tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}
+      <div class="card-body flex flex-col">
+        <div class="flex justify-between items-start">
+          <h2 class="card-title">{title}</h2>
+          <div class="flex flex-wrap gap-1">
+            {displayBadges.map((badge) => (
+              <div class={getBadgeClass(badge)}>{badge}</div>
+            ))}
+          </div>
+        </div>
+        <p class="flex-grow">{desc}</p>
+        <div class="card-actions justify-between mt-auto">
+          <time class="text-sm text-base-content/70">{displayDate}</time>
+          <div class="flex items-center gap-2">
+            {tags && tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}
+          </div>
         </div>
       </div>
     </div>

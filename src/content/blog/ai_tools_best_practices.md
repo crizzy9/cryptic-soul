@@ -3,7 +3,7 @@ title: "Vibe Coding Best Practices"
 description: "A developer's guide to the essential Do's and Don'ts of using agentic AI tools for coding, with real-world code examples."
 pubDate: "Aug 22 2025"
 heroImage: "/ai_copilot.jpg"
-tags: ["ai", "vibe-coding", "best-practices", "devops", "agentic-ai"]
+tags: ["ai", "vibe-coding", "agentic-ai"]
 ---
 
 # Coding with an AI Copilot: A Practical Guide

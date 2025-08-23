@@ -7,7 +7,7 @@ const projectSchema = z.object({
   updatedDate: z.string().optional(),
   heroImage: z.string().optional(),
   githubUrl: z.string().optional(),
-  badge: z.string().optional(),
+  badges: z.array(z.string()).optional(),
   tags: z
     .array(z.string())
     .refine((items) => new Set(items).size === items.length, {
@@ -22,7 +22,7 @@ const blogSchema = z.object({
   pubDate: z.coerce.date(),
   updatedDate: z.string().optional(),
   heroImage: z.string().optional(),
-  badge: z.string().optional(),
+  badges: z.array(z.string()).optional(),
   tags: z
     .array(z.string())
     .refine((items) => new Set(items).size === items.length, {
@@ -39,7 +39,7 @@ const storeSchema = z.object({
   updatedDate: z.coerce.date(),
   pricing: z.string().optional(),
   oldPricing: z.string().optional(),
-  badge: z.string().optional(),
+  badges: z.array(z.string()).optional(),
   checkoutUrl: z.string().optional(),
   heroImage: z.string().optional(),
 });
