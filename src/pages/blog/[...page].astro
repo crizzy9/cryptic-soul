@@ -34,7 +34,8 @@ const { page } = Astro.props;
               desc={post.data.description}
               url={"/blog/" + createSlug(post.data.title, post.slug)}
               target="_self"
-              badge={post.data.badge}
+              badges={post.data.badges}
+              pubDate={post.data.pubDate}
               tags={post.data.tags}
             />
             <div class="divider my-0" />

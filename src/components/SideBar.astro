@@ -8,9 +8,9 @@ const { sideBarActiveItemID } = Astro.props;
 <div class="drawer-side z-40">
   <label for="my-drawer" class="drawer-overlay"></label>
   <aside class="sidebar px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content flex flex-col transition-all duration-200 ease-in-out">
-    <button id="sidebar-toggle" class="btn btn-ghost btn-sm self-end" aria-label="Toggle sidebar">
+    <button id="sidebar-toggle" class="btn btn-ghost py-3 text-base self-end w-auto min-h-0 h-auto flex items-center justify-center" aria-label="Toggle sidebar">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 transition-transform" data-chevron>
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h13.5" />
       </svg>
     </button>
     <div class="w-fit mx-auto mt-5 mb-6">

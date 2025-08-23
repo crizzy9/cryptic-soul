@@ -56,7 +56,8 @@ const last_projects = projects.slice(0, 3);
           desc={proj.data.description}
           url={proj.data.githubUrl}
           target="_blank"
-          badge={proj.data.badge}
+          badges={proj.data.badges}
+          pubDate={proj.data.pubDate}
           tags={proj.data.tags}
         />
         <div class="divider my-0" />
@@ -77,7 +78,8 @@ const last_projects = projects.slice(0, 3);
           desc={post.data.description}
           url={"/blog/" + createSlug(post.data.title, post.slug)}
           target="_self"
-          badge={post.data.badge}
+          badges={post.data.badges}
+          pubDate={post.data.pubDate}
           tags={post.data.tags}
         />
         <div class="divider my-0" />
