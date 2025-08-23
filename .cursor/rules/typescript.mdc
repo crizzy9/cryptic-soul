@@ -1,0 +1,15 @@
+---
+globs: *.ts,*.tsx
+description: TypeScript guidelines for utilities and Astro integrations
+---
+
+## TypeScript Rules
+
+- Use explicit function signatures for exported utilities.
+- Prefer descriptive variable names; avoid 1–2 character identifiers.
+- Keep utilities pure and side-effect free; avoid coupling to Astro runtime.
+- Reuse shared config from [src/config.ts](mdc:src/config.ts) instead of duplicating constants.
+
+## Example
+
+- `createSlug(title, slug)` should read `GENERATE_SLUG_FROM_TITLE` from config and not access any global state.

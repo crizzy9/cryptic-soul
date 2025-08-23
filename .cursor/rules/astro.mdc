@@ -1,0 +1,35 @@
+---
+globs: *.astro,*.md,*.mdx
+description: Astro authoring and content rules for pages, components, and MD content
+---
+
+## Astro Authoring Rules
+
+- Prefer Astro-native features whenever possible (layouts, islands, content collections, image component, server endpoints) before adding custom or third-party solutions.
+- Prefer `Layouts` for page chrome; keep page files focused on data fetching and composition.
+- Use `getStaticPaths` for dynamic routes and ensure links use the same slug logic as paths.
+- Import `getCollection` and schema types from `astro:content` for type-safe content usage.
+- Keep frontmatter minimal; put long logic in imported utilities.
+
+## Content Collections
+
+- Frontmatter must conform to schemas in [src/content/config.ts](mdc:src/content/config.ts):
+  - `blog`, `project`, and `store` collections.
+- `tags` must be unique within each document.
+- `pubDate` should be a parseable date; prefer ISO-8601 strings.
+
+## Slugging
+
+- Always use [src/lib/createSlug.ts](mdc:src/lib/createSlug.ts) to generate blog URLs.
+- For links: `"/blog/" + createSlug(post.data.title, post.slug)`.
+- For paths: `params: { slug: createSlug(entry.data.title, entry.slug) }`.
+
+## Styling
+
+- Use Tailwind utility classes and DaisyUI components.
+- Avoid inline styles; prefer semantic classes and extracted components.
+
+## MD/MDX
+
+- Keep headings and descriptions concise to power RSS and previews.
+- Include `title`, `description`, and `pubDate` at minimum for `blog`.

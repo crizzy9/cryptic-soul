@@ -1,0 +1,11 @@
+---
+globs: *.astro,*.html,*.js,*.jsx,*.md,*.mdx,*.svelte,*.ts,*.tsx,*.vue
+description: TailwindCSS and DaisyUI usage
+---
+
+## Tailwind & DaisyUI
+
+- Only use classes that are included by Tailwind's `content` globs configured in [tailwind.config.cjs](mdc:tailwind.config.cjs).
+- Prefer semantic DaisyUI components (e.g., `btn`, `card`, `badge`) with Tailwind utilities for layout.
+- Keep component class lists readable; split long class strings across multiple lines only in code, not in MD.
+- Dark mode uses the `dark` theme defined in DaisyUI; avoid custom dark mode toggles unless needed.

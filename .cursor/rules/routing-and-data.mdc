@@ -1,0 +1,21 @@
+---
+globs: src/pages/**
+description: Routing, pagination, and data access patterns
+---
+
+## Routing
+
+- Prefer Astro's native routing/pagination helpers over custom routers.
+- Use file-based routes in `src/pages`. Dynamic routes use bracket syntax like `[slug].astro` and catch-alls `[...page].astro`.
+- Keep `getStaticPaths` minimal and deterministic; don't fetch external data during build unless required.
+- For paginated lists, prefer Astro's `paginate(posts, { pageSize })`.
+
+## Data Access
+
+- Read content using `getCollection("blog" | "project" | "store")`.
+- Sort posts by `pubDate` descending when listing.
+- Use `createSlug` consistently in both list links and `getStaticPaths`.
+
+## RSS
+
+- The RSS feed in [src/pages/rss.xml.js](mdc:src/pages/rss.xml.js) uses `import.meta.env.SITE`. Ensure `site` is configured in [astro.config.mjs](mdc:astro.config.mjs).
