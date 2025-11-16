@@ -1,0 +1,173 @@
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[margin=0.7in]{geometry}
+\usepackage{hyperref}
+\usepackage[svgnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{sans} % Use Helvetica font
+
+\renewcommand{\familydefault}{\sfdefault} % Set Helvetica as the default font
+
+% Define a nice color for links
+\definecolor{linkcolor}{HTML}{0000EE}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+}
+
+% Remove page numbering
+\pagestyle{empty}
+
+% Define section formatting (Header with a line underneath)
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+% Name and Contact Info formatting with correct font size
+\newcommand{\name}[1]{\centerline{\Large \scshape {#1}}}
+\newcommand{\contactinfo}[1]{\centerline{\small #1}}
+
+% Entry list for experience and projects
+\setlist[itemize]{leftmargin=0.15in, noitemsep, nolistsep}
+
+% Custom command for job/project entries
+\newcommand{\educationentry}[4]{
+  \noindent\textbf{#1}, #2 \hfill \textit{#3} \hfill \textbf{#4}
+}
+\newcommand{\jobentry}[4]{
+  \noindent\textbf{#1} \hfill #2 \hfill \textit{#3} \hfill \textbf{#4}
+}
+\newcommand{\projectentry}[2]{
+  \noindent\textbf{#1} \hfill \textbf{#2}
+}
+
+
+\begin{document}
+
+% TODO: Fix Formatting
+
+% -------------------- HEADER --------------------
+\name{SHYAM PADIA}
+\contactinfo{
+	+1 (857)-294-9264 |
+	\href{mailto:shyam.padia930@gmail.com}{shyam.padia930@gmail.com} |
+	Fremont, CA
+}
+\contactinfo{
+	\href{https://crypticsoul.dev}{crypticsoul.dev} |
+	\href{https://github.com/crizzy9}{github.com/crizzy9} |
+	\href{https://linkedin.com/in/shyam-padia}{linkedin.com/in/shyam-padia}
+}
+
+% -------------------- EDUCATION --------------------
+\section{Education}
+
+\educationentry{Northeastern University}{Khoury CCIS}{Boston, MA}{Sept 2017 - Dec 2019}\\
+\textit{Master of Science in Computer Science} \hfill GPA: 3.2/4
+
+\vspace{5pt}
+
+\educationentry{University of Mumbai}{Fr. CRCE}{Mumbai, India}{Aug 2012 - June 2016}\\
+\textit{Bachelor of Engineering in Computer Engineering} \hfill GPA: 7.4/10
+
+% -------------------- EXPERIENCE --------------------
+\section{Experience}
+% TODO: add more items and optimize the wording
+
+\jobentry{Intuit, Personalization}{Senior Software Engineer}{Mountain View, CA}{Jan 2025 - Present}
+\begin{itemize}
+	\item Built a unified user profile with third party data to train embedding models with unified data and recommend marketing offers based on similarity based vector representations
+	\item Created a marketing agent with a team of 6 using symphony and langchain to generate marketing content on the fly and creating the respective campaigns and experiments directly with AI agents accelerating campaign go live time by 90%
+	\item Led a team of 5, enabling bulk creation of personalization content, robust templates and segmented audience targeting enhancing personalization content creation capacity by 1400\% and significantly improved scalability for marketing operations
+	\item Integrated a content generation pipeline for personalization using Generative AI, automating the end-to-end workflow for all marketing campaigns, improving go to market by 75\% and driving innovation in Personalization and Marketing Tech at Intuit
+	\item Presented a comprehensive strategy paper on Generative AI for Personalization at Intuit, incorporating intelligent content suggestions, intelligent analytics and automation aimed at improving scalability and reducing campaign launch time by 75\%
+\end{itemize}
+
+\jobentry{Intuit, Personalization}{Software Engineer 2}{Mountain View, CA}{Jan 2021 - Jan 2025}
+\begin{itemize}
+	\item Integrated a RAG based Personalization Assist using GenerativeAI, hugging-face and LangChain for automated marketing content creation, reducing churn, accelerating campaign authoring, and enhancing Al-driven personalization at Intuit.
+	\item Built a self-serve Analytics Engine used to aggregated personalization clickstream feedback data using PySpark and created Analytics Dashboards in ReactJS, reducing on-call incidents by 40\% and boosting marketer productivity by 50\%
+	\item Created new marketing data entities for seamless data access, eliminating schema approvals, and enabling consistent multi-source data ingestion using PySpark and EMR
+	\item Built and Deployed an AWS Personalize Auto ML Model on clickstream data, enhancing recommendation quality on high traffic pages and reducing latency by 20\%
+	\item Engineered a Kafka consumer with EventBus synced with Customer Data Platform, with permissions and approval flows, driving \$10M in revenue uplift and enabling dynamic campaign targeting
+	\item Trained and Deployed an XGBoost and DNN based model to calculate business health scores, reducing investment risk by 23\%
+\end{itemize}
+
+\jobentry{Intuit, QuickBooks}{Software Engineer 1}{Mountain View, CA}{Jan 2020 - Jan 2021}
+\begin{itemize}
+	\item Developed Parallelized Cypress-based synthetic tests, preventing \$10M in potential revenue leakage and ensuring consistent pricing
+	\item Trained a XGBoost and Neural Net based model to determine business health score of companies in Quickbooks outperforming previous models by 12\% in accuracy
+	\item Built a revenue forecasting model predicting the estimated gain in revenue after price changes based on similutions
+	\item Built an automated cohort identification pipeline with AWS Glue and pandas to extract eligible customers for price changes
+	\item Built an React and Spring Boot AWS-backed solution for offer mapping, price change simulation and targeted price updates saving \$20M and accelerating marketer productivity by 50\%
+\end{itemize}
+
+\jobentry{Intuit, TurboTax}{Software Engineer Intern}{San Diego, CA}{May 2019 - Aug 2019}
+\begin{itemize}
+	\item Introduced faster OCR W2 Upload within Turbotax Get To Know Me reducing tax prep time by 20\%
+	\item Integrated a Decision Engine model for intent classification in Turbotax, replacing third party solutions and decreasing latency by 30\%
+\end{itemize}
+
+\jobentry{Intuit, TurboTax}{Software Engineer Co-op}{San Diego, CA}{May 18-Dec 18}
+\begin{itemize}
+	\item Built a Case Deduplication Service for the Intuit Help Portal, improving response times by 45\% and mitigating 7\% of duplicate cases.
+	\item Created Smart Fields with React and PHP streamlining content publishing to prod by 30 mins and reducing 10\% of case creations
+	\item Constructed a highly scalable General Redirect Service with AWS Lambdas and DynamoDB with 35\% more efficiency
+\end{itemize}
+
+\jobentry{Votercircle}{Software Developer}{Bangalore, India}{Nov 16-May 17}
+\begin{itemize}
+	\item Introduced distributed campaign organizers with Meteor.js and Angular, boosting canvassing efficiency and voter turnouts by 15\%
+	\item Integrated contact matching with ElasticSearch between voter files and social media contacts increasing effective outreach by 10\%
+\end{itemize}
+
+% -------------------- SKILLS --------------------
+\section{Skills}
+\noindent
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+	\textbf{Languages:}  & Python, Java, JavaScript, Go, Nix, Lua, C/C++     \\
+	\textbf{Frameworks:} & Spring Boot, React.js, Hugging Face, Django, ROS2 \\
+	\textbf{Tools:}      & PyTorch, PySpark, Kafka, LangChain, Tensorflow    \\
+	\textbf{Libraries:}  & Pandas, NLTK, OpenCV, Docker, Kubernetes          \\
+	\textbf{Cloud:}      & EMR, SageMaker, Glue, Lambda, Personalize, EC2    \\
+	\textbf{Databases:}  & Postgres, DynamoDB, Elastic Cache, Hive, Redis    \\
+\end{tabularx}
+
+% -------------------- PROJECTS --------------------
+\section{Projects}
+
+% TODO: Add more projects
+\projectentry{Lumino Lab}{Dec 24}
+\begin{itemize}
+	% TODO:Update description
+	\item Installed a Home Server with N100 mini PCs and Raspberry Pi Nix Clusters using Kubernetes to build a home lab ecosystem with Proxmox, Pfsense, Open Media Vault, Home Assistant and Next Cloud with Tailscale VPN and Cloudflare DNS
+\end{itemize}
+
+\projectentry{Omni Bot}{Jun 24}
+\begin{itemize}
+	\item Built an omnidirectional Raspberry Pi robot with a servo controlled ARM and implemented inverse kinematics, object detection, speech-to-text, and autonomous driving, showcasing advanced home lab connectivity and integration
+\end{itemize}
+
+\projectentry{Reinforcement Transfer Learning, Robotic Systems, Northeastern University}{Fall 19}
+\begin{itemize}
+	\item Analyzed effectiveness of Transfer Learning on Robot Arm Simulation Training using PyTorch and Open Al Gym on various algorithms such as Q Learning, DQN, Policy Gradient and Markov Chain Monte Carlo achieving significant advancements.
+\end{itemize}
+
+\projectentry{Music Multi-Transformer, Special Topics in Al, Northeastern University}{Spring 19}
+\begin{itemize}
+	\item Built four Music Transformers for each track inspired by Google Magenta and applied Global Multi Headed Attention allowing all decoders to attend over all encoders from all Transformers modifying the traditional architecture of a Transformer Network
+\end{itemize}
+
+\projectentry{Text Reconstruction, NLP Research Paper, Northeastern University}{Spring 18}
+\begin{itemize}
+	\item Analyzed several models in Tensorflow for generating paragraph representations using VAE and Unidirectional LSTM Seq2Seq with/without Attention on Feature rich word embeddings retrieved from the Gutenberg Corpus
+\end{itemize}
+
+\end{document}
+
+% TODO: Add certifications and courses such as general assembly ml course and business helath score
