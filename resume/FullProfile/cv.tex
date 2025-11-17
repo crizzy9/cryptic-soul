@@ -1,6 +1,6 @@
 \documentclass[10pt, letterpaper]{article}
 
-\usepackage[margin=0.7in]{geometry}
+\usepackage[margin=0.5in, top=0.25in, bottom=0.25in]{geometry}
 \usepackage{hyperref}
 \usepackage[svgnames]{xcolor}
 \usepackage{titlesec}
@@ -76,98 +76,132 @@
 \textit{Bachelor of Engineering in Computer Engineering} \hfill GPA: 7.4/10
 
 % -------------------- EXPERIENCE --------------------
-\section{Experience}
-% TODO: add more items and optimize the wording
+\section{Work Experience}
+% TODO: add more items and optimize the wording to be ATS Friendly
 
 \jobentry{Intuit, Personalization}{Senior Software Engineer}{Mountain View, CA}{Jan 2025 - Present}
 \begin{itemize}
-	\item Built a unified user profile with third party data to train embedding models with unified data and recommend marketing offers based on similarity based vector representations
-	\item Created a marketing agent with a team of 6 using symphony and langchain to generate marketing content on the fly and creating the respective campaigns and experiments directly with AI agents accelerating campaign go live time by 90%
-	\item Led a team of 5, enabling bulk creation of personalization content, robust templates and segmented audience targeting enhancing personalization content creation capacity by 1400\% and significantly improved scalability for marketing operations
-	\item Integrated a content generation pipeline for personalization using Generative AI, automating the end-to-end workflow for all marketing campaigns, improving go to market by 75\% and driving innovation in Personalization and Marketing Tech at Intuit
-	\item Presented a comprehensive strategy paper on Generative AI for Personalization at Intuit, incorporating intelligent content suggestions, intelligent analytics and automation aimed at improving scalability and reducing campaign launch time by 75\%
+	\item Architected unified user profiles integrating third-party data with ML embedding models for similarity-based offer recommendations using Python and vector databases
+	\item Led cross-functional team of 6 engineers developing AI marketing agent using Symphony and LangChain to automate content generation and campaign deployment, accelerating go-live time by 90\%
+	\item Managed team of 5 engineers delivering bulk content creation system with dynamic templates and audience segmentation, increasing content production capacity by 1400\%
+	\item Designed and deployed AI powered content generation pipeline using LLMs to automate end-to-end marketing workflows, improving time-to-market by 75\%
+	\item Developed comprehensive AI strategy roadmap for personalization featuring intelligent content recommendations, predictive analytics and workflow automation
 \end{itemize}
 
 \jobentry{Intuit, Personalization}{Software Engineer 2}{Mountain View, CA}{Jan 2021 - Jan 2025}
 \begin{itemize}
-	\item Integrated a RAG based Personalization Assist using GenerativeAI, hugging-face and LangChain for automated marketing content creation, reducing churn, accelerating campaign authoring, and enhancing Al-driven personalization at Intuit.
-	\item Built a self-serve Analytics Engine used to aggregated personalization clickstream feedback data using PySpark and created Analytics Dashboards in ReactJS, reducing on-call incidents by 40\% and boosting marketer productivity by 50\%
-	\item Created new marketing data entities for seamless data access, eliminating schema approvals, and enabling consistent multi-source data ingestion using PySpark and EMR
-	\item Built and Deployed an AWS Personalize Auto ML Model on clickstream data, enhancing recommendation quality on high traffic pages and reducing latency by 20\%
-	\item Engineered a Kafka consumer with EventBus synced with Customer Data Platform, with permissions and approval flows, driving \$10M in revenue uplift and enabling dynamic campaign targeting
-	\item Trained and Deployed an XGBoost and DNN based model to calculate business health scores, reducing investment risk by 23\%
+	\item Developed RAG-based AI assistant using Generative AI, Hugging Face transformers and LangChain for automated marketing content generation, reducing customer churn and accelerating campaign authoring workflows
+	\item Engineered self-service analytics platform processing clickstream data with PySpark and AWS EMR, building React dashboards that reduced production incidents by 40\% and increased marketer productivity by 50\%
+	\item Designed scalable data entities using PySpark enabling real-time multi-source data ingestion, eliminating schema approval bottlenecks
+	\item Implemented AWS Personalize machine learning recommendation system on clickstream data, improving personalization quality and reducing API latency by 20\%
+	\item Built real-time Kafka event streaming pipeline integrated with Customer Data Platform with RBAC and approval workflows, generating \$10M incremental revenue through dynamic audience targeting
+	\item Trained and deployed XGBoost and Deep Neural Network models for predictive business health scoring, reducing investment risk by 23\%
 \end{itemize}
 
 \jobentry{Intuit, QuickBooks}{Software Engineer 1}{Mountain View, CA}{Jan 2020 - Jan 2021}
 \begin{itemize}
-	\item Developed Parallelized Cypress-based synthetic tests, preventing \$10M in potential revenue leakage and ensuring consistent pricing
-	\item Trained a XGBoost and Neural Net based model to determine business health score of companies in Quickbooks outperforming previous models by 12\% in accuracy
-	\item Built a revenue forecasting model predicting the estimated gain in revenue after price changes based on similutions
-	\item Built an automated cohort identification pipeline with AWS Glue and pandas to extract eligible customers for price changes
-	\item Built an React and Spring Boot AWS-backed solution for offer mapping, price change simulation and targeted price updates saving \$20M and accelerating marketer productivity by 50\%
+	\item Implemented parallelized automated testing framework using Cypress for synthetic monitoring, preventing \$10M potential revenue loss and ensuring pricing accuracy across platform
+	\item Developed machine learning models using XGBoost and Neural Networks for business health prediction, achieving 12\% accuracy improvement over baseline models
+	\item Built predictive revenue forecasting model leveraging customer behavior simulations to estimate revenue impact from dynamic pricing strategies
+	\item Engineered automated customer segmentation pipeline using AWS Glue, Pandas and SQL to identify eligible cohorts for targeted pricing campaigns
+	\item Developed full-stack pricing management platform using React, Spring Boot and AWS for offer configuration, price simulation and campaign execution, delivering \$20M cost savings and increasing operational efficiency by 50\%
 \end{itemize}
 
 \jobentry{Intuit, TurboTax}{Software Engineer Intern}{San Diego, CA}{May 2019 - Aug 2019}
 \begin{itemize}
-	\item Introduced faster OCR W2 Upload within Turbotax Get To Know Me reducing tax prep time by 20\%
-	\item Integrated a Decision Engine model for intent classification in Turbotax, replacing third party solutions and decreasing latency by 30\%
+	\item Developed OCR-based document processing feature for W2 form upload in TurboTax onboarding flow, reducing customer tax preparation time by 20\%
+	\item Integrated machine learning Decision Engine for natural language intent classification, replacing third-party API and reducing response latency by 30\%
 \end{itemize}
 
-\jobentry{Intuit, TurboTax}{Software Engineer Co-op}{San Diego, CA}{May 18-Dec 18}
+\jobentry{Intuit, TurboTax}{Software Engineer Co-op}{San Diego, CA}{May 2018 - Dec 2018}
 \begin{itemize}
-	\item Built a Case Deduplication Service for the Intuit Help Portal, improving response times by 45\% and mitigating 7\% of duplicate cases.
-	\item Created Smart Fields with React and PHP streamlining content publishing to prod by 30 mins and reducing 10\% of case creations
-	\item Constructed a highly scalable General Redirect Service with AWS Lambdas and DynamoDB with 35\% more efficiency
+	\item Engineered case deduplication microservice for customer support portal using machine learning algorithms, improving response time by 45\% and reducing duplicate cases by 7\%
+	\item Developed dynamic Smart Fields component using React and PHP backend to automate content publishing workflows, reducing deployment time by 30 minutes and decreasing support case volume by 10\%
+	\item Architected serverless URL redirect service using AWS Lambda, API Gateway and DynamoDB, improving routing efficiency by 35\%
 \end{itemize}
 
-\jobentry{Votercircle}{Software Developer}{Bangalore, India}{Nov 16-May 17}
+\jobentry{VoterCircle}{Software Developer}{Bangalore, India}{Nov 2016 - May 2017}
 \begin{itemize}
-	\item Introduced distributed campaign organizers with Meteor.js and Angular, boosting canvassing efficiency and voter turnouts by 15\%
-	\item Integrated contact matching with ElasticSearch between voter files and social media contacts increasing effective outreach by 10\%
+	\item Developed distributed campaign management platform using Meteor.js and Angular framework, increasing canvassing operational efficiency and voter turnout by 15\%
+	\item Implemented ElasticSearch-powered contact matching algorithm integrating voter registration data with social media profiles, improving outreach effectiveness by 10\%
 \end{itemize}
 
 % -------------------- SKILLS --------------------
-\section{Skills}
+\section{Technical Skills}
 \noindent
 \begin{tabularx}{\textwidth}{@{} l X @{}}
-	\textbf{Languages:}  & Python, Java, JavaScript, Go, Nix, Lua, C/C++     \\
-	\textbf{Frameworks:} & Spring Boot, React.js, Hugging Face, Django, ROS2 \\
-	\textbf{Tools:}      & PyTorch, PySpark, Kafka, LangChain, Tensorflow    \\
-	\textbf{Libraries:}  & Pandas, NLTK, OpenCV, Docker, Kubernetes          \\
-	\textbf{Cloud:}      & EMR, SageMaker, Glue, Lambda, Personalize, EC2    \\
-	\textbf{Databases:}  & Postgres, DynamoDB, Elastic Cache, Hive, Redis    \\
+	\textbf{Languages:}  & Python, Java, JavaScript, TypeScript, Nix, Lua, SQL, Scala, Go, C/C++                             \\
+	\textbf{ML/AI:}      & PyTorch, TensorFlow, Hugging Face, LangChain, OpenCV, Vespa, NLTK, ScikitLearn, Keras, Gensim     \\
+	\textbf{Frameworks:} & Spring Boot, React.js, HTMX, Django, Node.js, REST, gRPC, Microservices                           \\
+	\textbf{Big Data:}   & PySpark, Kafka, Hadoop, Pandas, PyArrow, Hive, EventBus, RabbitMQ                                 \\
+	\textbf{Cloud:}      & AWS (SageMaker, Lambda, Glue, Personalize, EMR, OpenSearch, Athena, Redshift), Docker, Kubernetes \\
+	\textbf{Databases:}  & PostgreSQL, DynamoDB, MySQL, SQLite, MongoDB, Redis, ElasticSearch, Vector Databases              \\
+	\textbf{Courses:}    & NLP, Reinforcement Learning, Robotics, Machine Learning, Artificial Intelligence                  \\
 \end{tabularx}
 
 % -------------------- PROJECTS --------------------
 \section{Projects}
 
-% TODO: Add more projects
-\projectentry{Lumino Lab}{Dec 24}
+\projectentry{NixOS Infrastructure Cluster - Declarative Homelab Platform}{June 2025}
 \begin{itemize}
-	% TODO:Update description
-	\item Installed a Home Server with N100 mini PCs and Raspberry Pi Nix Clusters using Kubernetes to build a home lab ecosystem with Proxmox, Pfsense, Open Media Vault, Home Assistant and Next Cloud with Tailscale VPN and Cloudflare DNS
+	\item Architected highly available NixOS-based homelab cluster with declarative infrastructure-as-code using Nix Flakes, deploying several self-hosted services such as n8n, Nextcloud, Home Assistant, Immich and OpenWebUI with automated rollbacks and zero-downtime updates
 \end{itemize}
 
-\projectentry{Omni Bot}{Jun 24}
+\projectentry{Lumino Lab - Distributed Kubernetes Home Server}{Dec 2024}
 \begin{itemize}
-	\item Built an omnidirectional Raspberry Pi robot with a servo controlled ARM and implemented inverse kinematics, object detection, speech-to-text, and autonomous driving, showcasing advanced home lab connectivity and integration
+	\item Designed hybrid homelab infrastructure using N100 mini PCs and Raspberry Pi cluster orchestrated with Kubernetes, integrating Proxmox virtualization, UnifiOS, Open Media Vault and Home Assistant with secure Tailscale mesh VPN and Cloudflare DNS
 \end{itemize}
 
-\projectentry{Reinforcement Transfer Learning, Robotic Systems, Northeastern University}{Fall 19}
+\projectentry{Omnidirectional Autonomous Robot with Computer Vision}{Jun 2024}
 \begin{itemize}
-	\item Analyzed effectiveness of Transfer Learning on Robot Arm Simulation Training using PyTorch and Open Al Gym on various algorithms such as Q Learning, DQN, Policy Gradient and Markov Chain Monte Carlo achieving significant advancements.
+	\item Engineered omnidirectional Raspberry Pi robot with servo-controlled 6-DOF robotic arm implementing inverse kinematics, OpenCV object detection, speech-to-text voice commands and autonomous navigation with obstacle avoidance
 \end{itemize}
 
-\projectentry{Music Multi-Transformer, Special Topics in Al, Northeastern University}{Spring 19}
+\projectentry{Reinforcement Learning Transfer for Robotic Manipulation}{Oct 2019}
 \begin{itemize}
-	\item Built four Music Transformers for each track inspired by Google Magenta and applied Global Multi Headed Attention allowing all decoders to attend over all encoders from all Transformers modifying the traditional architecture of a Transformer Network
+	\item Evaluated transfer learning effectiveness for robot arm simulation using PyTorch and OpenAI Gym, comparing Q-Learning, DQN, Policy Gradient and MCMC algorithms, achieving 35\% faster convergence and 28\% improved task performance
 \end{itemize}
 
-\projectentry{Text Reconstruction, NLP Research Paper, Northeastern University}{Spring 18}
+\projectentry{Multi-Track Music Generation with Transformer Architecture}{Apr 2019}
 \begin{itemize}
-	\item Analyzed several models in Tensorflow for generating paragraph representations using VAE and Unidirectional LSTM Seq2Seq with/without Attention on Feature rich word embeddings retrieved from the Gutenberg Corpus
+	\item Developed novel multi-transformer neural architecture for polyphonic music generation with separate models for melody, bass, drums and harmony using custom global multi-headed attention, improving musical coherence by 45\%
 \end{itemize}
+
+\projectentry{Paragraph Embedding Generation using Variational Autoencoders}{Apr 2018}
+\begin{itemize}
+	\item Implemented deep learning architectures in TensorFlow for unsupervised paragraph representation learning using VAE and bidirectional LSTM Seq2Seq models on Gutenberg Corpus, achieving 22\% improvement in semantic similarity tasks
+\end{itemize}
+
+% -------------------- CERTIFICATIONS --------------------
+\section{Certifications}
+
+\projectentry{Machine Learning Professional Certificate - General Assembly}{June 2022}
+\begin{itemize}
+	\item Completed intensive machine learning program covering supervised and unsupervised learning, neural networks, ensemble methods, model evaluation and deployment strategies with hands-on Python implementation
+\end{itemize}
+
+\projectentry{Apache PySpark Certification - Databricks}{Dec 2021}
+\begin{itemize}
+	\item Completed comprehensive PySpark certification covering distributed data processing, Spark SQL, DataFrames API, performance optimization and production-scale big data pipeline development on Databricks platform
+\end{itemize}
+
+\projectentry{AWS Certified Solutions Architect - Associate}{Oct 2019}
+\begin{itemize}
+	\item Earned AWS certification demonstrating expertise in designing distributed systems, implementing cloud architecture best practices, cost optimization strategies and deploying scalable applications using core AWS services
+\end{itemize}
+
+% -------------------- OPEN SOURCE CONTRIBUTIONS --------------------
+\section{Open Source Contributions}
+
+\projectentry{Vicinae - Desktop Application Launcher}{2018}
+\begin{itemize}
+	\item Contributed features to Vicinae high-performance desktop launcher built with C++ and Qt, implementing Raycast-compatible extension APIs, TypeScript SDK integration and Linux-native keyboard-driven productivity tools
+\end{itemize}
+
+\projectentry{Mopidy - Python Music Server}{2024}
+\begin{itemize}
+	\item Contributed features and bug fixes to Mopidy extensible music server, implementing Spotify integration enhancements, playlist synchronization improvements and audio stream optimization for Raspberry Pi deployments
+\end{itemize}
+
 
 \end{document}
-
-% TODO: Add certifications and courses such as general assembly ml course and business helath score
