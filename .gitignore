@@ -27,3 +27,14 @@ pnpm-debug.log*
 .cache
 
 .direnv/
+
+# LaTeX auxiliary files
+*.aux
+*.fls
+*.out
+*.synctex.gz
+*.log
+*.fdb_latexmk
+*.bcf
+*.run.xml
+*.pdf
