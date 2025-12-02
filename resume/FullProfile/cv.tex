@@ -1,10 +1,12 @@
 \documentclass[10pt, letterpaper]{article}
 
-\usepackage[margin=0.5in, top=0.25in, bottom=0.25in]{geometry}
+\usepackage[margin=0.3in, top=0.25in, bottom=0.25in]{geometry}
 \usepackage{hyperref}
 \usepackage[svgnames]{xcolor}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{pifont}
 \usepackage{tabularx}
 \usepackage{sans} % Use Helvetica font
 
@@ -25,7 +27,7 @@
 
 % Define section formatting (Header with a line underneath)
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
+  \vspace{-8pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
 
 % Name and Contact Info formatting with correct font size
@@ -46,10 +48,12 @@
   \noindent\textbf{#1} \hfill \textbf{#2}
 }
 
+% \renewcommand{\labelitemi}{--}
+\renewcommand{\labelitemi}{$\circ$}
+% \renewcommand{\labelitemi}{$\triangleright$}
+% \renewcommand{\labelitemi}{\ding{228}}
 
 \begin{document}
-
-% TODO: Fix Formatting
 
 % -------------------- HEADER --------------------
 \name{SHYAM PADIA}
@@ -70,7 +74,7 @@
 \educationentry{Northeastern University}{Khoury CCIS}{Boston, MA}{Sept 2017 - Dec 2019}\\
 \textit{Master of Science in Computer Science} \hfill GPA: 3.2/4
 
-\vspace{5pt}
+% \vspace{5pt}
 
 \educationentry{University of Mumbai}{Fr. CRCE}{Mumbai, India}{Aug 2012 - June 2016}\\
 \textit{Bachelor of Engineering in Computer Engineering} \hfill GPA: 7.4/10
@@ -81,8 +85,12 @@
 
 \jobentry{Intuit, Personalization}{Senior Software Engineer}{Mountain View, CA}{Jan 2025 - Present}
 \begin{itemize}
+	% TODO: optimize below 4
+	% \item Worked with a cross-functional team across regions to build a Unified recommendation system for Intuit using vespa, gRPC and OpenSearch to create a platform for various types of recommendation models. Unifying several different solutions [Impact?]
+	% \item MCP
+	% \item Audience Recommendations
 	\item Architected unified user profiles integrating third-party data with ML embedding models for similarity-based offer recommendations using Python and vector databases
-	\item Led cross-functional team of 6 engineers developing AI marketing agent using Symphony and LangChain to automate content generation and campaign deployment, accelerating go-live time by 90\%
+	\item Led cross-functional team of 6 engineers developing AI marketing agent using SymphonyAI and LangChain to automate content generation and campaign deployment, accelerating go-live time by 90\%
 	\item Managed team of 5 engineers delivering bulk content creation system with dynamic templates and audience segmentation, increasing content production capacity by 1400\%
 	\item Designed and deployed AI powered content generation pipeline using LLMs to automate end-to-end marketing workflows, improving time-to-market by 75\%
 	\item Developed comprehensive AI strategy roadmap for personalization featuring intelligent content recommendations, predictive analytics and workflow automation
@@ -92,47 +100,46 @@
 \begin{itemize}
 	\item Developed RAG-based AI assistant using Generative AI, Hugging Face transformers and LangChain for automated marketing content generation, reducing customer churn and accelerating campaign authoring workflows
 	\item Engineered self-service analytics platform processing clickstream data with PySpark and AWS EMR, building React dashboards that reduced production incidents by 40\% and increased marketer productivity by 50\%
-	\item Designed scalable data entities using PySpark enabling real-time multi-source data ingestion, eliminating schema approval bottlenecks
-	\item Implemented AWS Personalize machine learning recommendation system on clickstream data, improving personalization quality and reducing API latency by 20\%
+	\item Designed scalable data entities using PySpark enabling real-time multi-source data ingestion, eliminating approval bottlenecks
+	\item Implemented AWS Personalize on clickstream data, serving higher quality recommendations with 20\% reduced API latency
 	\item Built real-time Kafka event streaming pipeline integrated with Customer Data Platform with RBAC and approval workflows, generating \$10M incremental revenue through dynamic audience targeting
-	\item Trained and deployed XGBoost and Deep Neural Network models for predictive business health scoring, reducing investment risk by 23\%
+	\item Trained and deployed XGBoost and Neural Net models for predictive business health scoring, reducing investment risk by 23\%
 \end{itemize}
 
 \jobentry{Intuit, QuickBooks}{Software Engineer 1}{Mountain View, CA}{Jan 2020 - Jan 2021}
 \begin{itemize}
 	\item Implemented parallelized automated testing framework using Cypress for synthetic monitoring, preventing \$10M potential revenue loss and ensuring pricing accuracy across platform
-	\item Developed machine learning models using XGBoost and Neural Networks for business health prediction, achieving 12\% accuracy improvement over baseline models
 	\item Built predictive revenue forecasting model leveraging customer behavior simulations to estimate revenue impact from dynamic pricing strategies
-	\item Engineered automated customer segmentation pipeline using AWS Glue, Pandas and SQL to identify eligible cohorts for targeted pricing campaigns
+	\item Engineered customer segmentation pipeline using AWS Glue and PyArrow to identify eligible cohorts for targeted pricing campaigns
 	\item Developed full-stack pricing management platform using React, Spring Boot and AWS for offer configuration, price simulation and campaign execution, delivering \$20M cost savings and increasing operational efficiency by 50\%
 \end{itemize}
 
 \jobentry{Intuit, TurboTax}{Software Engineer Intern}{San Diego, CA}{May 2019 - Aug 2019}
 \begin{itemize}
-	\item Developed OCR-based document processing feature for W2 form upload in TurboTax onboarding flow, reducing customer tax preparation time by 20\%
-	\item Integrated machine learning Decision Engine for natural language intent classification, replacing third-party API and reducing response latency by 30\%
+	\item Developed OCR document processing for W2 form upload in TurboTax onboarding, reducing tax preparation time by 20\%
+	\item Integrated ML Decision Engine for NLP intent classification, replacing third-party API and reducing latency by 30\%
 \end{itemize}
 
 \jobentry{Intuit, TurboTax}{Software Engineer Co-op}{San Diego, CA}{May 2018 - Dec 2018}
 \begin{itemize}
-	\item Engineered case deduplication microservice for customer support portal using machine learning algorithms, improving response time by 45\% and reducing duplicate cases by 7\%
-	\item Developed dynamic Smart Fields component using React and PHP backend to automate content publishing workflows, reducing deployment time by 30 minutes and decreasing support case volume by 10\%
-	\item Architected serverless URL redirect service using AWS Lambda, API Gateway and DynamoDB, improving routing efficiency by 35\%
+	\item Engineered a rule based case dedup service for Intuit Help Portal, improving response time by 45\% and duplicates by 7\%
+	\item Developed Smart Fields with React and PHP to automate content publishing, reducing support cases by 10\%
+	\item Architected serverless URL redirect service using AWS Lambda and DynamoDB, improving routing efficiency by 35\%
 \end{itemize}
 
 \jobentry{VoterCircle}{Software Developer}{Bangalore, India}{Nov 2016 - May 2017}
 \begin{itemize}
-	\item Developed distributed campaign management platform using Meteor.js and Angular framework, increasing canvassing operational efficiency and voter turnout by 15\%
-	\item Implemented ElasticSearch-powered contact matching algorithm integrating voter registration data with social media profiles, improving outreach effectiveness by 10\%
+	\item Integrated ElasticSearch contact matching algorithm for voter registration with social media profiles, improving outreach by 10\%
+	\item Developed campaign outreach platform using Meteor.js and Angular, improving canvassing efficiency and voter turnout by 15\%
 \end{itemize}
 
 % -------------------- SKILLS --------------------
 \section{Technical Skills}
 \noindent
 \begin{tabularx}{\textwidth}{@{} l X @{}}
-	\textbf{Languages:}  & Python, Java, JavaScript, TypeScript, Nix, Lua, SQL, Scala, Go, C/C++                             \\
+	\textbf{Languages:}  & Python, Java, JavaScript, TypeScript, Go, Nix, Lua, SQL, Scala, C/C++                             \\
 	\textbf{ML/AI:}      & PyTorch, TensorFlow, Hugging Face, LangChain, OpenCV, Vespa, NLTK, ScikitLearn, Keras, Gensim     \\
-	\textbf{Frameworks:} & Spring Boot, React.js, HTMX, Django, Node.js, REST, gRPC, Microservices                           \\
+	\textbf{Frameworks:} & Spring Boot, React.js, HTMX, Astro.js, Django, Node.js, REST, gRPC                                \\
 	\textbf{Big Data:}   & PySpark, Kafka, Hadoop, Pandas, PyArrow, Hive, EventBus, RabbitMQ                                 \\
 	\textbf{Cloud:}      & AWS (SageMaker, Lambda, Glue, Personalize, EMR, OpenSearch, Athena, Redshift), Docker, Kubernetes \\
 	\textbf{Databases:}  & PostgreSQL, DynamoDB, MySQL, SQLite, MongoDB, Redis, ElasticSearch, Vector Databases              \\
@@ -166,6 +173,11 @@
 \begin{itemize}
 	\item Developed novel multi-transformer neural architecture for polyphonic music generation with separate models for melody, bass, drums and harmony using custom global multi-headed attention, improving musical coherence by 45\%
 \end{itemize}
+
+% \projectentry{Fan Forge}{Apr 2018}
+% \begin{itemize}
+% 	\item Fan forge winner of hackathon
+% \end{itemize}
 
 \projectentry{Paragraph Embedding Generation using Variational Autoencoders}{Apr 2018}
 \begin{itemize}

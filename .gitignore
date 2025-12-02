@@ -28,6 +28,8 @@ pnpm-debug.log*
 
 .direnv/
 
+.netlify/state.json
+
 # LaTeX auxiliary files
 *.aux
 *.fls

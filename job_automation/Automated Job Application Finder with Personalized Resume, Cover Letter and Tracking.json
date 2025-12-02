@@ -1,0 +1,1169 @@
+{
+  "name": "Automated Job Application Finder with Personalized Resume, Cover Letter and Tracking",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://rsshub.luminolab.net/linkedin/jobs/F/4/senior%20software%20engineer/geoId=103644278&f_TPR=r2592000&f_PP=102380872&start={{$json.start}}",
+        "options": {}
+      },
+      "name": "Get LinkedIn Jobs (RSS)",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        -1392,
+        -112
+      ],
+      "id": "5980714f-c050-4678-b5db-c13e220803ac",
+      "notes": "TODO:\n1. Create a job search on LinkedIn.\n2. In the results, filter by \"Past 24 Hours\".\n3. Click the \"RSS\" button at the bottom right of the job listings to get the feed URL.\n4. Paste the URL here."
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "14pgCto2OAQxmb9w6ciOsReb3iQGE1V9XECU-o6E_c7M",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1098407770,
+          "mode": "list",
+          "cachedResultName": "Tracking",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14pgCto2OAQxmb9w6ciOsReb3iQGE1V9XECU-o6E_c7M/edit#gid=1098407770"
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "Position",
+              "fieldValue": "={{ $json.position }}"
+            },
+            {
+              "fieldId": "Company",
+              "fieldValue": "={{ $json.company }}"
+            },
+            {
+              "fieldId": "Job link",
+              "fieldValue": "={{ $json.jobLink }}"
+            },
+            {
+              "fieldId": "Team",
+              "fieldValue": "={{ $json.team }}"
+            },
+            {
+              "fieldId": "Location",
+              "fieldValue": "={{ $json.location }}"
+            },
+            {
+              "fieldId": "Date Posted",
+              "fieldValue": "={{ $json.datePosted }}"
+            },
+            {
+              "fieldId": "Job Id",
+              "fieldValue": "={{ $json.jobId }}"
+            },
+            {
+              "fieldId": "Job Criteria",
+              "fieldValue": "={{ $json.jobCriteria }}"
+            },
+            {
+              "fieldId": "Skills Required",
+              "fieldValue": "={{ $json.skillsRequired }}"
+            },
+            {
+              "fieldId": "Job Description",
+              "fieldValue": "={{ $json.jobDescription }}"
+            },
+            {
+              "fieldId": "Visa Restrictions",
+              "fieldValue": "={{ $json.visaRestrictions }}"
+            },
+            {
+              "fieldId": "Salary Range",
+              "fieldValue": "={{ $json.salaryRange }}"
+            },
+            {
+              "fieldId": "Compatibility Score",
+              "fieldValue": "={{ $json.compatibilityScore }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Log to Tracker",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        176,
+        -64
+      ],
+      "id": "07c56217-dbcb-4961-87ac-da2258449025",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hRalaVVTWYNQWvUo",
+          "name": "Google Sheets account"
+        }
+      },
+      "notes": "TODO:\n1. Create a Google Sheet with columns: dateFound, company, title, url, status\n2. Share the sheet with your n8n service account email.\n3. Paste the Sheet ID into the 'Document ID' field."
+    },
+    {
+      "parameters": {
+        "path": "approve-job",
+        "options": {}
+      },
+      "name": "Approve Job",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -2112,
+        1200
+      ],
+      "webhookId": "9e3c92da-f7d1-419b-a3d8-5006b5b487c9",
+      "id": "bad53256-2886-4e87-9a2a-9b415fe58abf"
+    },
+    {
+      "parameters": {
+        "path": "reject-job",
+        "options": {}
+      },
+      "name": "Reject Job",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -2112,
+        752
+      ],
+      "webhookId": "1b5ca3bd-474c-4734-93e1-7ca0e729a6e1",
+      "id": "f3e882a3-29f5-4736-8fa2-e831d3169992"
+    },
+    {
+      "parameters": {
+        "url": "={{$json.query.url}}",
+        "options": {}
+      },
+      "name": "Scrape Job Description",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -1664,
+        1200
+      ],
+      "id": "af29b014-8e47-4360-89a5-eb41dcf4a099",
+      "notes": "This simple HTTP request might get blocked. For better results, use a dedicated web scraping service like Browserless.io (which has an n8n node) or ScrapingBee."
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "name": "Update Status: Applied",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -992,
+        1200
+      ],
+      "id": "ef2f9e11-8765-47b9-89b5-39f9dd2b462e"
+    },
+    {
+      "parameters": {
+        "url": "https://api.axiom.ai/v2/run/axiom_id",
+        "authentication": "predefined",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "startUrl",
+              "value": "={{$node[\"Approve Job\"].json.query.url}}"
+            },
+            {
+              "name": "resumeSummary",
+              "value": "={{JSON.parse($json.choices[0].message.content).resume_summary}}"
+            },
+            {
+              "name": "coverLetter",
+              "value": "={{JSON.parse($json.choices[0].message.content).cover_letter}}"
+            },
+            {
+              "name": "firstName",
+              "value": "YourFirstName"
+            },
+            {
+              "name": "lastName",
+              "value": "YourLastName"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Apply via Browser Automation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -1216,
+        1200
+      ],
+      "id": "582658f2-92df-4a33-ad0d-64dcbcd78394",
+      "notes": "TODO:\nThis node is a placeholder for triggering a browser automation tool like Axiom.run or Browserless.\n\n1.  Build a bot in your chosen tool that takes inputs (like URL, cover letter text, etc.) and fills out the application form.\n2.  Get the API endpoint/webhook to trigger that bot.\n3.  Configure this HTTP Request node to call that endpoint, passing the required data in the body."
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "name": "Update Status: Rejected",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -1888,
+        752
+      ],
+      "id": "f9070b7e-9527-497d-9a61-6726357897e8"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "name": "Update Status: Approved",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -1888,
+        1200
+      ],
+      "id": "57c17625-4ebe-483e-8a04-ca5590d77ccb"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "name": "Email Reply Trigger",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 1,
+      "position": [
+        -2112,
+        1616
+      ],
+      "id": "811ad2a6-2203-4f4b-91d5-8a8793bf31b2",
+      "notes": "WORKFLOW 2: EMAIL MONITORING\n\nThis is a separate workflow that triggers when you get a reply.\n\nTODO:\n1. Configure your IMAP credentials.\n2. Adjust the filters (sender/subject) to best match replies you receive."
+    },
+    {
+      "parameters": {},
+      "name": "Route by Email Type",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -1664,
+        1584
+      ],
+      "id": "5ea6b67c-18a8-451d-a091-0ce52cee1fa5"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "name": "Update Status: Interview",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -1440,
+        1424
+      ],
+      "id": "0fd09c26-587a-4800-a179-0652aa7731d4"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "name": "Update Status: Rejection",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -1440,
+        1616
+      ],
+      "id": "674aafe0-9550-435b-9c18-c4fde5572c37"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "name": "Update Status: Assessment",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -1440,
+        1808
+      ],
+      "id": "1eb022f3-4b92-495f-82db-88f162ebf711"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2112,
+        -160
+      ],
+      "id": "c85ca21c-15a6-42e8-8516-7d9bbcb261d4",
+      "name": "Daily Application Trigger",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "=👇 *New Job Found* 👇\n*Title:* {{$json.title}}\n*Company:* {{$json.company}}\nShould I apply for this job?",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -1632,
+        368
+      ],
+      "id": "09ad1dbf-1fc5-4568-9619-744ba7779a6a",
+      "name": "Send For Approval",
+      "webhookId": "4de939f1-f99c-427c-93b0-a2413806de69",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "Icyj1ksp3OWagzGc",
+          "name": "Discord Webhook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor item in _input.all():\n  parts = item.json.content.split(' | ')\n\n  for part in parts:\n    key, value = part.split(': ', 1)\n    item.json[key.lower()] = value\n\n    jobId = item.json.link.split('/')[-1].split('-')[-1]\n    item.json[\"jobId\"] = jobId\nreturn _input.all()"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1200,
+        -112
+      ],
+      "id": "f62d0e2b-80cc-4bfe-a9ae-ec21a12f3c4e",
+      "name": "Parse Job Metadata"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.data[0] }}",
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"$id\": \"https://example.com/job_application.schema.json\",\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"JobApplication\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"salaryRange\": {\n      \"type\": \"object\",\n      \"description\": \"Find any mention of compensation. Extract the minimum and maximum values as numbers. If no salary is mentioned, make the respective fields null.\",\n      \"properties\": {\n        \"min\": {\n          \"type\": [\"number\", \"null\"]\n        },\n        \"max\": {\n          \"type\": [\"number\", \"null\"]\n        }\n      },\n      \"required\": [\"min\", \"max\"]\n    },\n    \"visaRestrictions\": {\n      \"type\": \"string\",\n      \"description\": \"Scan the text for keywords about work authorization or sponsorship.\",\n      \"enum\": [\n        \"Sponsorship available\",\n        \"Sponsorship not available\",\n        \"US Citizenship required\",\n        \"Green Card required\",\n        \"Not specified\"\n      ]\n    },\n    \"team\": {\n      \"type\": [\"string\", \"null\"],\n      \"description\": \"Find any mention of a specific team this job application is for. Extract this name otherwise make the field null.\"\n    },\n    \"jobCriteria\": {\n      \"type\": \"array\",\n      \"description\": \"Extract all explicit qualifications like education, years of experience, and certifications. Return these as an array of strings. If none are found, return an empty array [].\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"skillsRequired\": {\n      \"type\": \"array\",\n      \"description\": \"Extract all specific technical skills (e.g., \\\"Python\\\", \\\"React\\\") and soft skills (e.g., \\\"Project Management\\\"). Return these as an array of strings. If none are found, return an empty array [].\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"jobDescription\": {\n      \"type\": \"string\",\n      \"description\": \"Clean all HTML tags from the content and provide a concise, readable summary of the job's core responsibilities in a single plain text paragraph.\"\n    },\n    \"compatibilityScore\": {\n      \"type\": \"number\",\n      \"description\": \"Based on all the above details generate a brutally honest compatibility score (between 0 to 1) against my profile. 0 being ineligible due to citizenship requirements or sponsorship requirements or just straight up non matching skill set and experience. 1 being highly compatible with matching sponsorship requirements and skills and experience requirements.\",\n      \"minimum\": 0,\n      \"maximum\": 1\n    }\n  },\n  \"required\": [\n    \"salaryRange\",\n    \"visaRestrictions\",\n    \"team\",\n    \"jobCriteria\",\n    \"skillsRequired\",\n    \"jobDescription\",\n    \"compatibilityScore\"\n  ]\n}",
+        "options": {
+          "systemPromptTemplate": "You are an expert AI data extraction agent specializing in parsing job descriptions from raw HTML. Your task is to meticulously analyze the provided text and populate the given JSON schema with the highest possible accuracy.\n\nMy Current Profile\n- I require sponsorship. Currently on H1B visa with i140 in processing. I am not a US Citizen\n- 5.5+ years of experience in the US working at Intuit Inc. Currently employed as a Senior Software Engineer\n- 1+ year of experience in the US working at Intuit Inc as an Intern\n- 1+ year of experience in India as a Software Developer\n\nMy current Resume (Keep in mind there are many skills and experience details that are not mentioned here. I am very extensible and work with many languages and technologies on a daily basis. I am what you might call a 10x engineer)\n\nEDUCATION\nNortheastern University, Khoury CCIS, Boston, MA Sept 17-Dec 19\nMaster of Science in Computer Science GPA: 3.2/4\nUniversity of Mumbai, Fr. CRCE, Mumbai, India June 16\nBachelor of Engineering in Computer Engineering GPA: 7.4/10\nSKILLS\nLanguages: Python, JavaScript, Java, Go, Lua, Nix,\nC/C++\nLibraries: Pandas, NLTK, OpenCV, Docker, Kubernetes\nFrameworks: Spring Boot, React.js, Hugging Face,\nDjango, ROS2\nCloud: EMR, SageMaker, Glue, Lambda, Personalize,\nEC2\nTools: PyTorch, PySpark, Kafka, LangChain, Tensorflow Databases: Postgres, DynamoDB, Elastic Cache, Hive,\nRedis\nEXPERIENCE\nIntuit, Marketing Tech, Senior Software Engineer, Mountain View, CA Jan 25-Present\n• Led a team of 5, enabling bulk creation of personalization content, robust templates and segmented audience\ntargeting enhancing personalization content creation capacity by 1400% and significantly improved scalability for\nmarketing operations\n• Integrated a content generation pipeline for personalization using Generative AI, automating the end-to-end work-\nflow for all marketing campaigns, improving go to market by 75% and driving innovation in Personalization and\nMarketing Tech at Intuit\n• Presented a comprehensive strategy paper on Generative AI for Personalization at Intuit, incorporating intelligent\ncontent suggestions, intelligent analytics and automation aimed at improving scalability and reducing campaign\nlaunch time by 75%\nIntuit, Marketing Tech, Software Engineer 2, Mountain View, CA Jan 21-Jan 25\n• Integrated a RAG based Personalization Assist using GenerativeAl, hugging-face and LangChain for automated\nmarketing content creation, reducing churn, accelerating campaign authoring, and enhancing Al-driven personal-\nization at Intuit.\n• Built a self-serve Analytics Engine used to aggregated personalization clickstream feedback data using PySpark\nand created Analytics Dashboards in ReactJS, reducing on-call incidents by 40% and boosting marketer produc-\ntivity by 50%\n• Created new marketing data entities for seamless data access, eliminating schema approvals, and enabling con-\nsistent multi-source data ingestion using PySpark and EMR\n• Built and Deployed an AWS Personalize Auto ML Model on clickstream data, enhancing recommendation quality\non high traffic pages and reducing latency by 20%\n• Engineered a Kafka consumer with EventBus synced with Customer Data Platform, with permissions and approval\nflows, driving $10M in revenue uplift and enabling dynamic campaign targeting\n• Trained and Deployed an XGBoost and DNN based model to calculate business health scores, reducing investment\nrisk by 23%\nIntuit, QuickBooks, Software Engineer 1, Mountain View, CA Jan 20-Jan 21\n• Developed Parallelized Cypress-based synthetic tests, preventing $10M in potential revenue leakage and ensuring\nconsistent pricing\n• Built an React and Spring Boot AWS-backed solution for automated cohort identification, offer mapping, price\nsimulation, revenue forecasting and targeted price updates saving $20M and accelerating marketer productivity by\n50%\nIntuit, TurboTax, Software Engineer Intern, San Diego, CA May 19-Aug 19\n• Introduced faster OCR W2 Upload in an AB Test reducing tax prep time by 20%\n• Integrated Decision Engine for intent classification, replacing third party solutions and decreasing latency by 30%\nIntuit, TurboTax, Software Engineer Co-op, San Diego, CA May 18-Dec 18\n• Built a Case Deduplication Service, improving response times by 45% and mitigating 7% of duplicate cases.\n• Created Smart Fields with React and PHP streamlining content publishing to prod by 30 mins and reducing 10%\nof case creations\n• Constructed a highly scalable General Redirect Service with AWS Lambdas and DynamoDB with 35% more effi-\nciency\nVotercircle, Software Developer, Bangalore, India Nov 16-May 17\n• Introduced distributed campaign organizers with Meteor.js and Angular, boosting canvassing efficiency and voter\nturnouts by 15%\n• Integrated contact matching with ElasticSearch between voter files and social media contacts increasing effective\noutreach by 10%\nPROJECTS\nLumino Bot Jun 24\n• Built an omnidirectional Raspberry Pi robot with a servo controlled ARM and implemented inverse kinematics,\nobject detection, speech-to-text, and autonomous driving, showcasing advanced home lab connectivity and inte-\ngration\nHome Lab Dec 23\n• Installed a Home Server with N100 mini PCs and Raspberry Pi Nix Clusters using Kubernetes to build a home\nlab ecosystem with Proxmox, Pfsense, Open Media Vault, Home Assistant and Next Cloud with Tailscale VPN and\nCloudflare DNS\nReinforcement Transfer Learning, Robotic Systems, Northeastern University Fall 19\n• Analyzed effectiveness of Transfer Learning on Robot Arm Simulation Training using PyTorch and Open Al Gym on\nvarious algorithms such as Q Learning, DQN, Policy Gradient and Markov Chain Monte Carlo achieving significant\nadvancements.\nMusic Multi-Transformer, Special Topics in Al, Northeastern University Spring 19\n• Built four Music Transformers for each track inspired by Google Magenta and applied Global Multi Headed Attention\nallowing all decoders to attend over all encoders from all Transformers modifying the traditional architecture of a\nTransformer Network\nText Reconstruction, NLP Research Paper, Northeastern University Spring 18\n• Analyzed several models in Tensorflow for generating paragraph representations using VAE and Unidirectional\nLSTM Seq2Seq with/without Attention on Feature rich word embeddings retrieved from the Gutenberg Corpus"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        -368,
+        -64
+      ],
+      "id": "b57ecdf3-f13c-48f8-a5d3-8243dca0d793",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "resource": "Browser Rest Apis",
+        "operation": "Execute",
+        "code": "=export default async ({ page }) => {\n  await page.goto(\"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{{ $json.jobId }}\")\n\n  const items = await page.evaluate(() => {\n    const elements = [...document.querySelectorAll('section.description>div>div>section>div')];\n    const results = elements.map((el) => el.innerHTML.trim());\n    return JSON.stringify(results);\n  });\n  \n  return JSON.parse(items);\n};",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-browserless.browserless",
+      "typeVersion": 2,
+      "position": [
+        -544,
+        -64
+      ],
+      "id": "247ccbe6-2f3e-4566-8d3f-bf0b0efbc254",
+      "name": "Get Job Details",
+      "credentials": {
+        "browserlessApi": {
+          "id": "fGkX1MG6cuG1onDx",
+          "name": "Browserless Credentials account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendAndWait",
+        "guildId": {
+          "__rl": true,
+          "value": "1387216567812489316",
+          "mode": "list",
+          "cachedResultName": "Lumino",
+          "cachedResultUrl": "https://discord.com/channels/1387216567812489316"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1425639448909189140",
+          "mode": "list",
+          "cachedResultName": "jobs",
+          "cachedResultUrl": "https://discord.com/channels/1387216567812489316/1425639448909189140"
+        },
+        "message": "=👇 *New Job Found* 👇\n\n*Title:* {{$json.title}}\n\n*Company:* {{$json.company}}\n\nShould I apply for this job?",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -1376,
+        352
+      ],
+      "id": "ca81906a-d8a7-4900-8c34-50ce5605d7c2",
+      "name": "Send message and wait for response",
+      "webhookId": "6acbc17d-6021-4835-85d6-04dee5b006f3",
+      "credentials": {
+        "discordBotApi": {
+          "id": "Zi1cMLc3UVeGOJbA",
+          "name": "Discord Bot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-5-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -352,
+        160
+      ],
+      "id": "a296ff7e-758d-4f29-a692-d596ae9a3288",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "WoBhIGs45VOzEoER",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Generate Personalized Content",
+      "typeVersion": 1,
+      "position": [
+        -1440,
+        1200
+      ],
+      "id": "136f4779-18eb-48d0-befb-b2ca5ad70645",
+      "notes": "## Generate Personalized Content\ngenerate personalized content (Resume and Cover Letter) based on the users profile and the job description and the companies details\n\n\nOG\n```json\n    {\n      \"parameters\": {\n        \"model\": \"gpt-4\",\n        \"jsonMode\": false,\n        \"content\": \"You are a professional resume writer. Your task is to generate a personalized resume summary and a cover letter for a job application.\\n\\n**My Base Resume:**\\n---\\n[TODO: PASTE YOUR FULL BASE RESUME TEXT HERE]\\n---\\n\\n**Job Posting Details:**\\n---\\n{{$json.body}}\\n---\\n\\nBased on my resume and the specific job posting above, please provide a response in JSON format with two keys: \\\"resume_summary\\\" and \\\"cover_letter\\\".\\n\\n1.  **resume_summary**: A 3-4 sentence professional summary that is highly tailored to the job description, highlighting my most relevant skills and experiences.\\n2.  **cover_letter**: A professional and compelling 3-paragraph cover letter for this specific role. Address it to the 'Hiring Team'.\",\n        \"options\": {}\n      },\n      \"name\": \"Generate Personalized Content\",\n      \"type\": \"n8n-nodes-base.openAiChat\",\n      \"typeVersion\": 1,\n      \"position\": [\n        1640,\n        -100\n      ],\n      \"id\": \"5f3a099a-0744-46ab-a026-6659779261a9\",\n      \"credentials\": {\n        \"openAiApi\": {\n          \"id\": \"YOUR_OPENAI_CREDENTIAL_ID\",\n          \"name\": \"OpenAI account\"\n        }\n      },\n      \"notes\": \"TODO:\\n1. Paste your base resume into the prompt below.\\n2. Ensure you have OpenAI (or another AI provider like Gemini/Anthropic) credentials configured.\"\n    }\n```"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Parse and Classify Email",
+      "typeVersion": 1,
+      "position": [
+        -1888,
+        1616
+      ],
+      "id": "898a05f8-5c3b-44e8-911e-cd0789fe7d0e",
+      "notes": "## Parse and Classify Email \n```json\n    {\n      \"parameters\": {\n        \"model\": \"gpt-3.5-turbo\",\n        \"jsonMode\": false,\n        \"content\": \"Read the following email and classify its intent into ONE of the following categories: 'Interview', 'Rejection', 'Assessment', 'Next Steps', 'Question', 'Other'.\\nAlso, extract the company name from the email.\\n\\nRespond ONLY with a JSON object with two keys: \\\"category\\\" and \\\"company\\\".\\n\\nEmail Content:\\n---\\nSubject: {{$json.subject}}\\nFrom: {{$json.from[0].name}}\\n\\n{{$json.text}}\\n---\",\n        \"options\": {}\n      },\n      \"name\": \"Parse & Classify Email\",\n      \"type\": \"n8n-nodes-base.openAiChat\",\n      \"typeVersion\": 1,\n      \"position\": [\n        840,\n        740\n      ],\n      \"id\": \"2787836d-1718-4033-bc59-67995874c7e6\",\n      \"credentials\": {\n        \"openAiApi\": {\n          \"id\": \"YOUR_OPENAI_CREDENTIAL_ID\",\n          \"name\": \"OpenAI account\"\n        }\n      }\n    }\n```"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "hfvivTlQThpPytkl",
+          "mode": "list",
+          "cachedResultName": "Job Applications",
+          "cachedResultUrl": "/projects/PSPanW8dHb4G4Whx/datatables/hfvivTlQThpPytkl"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "jobDescription": "={{ $json.output.jobDescription }}",
+            "jobCriteria": "={{ JSON.stringify($json.output.jobCriteria) }}",
+            "salaryRange": "={{ JSON.stringify($json.output.salaryRange) }}",
+            "visaRestrictions": "={{ $json.output.visaRestrictions }}",
+            "skillsRequired": "={{ JSON.stringify($json.output.skillsRequired) }}",
+            "datePosted": "={{ $('Parse Job Metadata').item.json.pubDate }}",
+            "position": "={{ $('Parse Job Metadata').item.json.title }}",
+            "team": "={{ $json.output.team }}",
+            "jobLink": "={{ $('Parse Job Metadata').item.json.link }}",
+            "company": "={{ $('Parse Job Metadata').item.json.company }}",
+            "location": "={{ $('Parse Job Metadata').item.json.location }}",
+            "jobId": "={{ $('Parse Job Metadata').item.json.jobId }}",
+            "compatibilityScore": "={{ $json.output.compatibilityScore }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "jobId",
+              "displayName": "jobId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "position",
+              "displayName": "position",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "company",
+              "displayName": "company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "team",
+              "displayName": "team",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "jobLink",
+              "displayName": "jobLink",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "visaRestrictions",
+              "displayName": "visaRestrictions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "salaryRange",
+              "displayName": "salaryRange",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "jobDescription",
+              "displayName": "jobDescription",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "jobCriteria",
+              "displayName": "jobCriteria",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "skillsRequired",
+              "displayName": "skillsRequired",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "datePosted",
+              "displayName": "datePosted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "compatibilityScore",
+              "displayName": "compatibilityScore",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "dateApplied",
+              "displayName": "dateApplied",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -64
+      ],
+      "id": "ec492f1f-833a-47a4-be09-82f05df93be1",
+      "name": "Insert Job"
+    },
+    {
+      "parameters": {
+        "content": "## TODO \n- [ ] Update compatibility score to work separately. Sourced from actual list of accomplisments and skills. will also be used for resume generation\n- [ ] Auto reject jobs that require citizenship/dont give sponsorship\n- [ ] Build resume maker (use latex format for coverletter and resume and store them in drive). Create a DB or something for entire profile reference\n- [ ] Create job applier workflow\n- [ ] Create email tracking workflow",
+        "height": 304,
+        "width": 448
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1648,
+        -752
+      ],
+      "typeVersion": 1,
+      "id": "aa5e06ba-3594-4c8c-901a-d151b7fc7bc2",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "rowNotExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "hfvivTlQThpPytkl",
+          "mode": "list",
+          "cachedResultName": "Job Applications",
+          "cachedResultUrl": "/projects/PSPanW8dHb4G4Whx/datatables/hfvivTlQThpPytkl"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "jobId",
+              "keyValue": "={{ $json.jobId }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        -64
+      ],
+      "id": "a11a97dd-c68e-4595-9f57-29c18ab633d0",
+      "name": "If job does not exist"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1680,
+        -160
+      ],
+      "id": "5c70cc48-79eb-4fb0-a8c1-c3722ba07631",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "approvalUrl",
+              "value": "={{ $('Approve Job').item.url + '?title=' + encodeURIComponent($json.title) + '&company=' + encodeURIComponent($json.company) + '&url=' + encodeURIComponent($json.link) }}"
+            },
+            {
+              "name": "rejectionUrl",
+              "value": "={{ $('Reject Job').item.url + '?url=' + encodeURIComponent($json.link) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Construct Notification Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -1328,
+        -336
+      ],
+      "id": "5a9719c5-6a5f-45dd-9cec-9ec84b343fd8",
+      "notes": "IMPORTANT:\nAfter importing, SAVE the workflow. Then open the 'Approve Job' and 'Reject Job' webhook nodes, copy their Test URLs, and paste them into the expressions here, replacing the default webhook URLs."
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1387216567812489316",
+          "mode": "list",
+          "cachedResultName": "Lumino",
+          "cachedResultUrl": "https://discord.com/channels/1387216567812489316"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1425639448909189140",
+          "mode": "list",
+          "cachedResultName": "jobs",
+          "cachedResultUrl": "https://discord.com/channels/1387216567812489316/1425639448909189140"
+        },
+        "content": "=👇 * X New Jobs Found* 👇\n# TODO: construct a table of companies and title sorted by compatbility score and application link\n*Title:* {{$json.title}}\n\n*Company:* {{$json.company}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -912,
+        -336
+      ],
+      "id": "2e6ce3a7-93a4-4b2a-93f0-9a4d343aa93f",
+      "name": "Send a message",
+      "webhookId": "308ad90a-1115-4b01-a39d-b44a755bef8d",
+      "credentials": {
+        "discordBotApi": {
+          "id": "Zi1cMLc3UVeGOJbA",
+          "name": "Discord Bot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const result = [];\nfor (let i = 0; i <= 20; i += 10) {\n  result.push({ json: { start: i } });\n}\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1888,
+        -160
+      ],
+      "id": "a483bb74-acbf-4742-8274-322177a05946",
+      "name": "Get top X jobs"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -992,
+        -112
+      ],
+      "id": "41e107c7-5905-4752-b49a-963ac4d104cb",
+      "name": "Loop Over Items1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Get LinkedIn Jobs (RSS)": {
+      "main": [
+        [
+          {
+            "node": "Parse Job Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Tracker": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approve Job": {
+      "main": [
+        [
+          {
+            "node": "Update Status: Approved",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reject Job": {
+      "main": [
+        [
+          {
+            "node": "Update Status: Rejected",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apply via Browser Automation": {
+      "main": [
+        [
+          {
+            "node": "Update Status: Applied",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status: Approved": {
+      "main": [
+        [
+          {
+            "node": "Scrape Job Description",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Email Type": {
+      "main": [
+        [
+          {
+            "node": "Update Status: Interview",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Status: Rejection",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Status: Assessment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Application Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get top X jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Job Metadata": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Job Details": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response": {
+      "main": [
+        []
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Insert Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Reply Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse and Classify Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse and Classify Email": {
+      "main": [
+        [
+          {
+            "node": "Route by Email Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape Job Description": {
+      "main": [
+        [
+          {
+            "node": "Generate Personalized Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Personalized Content": {
+      "main": [
+        [
+          {
+            "node": "Apply via Browser Automation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Job": {
+      "main": [
+        [
+          {
+            "node": "Log to Tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If job does not exist": {
+      "main": [
+        [
+          {
+            "node": "Get Job Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Construct Notification Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get LinkedIn Jobs (RSS)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Construct Notification Message": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get top X jobs": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If job does not exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "39cae9a6-aae9-42f3-b1d8-e4f6ea87c00f",
+  "meta": {
+    "instanceId": "71120796cb1e1ada7a1ffa3e28daab7dbd3c50ae681d53908673ac737307accc"
+  },
+  "id": "Lw1uK5APIhIeUeem",
+  "tags": []
+}
