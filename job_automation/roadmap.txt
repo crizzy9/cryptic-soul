@@ -1,0 +1,647 @@
+================================================================================
+🎯 UNIFIED AUTOMATED JOB HUNT SYSTEM ROADMAP
+================================================================================
+
+Project Duration: 8-10 weeks
+Total Phases: 6
+Total Tasks: 31
+Estimated Hours: 110-140 hours
+Part-Time Schedule: 15-20 hours/week (part-time)
+
+================================================================================
+
+================================================================================
+PHASE 1: FOUNDATION & QUICK WINS
+================================================================================
+Duration: Week 1
+Priority: CRITICAL
+Estimated Hours: 15-20 hours
+
+Goals:
+  • Fix all broken nodes
+  • Implement auto-rejection for non-sponsorship jobs
+  • Add manual application tracking
+  • Implement basic error handling
+
+Tasks:
+
+  [1.1] Fix Critical Node Issues
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: All nodes execute without errors
+  🔧 Tools: n8n_update_partial_workflow, validate_workflow
+  Subtasks:
+    - Fix 'Get job offer' HTTP Request node - Add dynamic URL
+    - Fix 'Check If Link Has Apply Button' IF node - Add proper conditions
+    - Fix 'Fill Application Form1' node - Configure endpoint
+    - Fix 'Get Resume Text' node - Verify file path
+    - Review and complete all AI node prompts
+
+  [1.2] Auto-Reject Non-Sponsorship Jobs (TODO #2)
+  ⏱️  Estimated: 2-3 hours
+  📦 Deliverable: Auto-rejection working for non-sponsorship jobs
+  🔧 Tools: IF node, Supabase node, Discord node
+  Subtasks:
+    - Add IF node after 'Information Extractor'
+    - Create visa restriction detection logic
+    - Route rejections to Supabase with status='AUTO_REJECTED'
+    - Add Discord notification for rejected jobs (optional)
+
+  [1.3] Manual Application Tracking (TODO #6)
+  ⏱️  Estimated: 2-3 hours
+  📦 Deliverable: Working manual application logging system
+  🔧 Tools: Webhook Trigger, Supabase, Google Forms
+  Subtasks:
+    - Choose tracking method: Discord/Google Form/n8n Form
+    - Create Webhook endpoint in n8n
+    - Build form with fields: company, position, url, date, notes
+    - Add validation and Supabase insert logic
+    - Test with 5 sample applications
+
+  [1.4] Implement Rate Limiting
+  ⏱️  Estimated: 1-2 hours
+  📦 Deliverable: Rate limiting prevents IP blocking
+  🔧 Tools: Wait node, Code node
+  Subtasks:
+    - Add Wait nodes (5-10 sec) between LinkedIn requests
+    - Add random delays to mimic human behavior
+    - Implement request throttling
+
+  [1.5] Basic Error Handling
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Workflow continues despite individual node failures
+  🔧 Tools: Error Trigger, Code node, Discord
+  Subtasks:
+    - Add Error Trigger nodes to main workflow
+    - Create error logging to Supabase
+    - Add Discord notifications for critical errors
+    - Implement retry logic (3 attempts with exponential backoff)
+
+  [1.6] Add Job Deduplication
+  ⏱️  Estimated: 2-3 hours
+  📦 Deliverable: No duplicate jobs in database
+  🔧 Tools: Merge node, Supabase node
+  Subtasks:
+    - Add Merge node with 'Keep Unique' based on job_url
+    - Query Supabase for existing job IDs before processing
+    - Skip already-processed jobs
+
+✅ Success Criteria:
+  ✅ All nodes execute without errors
+  ✅ Non-sponsorship jobs auto-rejected
+  ✅ Manual applications tracked in database
+  ✅ Rate limiting prevents blocking
+  ✅ Errors logged and notified
+  ✅ No duplicate jobs processed
+
+================================================================================
+PHASE 2: ENHANCED SCORING & PROFILE SYSTEM
+================================================================================
+Duration: Weeks 2-3
+Priority: HIGH
+Estimated Hours: 20-25 hours
+
+Goals:
+  • Create comprehensive profile database
+  • Implement weighted compatibility scoring
+  • Separate scoring from application logic
+  • Build profile management system
+
+Tasks:
+
+  [2.1] Design Profile Database Schema (TODO #1 & #3)
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Supabase profile database with sample data
+  🔧 Tools: Supabase SQL Editor
+  Subtasks:
+    - Create Supabase tables: user_profile, skills, experience, education, accomplishments
+    - Define relationships and indexes
+    - Add sample data migration script
+    - Create views for easy querying
+
+  [2.2] Build Profile Input Interface
+  ⏱️  Estimated: 4-5 hours
+  📦 Deliverable: Easy profile update interface
+  🔧 Tools: n8n Form Trigger, Supabase nodes
+  Subtasks:
+    - Create n8n Form for profile updates
+    - Build CRUD endpoints for profile management
+    - Add data validation
+    - Create import from LinkedIn/resume
+
+  [2.3] Implement Weighted Scoring Algorithm
+  ⏱️  Estimated: 5-6 hours
+  📦 Deliverable: Accurate compatibility scoring system
+  🔧 Tools: Code node, OpenAI node, Supabase
+  Subtasks:
+    - Create scoring sub-workflow
+    - Implement weighted scoring: Skills(40%), Experience(30%), Education(20%), Other(10%)
+    - Add AI-powered gap analysis
+    - Generate actionable recommendations
+    - Store scoring history for ML training
+
+  [2.4] Enhanced AI Scoring Prompts
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Consistent, explainable AI scoring
+  🔧 Tools: OpenAI node with structured output
+  Subtasks:
+    - Design structured scoring prompt with JSON output
+    - Add few-shot examples for consistency
+    - Implement multi-criteria evaluation
+    - Add explainability (why this score?)
+
+  [2.5] Split Workflow into Sub-Workflows
+  ⏱️  Estimated: 5-6 hours
+  📦 Deliverable: Modular, maintainable workflow architecture
+  🔧 Tools: Execute Workflow Trigger, Execute Workflow node
+  Subtasks:
+    - Create Sub-Workflow 1: Job Scraping & Filtering
+    - Create Sub-Workflow 2: Resume Matching & Scoring
+    - Create Sub-Workflow 3: Application Submission
+    - Create Sub-Workflow 4: Email Monitoring & Updates
+    - Connect sub-workflows with Execute Workflow nodes
+
+✅ Success Criteria:
+  ✅ Profile database populated with your data
+  ✅ Weighted scoring algorithm working
+  ✅ AI provides explainable scores
+  ✅ Workflow split into 4 sub-workflows
+  ✅ Profile easily updatable
+
+================================================================================
+PHASE 3: RESUME & COVER LETTER GENERATION
+================================================================================
+Duration: Weeks 4-5
+Priority: HIGH
+Estimated Hours: 25-30 hours
+
+Goals:
+  • Build LaTeX resume generation system
+  • Create dynamic cover letter generator
+  • Integrate with Google Drive storage
+  • Personalize documents per job application
+
+Tasks:
+
+  [3.1] Set Up LaTeX Infrastructure (TODO #3)
+  ⏱️  Estimated: 4-5 hours
+  📦 Deliverable: Working LaTeX compilation pipeline
+  🔧 Tools: Code node (Python), HTTP Request node, Google Drive node
+  Subtasks:
+    - Choose LaTeX engine: Overleaf API / LaTeX.Online / Local Tectonic
+    - Set up Python environment with Jinja2
+    - Create base LaTeX templates for resume & cover letter
+    - Test PDF compilation
+
+  [3.2] Design LaTeX Resume Template
+  ⏱️  Estimated: 6-8 hours
+  📦 Deliverable: Professional, ATS-friendly LaTeX resume template
+  🔧 Tools: LaTeX editor, Jinja2
+  Subtasks:
+    - Choose modern template (moderncv, awesome-cv, etc.)
+    - Add Jinja2 variables for dynamic content
+    - Create sections: Summary, Experience, Skills, Education, Projects
+    - Design achievement bullet optimization logic
+    - Add keyword highlighting
+
+  [3.3] Build AI-Powered Content Optimizer
+  ⏱️  Estimated: 5-6 hours
+  📦 Deliverable: AI optimizes resume content per job
+  🔧 Tools: OpenAI node, Code node
+  Subtasks:
+    - Create AI prompt for tailoring resume summary
+    - Implement experience prioritization algorithm
+    - Build achievement optimizer (add metrics, keywords)
+    - Generate skills section highlighting job requirements
+    - Add quantification suggestions (X% improvement, $Y revenue)
+
+  [3.4] Create Cover Letter Generator
+  ⏱️  Estimated: 4-5 hours
+  📦 Deliverable: Personalized cover letter for each application
+  🔧 Tools: OpenAI node, Code node
+  Subtasks:
+    - Design LaTeX cover letter template
+    - Create AI prompt for personalized letters
+    - Structure: Why role (1 para), Relevant experience (1 para), Value proposition (1 para)
+    - Add company research integration
+    - Include call-to-action
+
+  [3.5] Google Drive Integration
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Organized Google Drive storage
+  🔧 Tools: Google Drive node
+  Subtasks:
+    - Create folder structure: /Resumes/{company}_{position}_{date}/
+    - Upload generated PDFs
+    - Store LaTeX source for version control
+    - Add metadata tagging
+    - Implement file naming convention
+
+  [3.6] Resume Generation Workflow
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: End-to-end resume generation in <60 seconds
+  🔧 Tools: Execute Workflow node, multiple sub-nodes
+  Subtasks:
+    - Create sub-workflow: Profile DB → AI Optimizer → LaTeX → PDF → Drive
+    - Add caching for base resume (24hr TTL)
+    - Implement version tracking
+    - Add quality checks (ATS compatibility, length)
+
+✅ Success Criteria:
+  ✅ LaTeX compilation working
+  ✅ Resume tailored to job description
+  ✅ Cover letter personalized
+  ✅ PDFs stored in Google Drive
+  ✅ Generation time < 60 seconds
+  ✅ ATS-friendly format
+
+================================================================================
+PHASE 4: APPLICATION AUTOMATION
+================================================================================
+Duration: Weeks 6-7
+Priority: MEDIUM
+Estimated Hours: 20-25 hours
+
+Goals:
+  • Build semi-automated application system
+  • Create browser automation (optional)
+  • Implement application tracking
+  • Add safety measures
+
+Tasks:
+
+  [4.1] Design Application Strategy (TODO #4)
+  ⏱️  Estimated: 2-3 hours
+  📦 Deliverable: Application automation strategy document
+  🔧 Tools: Planning document
+  Subtasks:
+    - Choose approach: Semi-automated (RECOMMENDED) vs Full automation
+    - Document legal/ethical considerations
+    - Define success metrics
+    - Create fallback mechanisms
+
+  [4.2] Build Semi-Automated Application System
+  ⏱️  Estimated: 8-10 hours
+  📦 Deliverable: Semi-automated application system
+  🔧 Tools: Gmail node, Discord node, Supabase node
+  Subtasks:
+    - Generate resume + cover letter for approved jobs
+    - Create draft email with attachments
+    - Send Discord notification: '✅ Ready to apply to {company}'
+    - Add one-click approval button
+    - Human clicks → Opens pre-filled application
+    - After submission → Update Supabase status to 'APPLIED'
+
+  [4.3] Browser Automation (Optional - HIGH RISK)
+  ⏱️  Estimated: 10-12 hours
+  📦 Deliverable: Browser automation (use cautiously)
+  🔧 Tools: Execute Command node, Puppeteer
+  Subtasks:
+    - Set up Puppeteer/Playwright in n8n
+    - Create form detection logic
+    - Implement field mapping
+    - Add human-like delays (2-5 sec)
+    - Take screenshots for verification
+    - Add CAPTCHA detection & pause
+
+  [4.4] Application Tracking System
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Comprehensive application tracking
+  🔧 Tools: Supabase node, Code node
+  Subtasks:
+    - Update Supabase status after each action
+    - Track: SCORED → APPROVED → DOCS_GENERATED → APPLIED → INTERVIEWING → OFFER
+    - Add timestamps for each status change
+    - Create application analytics dashboard
+    - Calculate metrics: response rate, interview rate, offer rate
+
+✅ Success Criteria:
+  ✅ Semi-automated system working
+  ✅ Human approval before submission
+  ✅ Application status tracked
+  ✅ Documents attached correctly
+  ✅ Analytics dashboard functional
+
+================================================================================
+PHASE 5: EMAIL MONITORING & NOTIFICATIONS
+================================================================================
+Duration: Week 8
+Priority: HIGH
+Estimated Hours: 15-20 hours
+
+Goals:
+  • Monitor job application emails
+  • Classify email types with AI
+  • Update application status automatically
+  • Send smart notifications
+
+Tasks:
+
+  [5.1] Set Up Email Monitoring (TODO #5)
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Email monitoring working
+  🔧 Tools: Gmail Trigger, Gmail node
+  Subtasks:
+    - Choose email provider: Gmail API (recommended) vs IMAP
+    - Create polling trigger (every 5 minutes)
+    - Add filters: from domains (linkedin.com, greenhouse.io), subjects
+    - Extract email metadata and body
+
+  [5.2] AI Email Classification
+  ⏱️  Estimated: 4-5 hours
+  📦 Deliverable: Accurate email classification
+  🔧 Tools: OpenAI node, Code node
+  Subtasks:
+    - Create AI classification prompt
+    - Categories: APPLICATION_RECEIVED, INTERVIEW_REQUEST, ASSESSMENT, REJECTION, OFFER, FOLLOW_UP
+    - Extract key information: company, position, dates, action items
+    - Add confidence scores
+    - Handle edge cases
+
+  [5.3] Automated Status Updates
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Automatic status updates
+  🔧 Tools: Supabase node, Switch node
+  Subtasks:
+    - Map email categories to application statuses
+    - Update Supabase on classification
+    - Add timeline tracking
+    - Log all email interactions
+    - Create email-to-application matching logic
+
+  [5.4] Smart Notification System
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Smart, actionable notifications
+  🔧 Tools: Discord node, Slack node
+  Subtasks:
+    - Create priority-based notifications
+    - High priority: INTERVIEW_REQUEST, OFFER
+    - Medium priority: ASSESSMENT, FOLLOW_UP
+    - Low priority: APPLICATION_RECEIVED
+    - Add Discord rich embeds with action buttons
+    - Include suggested responses
+
+  [5.5] Response Templates
+  ⏱️  Estimated: 2-3 hours
+  📦 Deliverable: Draft responses for quick sending
+  🔧 Tools: OpenAI node, Gmail node
+  Subtasks:
+    - Create AI-generated response drafts
+    - Templates: Interview acceptance, time proposal, follow-up
+    - Auto-populate with available time slots
+    - Add to draft email for human review
+
+✅ Success Criteria:
+  ✅ Emails monitored every 5 minutes
+  ✅ AI classifies emails accurately (>90%)
+  ✅ Status updates automatically
+  ✅ Priority notifications sent
+  ✅ Draft responses generated
+
+================================================================================
+PHASE 6: OPTIMIZATION & ANALYTICS
+================================================================================
+Duration: Weeks 9-10
+Priority: LOW
+Estimated Hours: 15-20 hours
+
+Goals:
+  • Optimize workflow performance
+  • Build analytics dashboard
+  • Implement A/B testing
+  • Add machine learning enhancements
+
+Tasks:
+
+  [6.1] Database Optimization
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Faster database operations
+  🔧 Tools: Supabase SQL
+  Subtasks:
+    - Add indexes on frequently queried fields
+    - Implement batch operations
+    - Optimize query patterns
+    - Add database caching
+    - Create materialized views for analytics
+
+  [6.2] Workflow Performance Optimization
+  ⏱️  Estimated: 4-5 hours
+  📦 Deliverable: 50% faster workflow execution
+  🔧 Tools: Split In Batches node, IF node, Merge node
+  Subtasks:
+    - Implement parallel processing with Split In Batches
+    - Add caching for resume, profile data (24hr TTL)
+    - Optimize AI calls (batch requests)
+    - Reduce unnecessary node executions
+    - Add conditional execution paths
+
+  [6.3] Analytics Dashboard
+  ⏱️  Estimated: 5-6 hours
+  📦 Deliverable: Analytics dashboard with key insights
+  🔧 Tools: Supabase dashboard, Google Data Studio, n8n Form
+  Subtasks:
+    - Create Supabase views for key metrics
+    - Build dashboard: applications, interviews, offers, response rates
+    - Add time-series charts
+    - Calculate success metrics per company/role
+    - Create weekly summary reports
+
+  [6.4] A/B Testing Framework
+  ⏱️  Estimated: 3-4 hours
+  📦 Deliverable: Data-driven resume optimization
+  🔧 Tools: Code node, Supabase analytics
+  Subtasks:
+    - Create variants for resume summaries
+    - Test different cover letter styles
+    - Track performance per variant
+    - Implement winner selection logic
+    - Auto-optimize based on results
+
+  [6.5] Machine Learning Enhancements (Optional)
+  ⏱️  Estimated: Ongoing hours
+  📦 Deliverable: ML-powered job ranking
+  🔧 Tools: Python Code node, scikit-learn
+  Subtasks:
+    - Collect training data from application outcomes
+    - Train model to predict interview likelihood
+    - Improve job ranking algorithm
+    - Personalize scoring weights over time
+    - Add feedback loop
+
+✅ Success Criteria:
+  ✅ Workflow 50% faster
+  ✅ Analytics dashboard live
+  ✅ A/B testing running
+  ✅ Database optimized
+  ✅ Actionable insights generated
+
+================================================================================
+📅 KEY MILESTONES
+================================================================================
+
+Week 1: ✅ Foundation Complete
+  • All nodes working
+  • Auto-rejection active
+  • Manual tracking operational
+  • Error handling implemented
+
+Week 3: ✅ Enhanced Scoring Live
+  • Profile database populated
+  • Weighted scoring working
+  • Workflow modularized
+  • AI scoring accurate
+
+Week 5: ✅ Resume Generation Automated
+  • LaTeX compilation working
+  • Personalized resumes generated
+  • Cover letters created
+  • Google Drive integrated
+
+Week 7: ✅ Application System Active
+  • Semi-automated applications
+  • Human approval workflow
+  • Status tracking operational
+  • Analytics collecting data
+
+Week 8: ✅ Email Monitoring Live
+  • Email classification working
+  • Status auto-updates
+  • Smart notifications sent
+  • Draft responses generated
+
+Week 10: ✅ System Optimized
+  • Performance improved 50%
+  • Analytics dashboard live
+  • A/B testing running
+  • ML enhancements active
+
+================================================================================
+🎯 PRIORITY MATRIX
+================================================================================
+
+MUST HAVE:
+  • Fix all broken nodes (1.1)
+  • Auto-reject non-sponsorship jobs (1.2)
+  • Manual application tracking (1.3)
+  • Profile database (2.1)
+  • Enhanced scoring (2.3)
+  • Resume generation (3.2-3.6)
+  • Email monitoring (5.1-5.3)
+
+SHOULD HAVE:
+  • Error handling (1.5)
+  • Rate limiting (1.4)
+  • Deduplication (1.6)
+  • Workflow splitting (2.5)
+  • Semi-automated applications (4.2)
+  • Smart notifications (5.4)
+
+NICE TO HAVE:
+  • Browser automation (4.3)
+  • Response templates (5.5)
+  • Analytics dashboard (6.3)
+  • A/B testing (6.4)
+  • ML enhancements (6.5)
+
+================================================================================
+💡 IMPLEMENTATION TIPS
+================================================================================
+1. Start with Phase 1 - Fix broken nodes first
+2. Test each task thoroughly before moving to the next
+3. Keep backup of working workflows before major changes
+4. Use validation tools after each modification
+5. Document configuration changes in n8n sticky notes
+6. Monitor error rates and performance metrics weekly
+7. Get feedback on resume quality from peers
+8. Review and adjust scoring weights based on outcomes
+9. Stay compliant with LinkedIn ToS - prefer semi-automated approach
+10. Celebrate small wins - each phase completion is a milestone!
+
+================================================================================
+🚀 QUICK START CHECKLIST (TODAY)
+================================================================================
+[ ] Read complete roadmap
+[ ] Back up current workflow
+[ ] Fix 'Get job offer' node URL
+[ ] Add IF node for visa sponsorship check
+[ ] Test auto-rejection with 3 sample jobs
+[ ] Set up Google Form for manual tracking
+[ ] Add first manual application
+[ ] Join n8n community for support
+
+================================================================================
+📊 EXPECTED OUTCOMES
+================================================================================
+
+By Week 3:
+  ✓ Process 50-100 jobs per day
+  ✓ Auto-reject 30-40% unsuitable jobs
+  ✓ Score remaining 60-70% accurately
+  ✓ Track all applications in one place
+
+By Week 5:
+  ✓ Generate personalized resumes in <60 seconds
+  ✓ Create tailored cover letters automatically
+  ✓ Store all documents in organized Google Drive
+  ✓ Maintain 90%+ ATS compatibility
+
+By Week 8:
+  ✓ Monitor all job emails automatically
+  ✓ Update application status without manual input
+  ✓ Receive instant notifications for interviews
+  ✓ Draft responses within minutes
+
+By Week 10:
+  ✓ Apply to 20-30 jobs per week (semi-automated)
+  ✓ Track 100+ applications with analytics
+  ✓ Achieve 15-20% interview rate (industry avg: 10-15%)
+  ✓ Optimize based on data-driven insights
+
+================================================================================
+⚠️  IMPORTANT WARNINGS
+================================================================================
+1. LinkedIn ToS: Full automation may result in account suspension
+2. Data Privacy: Handle personal data securely (resumes, credentials)
+3. Rate Limits: Respect API limits to avoid IP blocking
+4. Credential Security: Never commit credentials to version control
+5. Testing: Always test on non-production workflows first
+6. Backups: Export workflows regularly (weekly minimum)
+7. Legal: Ensure compliance with local job application laws
+8. Ethics: Be transparent about automation in applications when required
+
+================================================================================
+🎓 LEARNING RESOURCES
+================================================================================
+  • n8n Documentation: https://docs.n8n.io
+  • n8n Community Forum: https://community.n8n.io
+  • LaTeX Resume Templates: https://www.overleaf.com/latex/templates
+  • Supabase Docs: https://supabase.com/docs
+  • OpenAI Best Practices: https://platform.openai.com/docs/guides/prompt-engineering
+  • ATS Optimization Guide: https://www.jobscan.co/blog/ats-resume/
+  • n8n YouTube Channel: https://www.youtube.com/@n8n-io
+  • Puppeteer Docs: https://pptr.dev
+
+================================================================================
+✅ ROADMAP SAVED
+================================================================================
+Full roadmap saved to: job_hunt_automation_roadmap.json
+
+You can now:
+  1. Import this into project management tools (Notion, Trello, etc.)
+  2. Track progress week by week
+  3. Share with collaborators
+  4. Adjust based on your progress
+
+================================================================================
+🚀 READY TO START?
+================================================================================
+
+Recommended first steps:
+  1. Review Phase 1 tasks (Week 1)
+  2. Set up development environment
+  3. Back up current workflow
+  4. Start with Task 1.1: Fix critical nodes
+  5. Join n8n community for support
+
+================================================================================
+Good luck with your automated job hunt! 🎯
+================================================================================
