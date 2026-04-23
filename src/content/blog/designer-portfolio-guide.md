@@ -20,7 +20,7 @@ You're a designer with great work to show — but building a website feels like 
 
 ## Step 1: Browse Templates and Pick Your Vibe
 
-Before anything else, browse existing Astro portfolio templates to find a design direction you like:
+Before anything else, browse existing Astro portfolio templates to find **inspiration** for your design direction. You won't install these directly — the AI will build a custom site based on what you like:
 
 - **[astro.build/themes](https://astro.build/themes/?search=&categories%5B%5D=portfolio)** — Filter by "Portfolio" to see free templates with live demos
 - **[astro.build/showcase](https://astro.build/showcase/)** — Real websites built with Astro for inspiration
@@ -132,7 +132,7 @@ Create 3 placeholder projects with these names:
 
 ## Instructions
 1. Initialize a new Astro project in the current directory using
-   the blog template: run `npm create astro@latest . -- --template blog --install --no-git --typescript relaxed`
+   the blog template: run `npm create astro@latest . -- --template=blog --install --no-git --typescript=relaxed -y`
 2. Install and set up Tailwind CSS for styling
 3. Build all pages and components from scratch to match my design
    direction above — do NOT use a third-party theme, build it custom
