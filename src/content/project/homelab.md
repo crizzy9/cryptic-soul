@@ -1,6 +1,6 @@
 ---
 title: "Home Lab"
-description: "Intsalled a Home Server on a N100 mini PC and a Raspberry Pi cluster using Proxmox, Pfsense, Home Assistant, Open Media Vault, Tailscale and Cloudflare DNS"
+description: "Designed hybrid homelab infrastructure using N100 mini PCs and Raspberry Pi cluster orchestrated with Kubernetes, integrating Proxmox virtualization, UnifiOS, Open Media Vault and Home Assistant with secure Tailscale mesh VPN and Cloudflare DNS"
 pubDate: "Jan 05 2025"
 category: "Hardware"
 heroImage: "/homelab.webp"
