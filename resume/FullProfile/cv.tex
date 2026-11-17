@@ -1,46 +1,91 @@
-\documentclass[10pt,letterpaper]{article}
-\usepackage[margin=.55in]{geometry}
-\setlength{\footskip}{16pt}
-\usepackage[T1]{fontenc}
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage{microtype}
-\usepackage{titlesec,enumitem,tabularx,needspace}
-\usepackage[svgnames]{xcolor}
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[margin=0.3in, top=0.25in, bottom=0.25in]{geometry}
 \usepackage{hyperref}
-\usepackage{fancyhdr}
-\input{glyphtounicode}
-\pdfgentounicode=1
-\definecolor{accent}{HTML}{273E5A}
-\hypersetup{colorlinks=true,urlcolor=accent,pdftitle={Shyam Padia - Resume},pdfauthor={Shyam Padia}}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
-\setlength{\emergencystretch}{1.8em}
-\raggedbottom
-\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}[\vspace{1pt}\titlerule]
-\titlespacing*{\section}{0pt}{12pt}{6pt}
-\setlist[itemize]{leftmargin=1.15em,label=\textbullet,itemsep=3pt,topsep=2pt,parsep=0pt,partopsep=0pt}
-\newcommand{\role}[4]{\Needspace{5\baselineskip}\vspace{7pt}\textbf{#1}\hfill\textbf{#3}\\{\itshape #2}\hfill{\small #4}\par}
-\newcommand{\project}[2]{\Needspace{4\baselineskip}\vspace{6pt}\textbf{#1}\hfill{\small #2}\par}
-\newcommand{\education}[3]{\Needspace{3\baselineskip}\textbf{#1}\hfill{\small #3}\\#2\par}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot[L]{\small\color{accent}Shyam Padia}
-\fancyfoot[R]{\small\thepage}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\begin{document}
-\fontsize{10}{11.5}\selectfont\titlespacing*{\section}{0pt}{9pt}{5pt}\setlist[itemize]{leftmargin=1.15em,label=\textbullet,itemsep=2pt,topsep=2pt,parsep=0pt,partopsep=0pt}
-{\centering
-{\fontsize{24}{25}\selectfont\bfseries SHYAM PADIA}\par
-\vspace{2pt}{\bfseries AI Technical Lead | Software Engineer}\par
-\vspace{3pt}{\small Boston, MA | +1 (857) 294-9264 | \href{mailto:shyam.padia930@gmail.com}{shyam.padia930@gmail.com}}\par
-{\small \href{https://crypticsoul.dev}{crypticsoul.dev} | \href{https://github.com/crizzy9}{github.com/crizzy9} | \href{https://linkedin.com/in/shyam-padia}{linkedin.com/in/shyam-padia}}\par
+\usepackage[svgnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{tabularx}
+\usepackage{sans} % Use Helvetica font
+
+\renewcommand{\familydefault}{\sfdefault} % Set Helvetica as the default font
+
+% Define a nice color for links
+\definecolor{linkcolor}{HTML}{0000EE}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
 }
-\section{Professional Summary}
+
+% Remove page numbering
+\pagestyle{empty}
+
+% Define section formatting (Header with a line underneath)
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+% Name and Contact Info formatting with correct font size
+\newcommand{\name}[1]{\centerline{\Large \scshape {#1}}}
+\newcommand{\contactinfo}[1]{\centerline{\small #1}}
+
+% Entry list for experience and projects
+\setlist[itemize]{leftmargin=0.15in, noitemsep, nolistsep}
+
+% Custom command for job/project entries
+\newcommand{\educationentry}[4]{
+  \noindent\textbf{#1}, #2 \hfill \textit{#3} \hfill \textbf{#4}
+}
+\newcommand{\jobentry}[4]{
+  \noindent\textbf{#1} \hfill #2 \hfill \textit{#3} \hfill \textbf{#4}
+}
+% \newcommand{\projectentry}[2]{
+%   \noindent\textbf{#1} \hfill \textbf{#2}
+% }
+\newcommand{\projectentry}[2]{
+  \noindent{#1} \hfill \textbf{#2}
+}
+
+% \renewcommand{\labelitemi}{--}
+\renewcommand{\labelitemi}{$\circ$}
+% \renewcommand{\labelitemi}{$\triangleright$}
+% \renewcommand{\labelitemi}{\ding{228}}
+
+\begin{document}
+
+% -------------------- HEADER --------------------
+\name{SHYAM PADIA}
+\contactinfo{
+	+1 (857)-294-9264 |
+	\href{mailto:shyam.padia930@gmail.com}{shyam.padia930@gmail.com} |
+	Boston, MA
+}
+\contactinfo{
+	\href{https://crypticsoul.dev}{crypticsoul.dev} |
+	\href{https://github.com/crizzy9}{github.com/crizzy9} |
+	\href{https://linkedin.com/in/shyam-padia}{linkedin.com/in/shyam-padia}
+}
+
+\section{Summary}
 AI technical lead building agent systems, retrieval and recommendation platforms, and large-scale data products. Combines hands-on architecture with engineering leadership to turn model capabilities into practical workflows, improve reliability, and reduce operating cost. Work spans conversational planning, marketing automation, retrieval, personalization, distributed data processing, and full-stack products. Independent engineering includes declarative infrastructure, mobile applications, robotics, language models, and owner-controlled knowledge systems.
-\section{Professional Experience}
-\role{MosaicApp}{AI Technical Lead}{Aug 2025 - Present}{San Francisco, CA}
+
+\section{Education}
+
+\educationentry{Northeastern University}{Khoury College of Computer Sciences}{Boston, MA}{Sept 2017 - Dec 2019}\\
+\textit{Master of Science in Computer Science} \hfill GPA: 3.2/4
+
+\educationentry{University of Mumbai}{Fr. Conceição Rodrigues College of Engineering}{Mumbai, India}{Aug 2012 - June 2016}\\
+\textit{Bachelor of Engineering in Computer Engineering} \hfill GPA: 7.4/10
+
+\noindent Coursework: Natural language processing, Reinforcement learning, Robotics, Machine learning, Artificial intelligence
+
+\section{Work Experience}
+\jobentry{MosaicApp}{AI Technical Lead}{San Francisco, CA}{Aug 2025 - Present}
 \begin{itemize}
 \item Rearchitected Chello's AI execution layer, improving performance by 25\% while reducing costs by 60\%.
 \item Expanded Chello's Model Context Protocol (MCP) capabilities across connected systems, delivering 27 tools for agents to retrieve and update planning data through a shared interface.
@@ -50,7 +95,7 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \item Introduced query-complexity-based model routing to reduce token usage and inference cost.
 \item Enabled tiered billing for Chello by integrating Stripe and MonetizeNow.
 \end{itemize}
-\role{Intuit}{Senior Software Engineer | Personalization}{Jan 2025 - Aug 2025}{Mountain View, CA}
+\jobentry{Intuit, Personalization}{Senior Software Engineer}{Mountain View, CA}{Jan 2025 - Aug 2025}
 \begin{itemize}
 \item Built a LangChain agent orchestrator for RTB, on-call, and DevOps workflows.
 \item Architected unified user profiles with multi-source ingestion and real-time user embeddings on GPU-optimized EMR.
@@ -61,8 +106,8 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \item Created an MCP server for AI-powered marketing campaign creation, real-time content generation, and automated deployment.
 \item Defined and presented the personalization AI strategy across content generation, recommendations, predictive analytics, and workflow automation.
 \end{itemize}
-\Needspace{14\baselineskip}
-\role{Intuit}{Software Engineer 2 | Personalization}{Jan 2021 - Jan 2025}{Mountain View, CA}
+
+\jobentry{Intuit, Personalization}{Software Engineer 2}{Mountain View, CA}{Jan 2021 - Jan 2025}
 \begin{itemize}
 \item Engineered a self-service analytics platform with PySpark, AWS EMR and React, reducing incidents and impression loss by 40\% and increasing marketer productivity by 50\%.
 \item Developed a RAG assistant with Hugging Face and LangChain for marketing content generation, reducing authoring time.
@@ -71,7 +116,7 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \item Built a Kafka event pipeline for targeted offers that generated \$10M in incremental revenue through dynamic audience targeting.
 \item Trained and deployed XGBoost and neural-network models for predictive business-health scoring, reducing investment risk by 23\%.
 \end{itemize}
-\role{Intuit}{Software Engineer 1 | QuickBooks}{Jan 2020 - Jan 2021}{Mountain View, CA}
+\jobentry{Intuit, QuickBooks}{Software Engineer 1}{Mountain View, CA}{Jan 2020 - Jan 2021}
 \begin{itemize}
 \item Built a predictive revenue-forecasting model using customer behavior to estimate the impact of dynamic pricing strategies.
 \item Engineered a segmentation pipeline with AWS Glue and PyArrow to identify eligible cohorts for targeted pricing campaigns.
@@ -79,143 +124,135 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \item Developed a pricing management platform with React, Spring Boot, and AWS, increasing operational efficiency by 50\%.
 \item Implemented a parallelized synthetic-testing framework with Cypress, preventing \$10M in potential revenue loss.
 \end{itemize}
-\role{Intuit}{Software Engineer Intern | TurboTax}{May 2019 - Aug 2019}{San Diego, CA}
+\jobentry{Intuit, TurboTax}{Software Engineer Intern}{San Diego, CA}{May 2019 - Aug 2019}
 \begin{itemize}
 \item Developed OCR document processing for W2 uploads in TurboTax onboarding, reducing tax preparation time by 20\%.
 \item Integrated an NLP intent-classification decision engine, replacing a third-party API and reducing latency by 30\%.
 \end{itemize}
-\role{Intuit}{Software Engineer Co-op | TurboTax}{May 2018 - Dec 2018}{San Diego, CA}
+\newpage
+\jobentry{Intuit, TurboTax}{Software Engineer Co-op}{San Diego, CA}{May 2018 - Dec 2018}
 \begin{itemize}
 \item Engineered a rule-based case-deduplication service for the Intuit Help Portal, improving response time by 45\% and reducing duplicates by 7\%.
 \item Developed Smart Fields with React and PHP to automate content publishing, reducing publishing time by 30 minutes and support cases by 10\%.
 \item Architected a serverless URL-redirect service with AWS Lambda and DynamoDB, improving routing efficiency by 35\%.
 \end{itemize}
-\role{OutreachCircle}{Software Developer}{Nov 2016 - May 2017}{Bangalore, India}
+\jobentry{OutreachCircle}{Software Developer}{Bangalore, India}{Nov 2016 - May 2017}
 \begin{itemize}
 \item Integrated Elasticsearch contact matching for voter registration and social profiles, improving outreach by 10\%.
 \item Developed a campaign outreach platform with Meteor.js and Angular, improving canvassing efficiency and voter turnout by 15\%.
 \end{itemize}
+
 \section{Technical Skills}
-\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
-AI engineering & LangChain, MCP, Hugging Face, Vespa, RAG, Model routing, Agent orchestration, AWS Personalize \\
-Machine learning \& vision & PyTorch, TensorFlow, OpenCV, scikit-learn, XGBoost, Keras, NLTK, Gensim, Reinforcement learning \\
-Languages & Python, TypeScript, Java, Go, JavaScript, SQL, Scala, C / C++, Nix, Lua \\
-Web \& service development & React, Spring Boot, HTMX, gRPC, Astro, Django, Node.js, REST, Cypress \\
-Data engineering & PySpark, Kafka, AWS EMR, PyArrow, Hadoop, Pandas, Hive, Beam, Flink, EventBus, RabbitMQ \\
-Cloud \& infrastructure & AWS, Docker, Kubernetes, NixOS, SageMaker, Lambda, Glue, Athena, Redshift, Nix Flakes, Home Manager \\
-Storage \& search & PostgreSQL, DynamoDB, Redis, OpenSearch, MySQL, SQLite, MongoDB, Elasticsearch, Vector databases \\
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+\textbf{AI engineering:} & LangChain, MCP, Hugging Face, Vespa, RAG, Model routing, Agent orchestration, AWS Personalize \\
+\textbf{Machine learning \& vision:} & PyTorch, TensorFlow, OpenCV, scikit-learn, XGBoost, Keras, NLTK, Gensim, Reinforcement learning \\
+\textbf{Languages:} & Python, TypeScript, Java, Go, JavaScript, SQL, Scala, C / C++, Nix, Lua \\
+\textbf{Web \& service development:} & React, Spring Boot, HTMX, gRPC, Astro, Django, Node.js, REST, Cypress \\
+\textbf{Data engineering:} & PySpark, Kafka, AWS EMR, PyArrow, Hadoop, Pandas, Hive, Beam, Flink, EventBus, RabbitMQ \\
+\textbf{Cloud \& infrastructure:} & AWS, Docker, Kubernetes, NixOS, SageMaker, Lambda, Glue, Athena, Redshift, Nix Flakes, Home Manager \\
+\textbf{Storage \& search:} & PostgreSQL, DynamoDB, Redis, OpenSearch, MySQL, SQLite, MongoDB, Elasticsearch, Vector databases \\
 \end{tabularx}
-\newpage
+
 \section{Projects}
-\project{Lumino}{Declarative infrastructure}
+\projectentry{Lumino}{Declarative infrastructure}
 \begin{itemize}
 \item Developed a declarative NixOS platform for desktops and self-hosted services, keeping infrastructure and service configuration reproducible and recoverable.
 \item Unified host, service and user setup through YAML-driven modules, using Nix Flakes, Home Manager and sops-nix with version-controlled configuration.
 \end{itemize}
-\project{Naavik}{AI-powered career workflows}
+\projectentry{Naavik}{AI-powered career workflows}
 \begin{itemize}
 \item Built a self-hosted career platform with profile management, explainable job matching, and tailored resume and cover-letter generation using Python, FastAPI, HTMX, PostgreSQL and Typst.
 \item Separated reviewed preparation and dry runs from confirmed application submission, recording submission receipts and uncertain outcomes to support deliberate follow-up.
 \item Extending candidate outreach, interview tracking and application workflows while V1 release qualification remains ongoing.
 \end{itemize}
-\project{Plano}{Flight tracking | In development}
+\projectentry{Plano}{Flight tracking | In development}
 \begin{itemize}
 \item Built a Go/SQLite backend paired with an Expo/React Native mobile app for flight status, inbound aircraft, telemetry and travel history.
 \item Provided a credential-free synthetic demo; live-source and device qualification remain in progress.
 \end{itemize}
-\project{Omnidirectional Autonomous Robot}{Robotics \& computer vision}
+\projectentry{Omnidirectional Autonomous Robot}{Robotics \& computer vision}
 \begin{itemize}
 \item Engineered a Raspberry Pi robot with a servo-controlled 6-DOF arm, inverse kinematics, OpenCV object detection, speech-to-text commands, autonomous navigation, and obstacle avoidance.
 \end{itemize}
-\project{Reinforcement Learning for Robotic Manipulation}{Transfer-learning research}
+\projectentry{Reinforcement Learning for Robotic Manipulation}{Transfer-learning research}
 \begin{itemize}
 \item Compared Q-Learning, DQN, Policy Gradient, and MCMC for robot-arm simulation using PyTorch and OpenAI Gym. Transfer-learning experiments achieved 35\% faster convergence and 28\% improved task performance.
 \end{itemize}
-\project{Multi-Track Music Generation}{Transformer architectures}
+\projectentry{Multi-Track Music Generation}{Transformer architectures}
 \begin{itemize}
 \item Developed separate transformer models for melody, bass, drums, and harmony, connected by custom global multi-headed attention. The polyphonic generation work improved musical coherence by 45\%.
 \end{itemize}
-\project{Paragraph Embeddings with Variational Autoencoders}{Natural language processing}
+\projectentry{Paragraph Embeddings with Variational Autoencoders}{Natural language processing}
 \begin{itemize}
 \item Implemented TensorFlow architectures for unsupervised paragraph representations on the Gutenberg Corpus, comparing VAE and LSTM Seq2Seq approaches and improving semantic-similarity performance by 22\%.
 \end{itemize}
-\project{Fan Forge | Comic-Con Museum}{Community software \& team leadership}
+\projectentry{Fan Forge | Comic-Con Museum}{Community software \& team leadership}
 \begin{itemize}
 \item Led a backend team of five building an open-source application where fans could curate exhibit and artifact ideas for the Comic-Con Museum in San Diego, using Express.js and AWS Lambda.
 \end{itemize}
-\project{Avid}{Development preview}
+\projectentry{Avid}{Development preview}
 \begin{itemize}
 \item Built a personal reading and audiobook application using React and TypeScript, including EPUB, PDF and comic readers, BookOrbit integration, and local EPUB-to-audiobook alignment.
 \item Uses Capacitor mobile and Tauri desktop hosts; device qualification and broader offline support remain in progress.
 \end{itemize}
-\project{PupCam}{Research}
+\projectentry{PupCam}{Research}
 \begin{itemize}
 \item Researching an owner-controlled pet camera with self-hosted media and intelligence.
 \item Evaluating hardware feasibility, access and recovery constraints, and a practical feature scope before implementation.
 \end{itemize}
-\project{Search Engine}{Information retrieval}
+\newpage
+\projectentry{Search Engine}{Information retrieval}
 \begin{itemize}
 \item Implemented a multiprocessing search engine, web crawler, and snippet generator combining BM25, smoothed query likelihood and TF-IDF retrieval models.
 \end{itemize}
-\project{Automatic Hypernym Detection}{Natural language processing}
+\projectentry{Automatic Hypernym Detection}{Natural language processing}
 \begin{itemize}
 \item Trained matrix-factorization models on the Gutenberg corpus to extract hypernyms from linguistic patterns using NLTK and Gensim.
 \end{itemize}
-\project{StarCraft Deep Learning Bot}{Computer vision and game agents}
+\projectentry{StarCraft Deep Learning Bot}{Computer vision and game agents}
 \begin{itemize}
 \item Developed a TensorFlow CNN and OpenCV-based StarCraft bot to process game frames, recognize units and resources, and support map awareness and unit control.
 \end{itemize}
-\project{ROS2 Simulation Training}{Robotics experimentation}
+\projectentry{ROS2 Simulation Training}{Robotics experimentation}
 \begin{itemize}
 \item Experimented with ROS2 simulation tools for robotics.
 \end{itemize}
-\project{Obsidian Knowledge System}{Personal knowledge engineering}
+\projectentry{Obsidian Knowledge System}{Personal knowledge engineering}
 \begin{itemize}
 \item Created an AI-assisted Obsidian knowledge workflow using open-source plugins to organize notes and support connected retrieval.
 \end{itemize}
-\project{Home Assistant with Ollama}{Local AI and automation}
+\projectentry{Home Assistant with Ollama}{Local AI and automation}
 \begin{itemize}
 \item Explored local Ollama integration with Home Assistant and Matter-based automation workflows.
 \end{itemize}
-\project{Multi-Agent Workflow Integration}{Agent orchestration}
+\projectentry{Multi-Agent Workflow Integration}{Agent orchestration}
 \begin{itemize}
 \item Configured a Hermes-based multi-agent workflow for task coordination and home-automation integration.
 \end{itemize}
-\project{Corne ZMK Keyboard}{Hardware and firmware}
+\projectentry{Corne ZMK Keyboard}{Hardware and firmware}
 \begin{itemize}
 \item Built and soldered a Corne keyboard with custom ZMK firmware, nice!nano controllers and nice!view displays.
 \end{itemize}
-\section{Education}
-\education{Northeastern University}{Master of Science in Computer Science}{Sept 2017 - Dec 2019}
-Khoury College of Computer Sciences | Boston, MA \hfill GPA: 3.2 / 4
-\par\vspace{4pt}
-Coursework: Natural language processing, Reinforcement learning, Robotics, Machine learning, Artificial intelligence
-\par\vspace{4pt}
-\education{University of Mumbai}{Bachelor of Engineering in Computer Engineering}{Aug 2012 - June 2016}
-Fr. Conceição Rodrigues College of Engineering | Mumbai, India \hfill GPA: 7.4 / 10
-\par\vspace{4pt}
+
 \section{Certifications}
-\project{Machine Learning Professional Certificate}{June 2022}
-General Assembly
+\projectentry{Machine Learning Professional Certificate - General Assembly}{June 2022}
 \begin{itemize}
 \item Supervised and unsupervised learning, neural networks, ensembles, model evaluation, and deployment strategies through hands-on Python work.
 \end{itemize}
-\project{Apache PySpark Certification}{Dec 2021}
-Databricks
+\projectentry{Apache PySpark Certification - Databricks}{Dec 2021}
 \begin{itemize}
 \item Distributed processing, Spark SQL, DataFrames, performance optimization, and production-scale data pipelines on Databricks.
 \end{itemize}
-\project{AWS Certified Solutions Architect - Associate}{Oct 2019}
-Amazon Web Services
+\projectentry{AWS Certified Solutions Architect - Associate - Amazon Web Services}{Oct 2019}
 \begin{itemize}
 \item Distributed systems, cloud architecture, service selection, cost optimization, and scalable applications on AWS.
 \end{itemize}
-\Needspace{13\baselineskip}\section{Open Source Contributions}
-\project{Vicinae}{2025}
+\section{Open Source Contributions}
+\projectentry{Vicinae}{2025}
 \begin{itemize}
 \item Contributed features to the C++ and Qt desktop launcher, including Raycast-compatible extension APIs, TypeScript SDK integration, and Linux-native keyboard-driven productivity tools.
 \end{itemize}
-\project{Mopidy}{2024}
+\projectentry{Mopidy}{2024}
 \begin{itemize}
 \item Contributed features and fixes for Spotify integration, playlist synchronization, and audio-stream optimization for Raspberry Pi deployments.
 \end{itemize}

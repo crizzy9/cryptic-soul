@@ -109,6 +109,10 @@ project list and fuller experience details. All resume formats are linked from t
 | Two pages | `resume/Two Page/cv.tex` | `public/Shyam-Padia-Resume-Two-Page.pdf` |
 | Full profile | `resume/FullProfile/cv.tex` | `public/Shyam-Padia-Full-Profile.pdf` |
 
+All formats must retain the exact dense layout in `resume/OnePage/cv.tex`: its
+10pt font, original margins, centered header, black section rules, compact
+four-field job headings and hollow-circle bullets. Preserve the preamble and
+macros; adjust content and page breaks to fit, without redesigning the template.
 The original one-page version is preserved. The additional variants use the
 reviewed current experience and project facts, with development/research status
 kept explicit. Rebuild a source twice into a temporary directory, verify its page

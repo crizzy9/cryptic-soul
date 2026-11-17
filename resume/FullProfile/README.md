@@ -23,3 +23,7 @@ are reconciled with `src/content/project/`; development previews, ongoing qualif
 and research are labeled. Portfolio publication dates are not treated as project
 completion dates. Older conflicting model-direction and role-placement claims are
 not combined. No private application or archived employer notes are embedded.
+
+Layout is pinned to `resume/OnePage/cv.tex`: the same original dense preamble,
+macros, margins, fonts, header and spacing. Change content or page breaks only;
+do not redesign or override the template. FullProfile has no page limit.

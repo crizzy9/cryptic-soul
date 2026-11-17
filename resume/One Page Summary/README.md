@@ -1,6 +1,6 @@
 # One Page Summary
 
-A concise one-page resume with a professional summary, selected outcomes, all employment roles, core skills, projects and education.
+A one-page resume with a professional summary, seven employment roles, 23 selected achievement bullets, full education/GPAs, all seven original skill rows and three compact projects. It uses the original OnePage layout verbatim.
 
 Editable source: `cv.tex`. Final PDF: `Shyam-Padia-Resume-Summary.pdf`.
 The original `resume/OnePage/cv.tex` is preserved separately.
@@ -23,3 +23,11 @@ are reconciled with `src/content/project/`; development previews, ongoing qualif
 and research are labeled. Portfolio publication dates are not treated as project
 completion dates. Older conflicting model-direction and role-placement claims are
 not combined. No private application or archived employer notes are embedded.
+
+## Pinned layout
+
+The preamble, macros and three-line contact header match `resume/OnePage/cv.tex`
+verbatim: the original 10pt font settings and margins, black small-caps section rules, compact
+single-line entries, circle bullets, and no page numbering. Keep Education, Work
+Experience, Technical Skills and Projects in the original order, with Summary before
+Education. Fit future edits by curating content; do not change visual parameters.

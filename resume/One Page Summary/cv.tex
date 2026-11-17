@@ -1,82 +1,165 @@
-\documentclass[10pt,letterpaper]{article}
-\usepackage[margin=.42in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage{microtype}
-\usepackage{titlesec,enumitem,tabularx,needspace}
-\usepackage[svgnames]{xcolor}
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[margin=0.3in, top=0.25in, bottom=0.25in]{geometry}
 \usepackage{hyperref}
-\usepackage{fancyhdr}
-\input{glyphtounicode}
-\pdfgentounicode=1
-\definecolor{accent}{HTML}{273E5A}
-\hypersetup{colorlinks=true,urlcolor=accent,pdftitle={Shyam Padia - Resume},pdfauthor={Shyam Padia}}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
-\setlength{\emergencystretch}{1.8em}
-\raggedbottom
-\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}[\vspace{1pt}\titlerule]
-\titlespacing*{\section}{0pt}{7pt}{4pt}
-\setlist[itemize]{leftmargin=1.15em,label=\textbullet,itemsep=1pt,topsep=2pt,parsep=0pt,partopsep=0pt}
-\newcommand{\role}[4]{\Needspace{5\baselineskip}\vspace{4pt}\textbf{#1}\hfill\textbf{#3}\\{\itshape #2}\hfill{\small #4}\par}
-\newcommand{\project}[2]{\Needspace{4\baselineskip}\vspace{6pt}\textbf{#1}\hfill{\small #2}\par}
-\newcommand{\education}[3]{\Needspace{3\baselineskip}\textbf{#1}\hfill{\small #3}\\#2\par}
-\pagestyle{empty}
-\begin{document}
-\fontsize{9.5}{10.8}\selectfont
-{\centering
-{\fontsize{21}{25}\selectfont\bfseries SHYAM PADIA}\par
-\vspace{2pt}{\bfseries AI Technical Lead | Software Engineer}\par
-\vspace{3pt}{\small Boston, MA | +1 (857) 294-9264 | \href{mailto:shyam.padia930@gmail.com}{shyam.padia930@gmail.com}}\par
-{\small \href{https://crypticsoul.dev}{crypticsoul.dev} | \href{https://github.com/crizzy9}{github.com/crizzy9} | \href{https://linkedin.com/in/shyam-padia}{linkedin.com/in/shyam-padia}}\par
+\usepackage[svgnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{tabularx}
+\usepackage{sans} % Use Helvetica font
+
+\renewcommand{\familydefault}{\sfdefault} % Set Helvetica as the default font
+
+% Define a nice color for links
+\definecolor{linkcolor}{HTML}{0000EE}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
 }
+
+% Remove page numbering
+\pagestyle{empty}
+
+% Define section formatting (Header with a line underneath)
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+% Name and Contact Info formatting with correct font size
+\newcommand{\name}[1]{\centerline{\Large \scshape {#1}}}
+\newcommand{\contactinfo}[1]{\centerline{\small #1}}
+
+% Entry list for experience and projects
+\setlist[itemize]{leftmargin=0.15in, noitemsep, nolistsep}
+
+% Custom command for job/project entries
+\newcommand{\educationentry}[4]{
+  \noindent\textbf{#1}, #2 \hfill \textit{#3} \hfill \textbf{#4}
+}
+\newcommand{\jobentry}[4]{
+  \noindent\textbf{#1} \hfill #2 \hfill \textit{#3} \hfill \textbf{#4}
+}
+% \newcommand{\projectentry}[2]{
+%   \noindent\textbf{#1} \hfill \textbf{#2}
+% }
+\newcommand{\projectentry}[2]{
+  \noindent{#1} \hfill \textbf{#2}
+}
+
+% \renewcommand{\labelitemi}{--}
+\renewcommand{\labelitemi}{$\circ$}
+% \renewcommand{\labelitemi}{$\triangleright$}
+% \renewcommand{\labelitemi}{\ding{228}}
+
+\begin{document}
+
+% -------------------- HEADER --------------------
+\name{SHYAM PADIA}
+\contactinfo{
+	+1 (857)-294-9264 |
+	\href{mailto:shyam.padia930@gmail.com}{shyam.padia930@gmail.com} |
+	Boston, MA
+}
+\contactinfo{
+	\href{https://crypticsoul.dev}{crypticsoul.dev} |
+	\href{https://github.com/crizzy9}{github.com/crizzy9} |
+	\href{https://linkedin.com/in/shyam-padia}{linkedin.com/in/shyam-padia}
+}
+
+% -------------------- SUMMARY --------------------
 \section{Summary}
 AI technical lead building agent systems, recommendation platforms, and data products. Delivered 60\% lower AI costs, \$10M in incremental revenue, and \$20M in pricing cost savings across MosaicApp and Intuit.
-\section{Experience}
-\role{MosaicApp}{AI Technical Lead}{Aug 2025 - Present}{San Francisco, CA}
-\begin{itemize}
-\item Rearchitected Chello's AI execution layer, improving performance by 25\% while reducing costs by 60\%.
-\item Expanded MCP capabilities with 27 cross-system tools and delivered Slack and Microsoft Teams integrations.
-\item Extended LangChain with agent caching, subagents and task management; introduced complexity-based model routing.
-\item Enabled tiered billing through Stripe and MonetizeNow integrations.
-\end{itemize}
-\role{Intuit}{Senior Software Engineer | Personalization}{Jan 2025 - Aug 2025}{Mountain View, CA}
-\begin{itemize}
-\item Led five engineers on a bulk content platform, increasing capacity by 1,400\%; built AI marketing workflows that cut campaign go-live time by 90\%.
-\item Architected unified profiles and GPU-backed embeddings; led a recommendation platform using Vespa, gRPC and OpenSearch.
-\item Built a LangChain orchestrator for operational workflows and an LLM content pipeline that improved time-to-market by 75\%.
-\end{itemize}
-\role{Intuit}{Software Engineer 2 | Personalization}{Jan 2021 - Jan 2025}{Mountain View, CA}
-\begin{itemize}
-\item Built Kafka targeting pipelines generating \$10M in incremental revenue; delivered recommendations with 20\% lower API latency.
-\item Engineered PySpark/AWS EMR analytics reducing incidents and impression loss by 40\%; built a LangChain RAG assistant.
-\end{itemize}
-\role{Intuit}{Software Engineer 1 | QuickBooks}{Jan 2020 - Jan 2021}{Mountain View, CA}
-\begin{itemize}
-\item Built React/Spring Boot pricing tools and AWS segmentation pipelines, delivering \$20M in savings and 50\% higher operational efficiency.
-\end{itemize}
-\role{Intuit}{Software Engineer Intern | TurboTax}{May 2019 - Aug 2019}{San Diego, CA}
-\begin{itemize}
-\item Delivered W2 OCR and NLP intent classification, reducing tax preparation time by 20\% and classification latency by 30\%.
-\end{itemize}
-\role{Intuit}{Software Engineer Co-op | TurboTax}{May 2018 - Dec 2018}{San Diego, CA}
-\begin{itemize}
-\item Built help-portal deduplication and publishing automation, improving response time by 45\% and reducing support cases by 10\%.
-\end{itemize}
-\role{OutreachCircle}{Software Developer}{Nov 2016 - May 2017}{Bangalore, India}
-\begin{itemize}
-\item Developed campaign outreach with Meteor.js, Angular and Elasticsearch, improving outreach by 10\% and canvassing/turnout by 15\%.
-\end{itemize}
-\section{Technical Skills}
-\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
-AI / ML & LangChain, MCP, RAG, PyTorch, TensorFlow, Hugging Face, Vespa \\
-Languages / Web & Python, TypeScript, Java, SQL, Go, Nix; React, Spring Boot, FastAPI \\
-Data / Infrastructure & PySpark, Kafka, PostgreSQL, Redis, AWS, Docker, Kubernetes, NixOS \\
-\end{tabularx}
-\section{Projects}
-Lumino - declarative NixOS infrastructure; Naavik - self-hosted AI career workflows; Plano - Go/React Native flight tracking (in development).
+
+% -------------------- EDUCATION --------------------
 \section{Education}
-\textbf{Northeastern University} | M.S. Computer Science \hfill 2017 - 2019\\
-\textbf{University of Mumbai} | B.E. Computer Engineering \hfill 2012 - 2016
+
+\educationentry{Northeastern University}{Khoury CCIS}{Boston, MA}{Sept 2017 - Dec 2019}\\
+\textit{Master of Science in Computer Science} \hfill GPA: 3.2/4
+
+% \vspace{5pt}
+
+\educationentry{University of Mumbai}{Fr. CRCE}{Mumbai, India}{Aug 2012 - June 2016}\\
+\textit{Bachelor of Engineering in Computer Engineering} \hfill GPA: 7.4/10
+
+% -------------------- EXPERIENCE --------------------
+\section{Work Experience}
+
+\jobentry{MosaicApp}{AI Technical Lead}{San Francisco, CA}{Aug 2025 - Present}
+\begin{itemize}
+	\item Rearchitected Chello's AI execution layer, improving performance by 25\% while reducing costs by 60\%.
+	\item Expanded Chello's MCP capabilities with 27 tools, connecting agents to planning data across multiple systems.
+	\item Extended Chello's LangChain harness with agent caching, subagents and task management for multi-step planning workflows.
+	\item Delivered Slack and Microsoft Teams integrations, bringing Chello's planning capabilities into team collaboration workflows.
+	\item Introduced query-complexity-based model routing to reduce token usage and inference cost.
+	\item Enabled tiered billing for Chello by integrating Stripe and MonetizeNow.
+\end{itemize}
+
+\jobentry{Intuit, Personalization}{Senior Software Engineer}{Mountain View, CA}{Jan 2025 - Aug 2025}
+\begin{itemize}
+	\item Architected unified user profiles with multi-source ingestion and real-time user embeddings on GPU-optimized EMR.
+	\item Led a cross-regional recommendation platform effort using Vespa, gRPC and OpenSearch to replace legacy systems.
+	\item Built AI marketing automation with a six-person team using SymphonyAI, LangChain and MCP, cutting go-live time by 90\%.
+	\item Led five engineers building dynamic content and audience segmentation, increasing platform capacity by 1,400\%.
+	\item Built an LLM-powered content pipeline that automated marketing workflows and improved time-to-market by 75\%.
+\end{itemize}
+
+\jobentry{Intuit, Personalization}{Software Engineer 2}{Mountain View, CA}{Jan 2021 - Jan 2025}
+\begin{itemize}
+	\item Built PySpark/EMR and React analytics, reducing incidents and impression loss by 40\% and raising marketer productivity by 50\%.
+	\item Developed a RAG assistant with Hugging Face and LangChain for marketing content generation, reducing authoring time.
+	\item Implemented AWS Personalize on clickstream data with 20\% lower API latency.
+	\item Built a Kafka event pipeline for targeted offers that generated \$10M in incremental revenue through dynamic audience targeting.
+\end{itemize}
+
+\jobentry{Intuit, QuickBooks}{Software Engineer 1}{Mountain View, CA}{Jan 2020 - Jan 2021}
+\begin{itemize}
+	\item Built React/Spring Boot pricing tools and AWS segmentation, delivering \$20M in savings and 50\% higher operational efficiency.
+	\item Implemented a parallelized synthetic-testing framework with Cypress, preventing \$10M in potential revenue loss.
+\end{itemize}
+
+\jobentry{Intuit, TurboTax}{Software Engineer Intern}{San Diego, CA}{May 2019 - Aug 2019}
+\begin{itemize}
+	\item Developed OCR document processing for W2 uploads in TurboTax onboarding, reducing tax preparation time by 20\%.
+	\item Integrated an NLP intent-classification decision engine, replacing a third-party API and reducing latency by 30\%.
+\end{itemize}
+
+\jobentry{Intuit, TurboTax}{Software Engineer Co-op}{San Diego, CA}{May 2018 - Dec 2018}
+\begin{itemize}
+	\item Built Help Portal case deduplication, improving response time by 45\% and reducing duplicates by 7\%.
+	\item Automated publishing with React/PHP Smart Fields, saving 30 minutes in the workflow and reducing support cases by 10\%.
+\end{itemize}
+
+\jobentry{OutreachCircle}{Software Developer}{Bangalore, India}{Nov 2016 - May 2017}
+\begin{itemize}
+	\item Integrated Elasticsearch contact matching for voter registration and social profiles, improving outreach by 10\%.
+	\item Developed a campaign outreach platform with Meteor.js and Angular, improving canvassing efficiency and voter turnout by 15\%.
+\end{itemize}
+
+% -------------------- SKILLS --------------------
+\section{Technical Skills}
+\noindent
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+	\textbf{Languages:}  & Python, Java, JavaScript, TypeScript, Go, Nix, Lua, SQL, Scala, C/C++                             \\
+	\textbf{ML/AI:}      & PyTorch, TensorFlow, Hugging Face, LangChain, OpenCV, Vespa, NLTK, ScikitLearn, Keras, Gensim     \\
+	\textbf{Frameworks:} & Spring Boot, React.js, HTMX, Astro.js, Django, Node.js, REST, gRPC                                \\
+	\textbf{Big Data:}   & PySpark, Kafka, Hadoop, Pandas, PyArrow, Hive, Beam, Flink, EventBus, RabbitMQ                    \\
+	\textbf{Cloud:}      & AWS (SageMaker, Lambda, Glue, Personalize, EMR, OpenSearch, Athena, Redshift), Docker, Kubernetes \\
+	\textbf{Databases:}  & PostgreSQL, DynamoDB, MySQL, SQLite, MongoDB, Redis, ElasticSearch, Vector Databases              \\
+	\textbf{Courses:}    & NLP, Reinforcement Learning, Robotics, Machine Learning, Artificial Intelligence                  \\
+\end{tabularx}
+
+% -------------------- PROJECTS --------------------
+\section{Projects}
+
+\projectentry{Lumino - Declarative NixOS Infrastructure}{Nix Flakes | Home Manager}
+
+\projectentry{Naavik - AI Career Workflows and Application Tracking}{In development}
+
+\projectentry{Plano - Self-Hosted Flight Tracking with Go and React Native}{In development}
+
 \end{document}

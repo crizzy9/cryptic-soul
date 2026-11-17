@@ -1,9 +1,18 @@
 # Two Page
 
-A two-page resume with all seven roles, 26 selected experience bullets, eight detailed projects, skills, education and certifications.
+A two-page resume using the original dense layout from `resume/OnePage/cv.tex`.
+Its preamble, macros and three-line contact header are copied verbatim: the same
+10pt font stack, 0.3in side margins, 0.25in top/bottom margins, black small-cap
+section headings and rules, compact four-field job rows, circle bullets and no
+page numbering. Fit the content to this pinned layout; do not alter its visual
+parameters.
+
+Coverage: summary, all seven roles and 33 experience bullets, full education,
+seven skill rows, eight curated projects and three certifications. The original
+one-page source is preserved separately. A deliberate break before the early
+TurboTax roles keeps each role together and yields exactly two pages.
 
 Editable source: `cv.tex`. Final PDF: `Shyam-Padia-Resume-Two-Page.pdf`.
-The original `resume/OnePage/cv.tex` is preserved separately.
 
 Build from the repository root, keeping auxiliary files outside the source folder:
 
@@ -14,12 +23,7 @@ pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/cryptics
 cp /tmp/crypticsoul-resume-build/cv.pdf 'resume/Two Page/Shyam-Padia-Resume-Two-Page.pdf'
 ```
 
-Check the final page count and render every page after changes. The summary version
-must remain one page and the Two Page version exactly two; FullProfile has no page limit.
-
-Career facts come from the existing resume sources and shared `src/data/profile.ts`,
-including substantive commented bullets in the original one-page source. Projects
-are reconciled with `src/content/project/`; development previews, ongoing qualification
-and research are labeled. Portfolio publication dates are not treated as project
-completion dates. Older conflicting model-direction and role-placement claims are
-not combined. No private application or archived employer notes are embedded.
+Verify exactly two pages, render both pages, and check for clipped text or stranded
+headings after each revision. Career facts come from the reviewed public resume
+sources and `src/data/profile.ts`; project qualifiers remain explicit. No private
+application or archived employer notes are embedded.
