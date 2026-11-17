@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
+import Analytics from "../components/Analytics.astro";
 import { ViewTransitions } from "astro:transitions";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
@@ -14,13 +15,14 @@ const {
   includeSidebar = true,
   sideBarActiveItemID,
   ogType,
+  noIndex = false,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
-    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    <BaseHead title={title} description={description} image={image} ogType={ogType} noIndex={noIndex} />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
@@ -37,5 +39,6 @@ const {
       </div>
       {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
     </div>
+    <Analytics excluded={noIndex} />
   </body>
 </html>

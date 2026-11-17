@@ -41,6 +41,7 @@ pnpm-debug.log*
 *.bcf
 *.run.xml
 *.pdf
+!public/Shyam-Padia-Resume.pdf
 
 # Devenv
 .devenv*

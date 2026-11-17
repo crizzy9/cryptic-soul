@@ -7,7 +7,7 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astrofy-template.netlify.app",
+  site: "https://crypticsoul.dev",
   integrations: [mdx(), sitemap(), tailwind()],
   adapter: netlify(),
 });

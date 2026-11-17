@@ -1,59 +1,39 @@
 ---
-// TODO: Add category and location?
-// TODO: Fix Badge and Tag url
-const { title, img, desc, url, badges, tags, pubDate, target = "_blank" } = Astro.props;
 import { Image } from "astro:assets";
-import { getBadges, getBadgeClass } from "../lib/helpers";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
+import { getBadges, getBadgeClass, formatPublicationDate } from "../lib/helpers";
 
-const tag_url = url && url.split("/").slice(0, -1).join("/") + "/tag";
+const { title, img, desc, url, badges, tags = [], pubDate, target = "_blank", tagLinks = false, id } = Astro.props;
 const displayBadges = getBadges(pubDate, badges);
-dayjs.extend(localizedFormat);
-const displayDate = dayjs(pubDate).format("MMM DD, YYYY");
+const displayDate = pubDate ? formatPublicationDate(pubDate) : undefined;
 ---
 
-<div
-  class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
->
-  <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row">
-      {
-        img && (
-          <Image
-            src={img}
-            width={750}
-            height={422}
-            format="webp"
-            alt={title}
-            class="max-w-full max-h-full md:max-h-[9rem] md:max-w-[13rem] rounded-lg"
-          />
-        )
-      }
-      <div class="grow w-full flex flex-col">
-        <div class="flex justify-between items-start">
-          <h1 class="text-xl font-bold">{title}</h1>
-          <div class="flex flex-wrap gap-1">
-            {displayBadges.map((badge) => (
-              <div class={getBadgeClass(badge)}>{badge}</div>
-            ))}
-          </div>
+<article id={id} class="scroll-mt-20 rounded-lg bg-base-100">
+  <div class="flex flex-col gap-4 p-4 md:flex-row md:gap-6">
+    {img && (
+      <Image src={img} width={750} height={422} format="webp" alt=""
+        class="w-full rounded-lg object-cover md:max-h-36 md:w-52" />
+    )}
+    <div class="flex min-w-0 grow flex-col">
+      <div class="flex flex-wrap items-start justify-between gap-2">
+        <h3 class="text-xl font-bold">
+          {url ? (
+            <a href={url} target={target} rel={target === "_blank" ? "noopener noreferrer" : undefined}
+              class="link-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">{title}</a>
+          ) : title}
+        </h3>
+        <div class="flex flex-wrap gap-1">
+          {displayBadges.map((badge) => <span class={getBadgeClass(badge)}>{badge}</span>)}
         </div>
-        <p class="py-1 text-1xl">{desc}</p>
-        <div class="card-actions justify-between mt-auto">
-          <time class="text-sm text-base-content/70">{displayDate}</time>
-          <div class="flex items-center gap-2">
-            {
-              tags &&
-                tags.map((tag) => (
-                  <a href={`${tag_url}/${tag}`} class="badge badge-outline">
-                    {tag}
-                  </a>
-                ))
-            }
-          </div>
+      </div>
+      <p class="py-2 leading-relaxed">{desc}</p>
+      <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
+        {displayDate && <time datetime={new Date(pubDate).toISOString()} class="text-sm text-base-content/70">{displayDate}</time>}
+        <div class="flex flex-wrap gap-2">
+          {tags.map((tag) => tagLinks ? (
+            <a href={`/blog/tag/${encodeURIComponent(tag)}`} class="badge badge-outline link-hover">{tag}</a>
+          ) : <span class="badge badge-outline">{tag}</span>)}
         </div>
       </div>
     </div>
-  </a>
-</div>
+  </div>
+</article>

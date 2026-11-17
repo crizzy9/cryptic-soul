@@ -1,204 +1,75 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
+import { getCollection } from "astro:content";
+import { education, experience, skills } from "../data/profile";
+
+const projects = (await getCollection("project", ({ data }) => data.featured))
+  .sort((first, second) => second.data.pubDate.valueOf() - first.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+<BaseLayout title="Résumé · Shyam Padia" description="Shyam Padia's experience in AI engineering, personalization, distributed systems, and self-hosted software." sideBarActiveItemID="cv">
+  <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+    <h1 class="text-3xl font-bold">Résumé</h1>
+    <a class="btn btn-primary" href="/Shyam-Padia-Resume.pdf" download>Download résumé (PDF)</a>
   </div>
+  <p class="mb-4 max-w-prose text-lg leading-relaxed">AI Technical Lead at MosaicApp, building agent systems and the infrastructure around them. Previously a Senior Software Engineer at Intuit, working across personalization, recommendations, marketing automation, and pricing.</p>
+  <p class="mb-10 max-w-prose leading-relaxed">My work connects AI and data engineering with product delivery: from Chello's agent architecture and model routing to platforms that turn large-scale data into useful customer experiences. Outside work, I build self-hosted software, developer tools, and robotics projects.</p>
 
-  <div class="mb-10 text-justify">
-    Senior Software Engineer with 6+ years of experience specializing in AI/ML, large-scale distributed systems, and personalization platforms. 
-    Expert in leveraging Generative AI, machine learning, and big data technologies to build scalable solutions that drive business impact. 
-    Passionate about robotics, automation, and infrastructure engineering with a proven track record of leading cross-functional teams and 
-    delivering innovative products that generate millions in revenue and significantly improve operational efficiency.
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
-
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Master of Science in Computer Science"
-      subtitle="Sept 2017 to Dec 2019 at Northeastern University, Khoury CCIS, Boston, MA | GPA: 3.2/4"
-    >
-      <p class="ml-4">Courses: NLP, Reinforcement Learning, Robotics, Machine Learning, Artificial Intelligence</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Bachelor of Engineering in Computer Engineering"
-      subtitle="Aug 2012 to June 2016 at University of Mumbai, Fr. CRCE, Mumbai, India | GPA: 7.4/10"
-    />
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Senior Software Engineer - Personalization at Intuit"
-      subtitle="From Jan 2025 to Present at Mountain View, California"
-    >
-      <li class="ml-4">Built an AI agent orchestrator harness akin to Hermes Agent with LangChain automating RTB, Oncall and DevOps workflows</li>
-      <li class="ml-4">Architected unified user profiles integrating third-party data with ML embedding models for similarity-based offer recommendations using Python and vector databases</li>
-      <li class="ml-4">Led cross-functional team of 6 engineers developing AI marketing agent using Symphony and LangChain to automate content generation and campaign deployment, accelerating go-live time by 90%</li>
-      <li class="ml-4">Managed team of 5 engineers delivering bulk content creation system with dynamic templates and audience segmentation, increasing content production capacity by 1400%</li>
-      <li class="ml-4">Designed and deployed AI powered content generation pipeline using LLMs to automate end-to-end marketing workflows, improving time-to-market by 75%</li>
-      <li class="ml-4 mb-1">Developed comprehensive AI strategy roadmap for personalization featuring intelligent content recommendations, predictive analytics and workflow automation</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer 2 - Personalization at Intuit"
-      subtitle="From Jan 2021 to Jan 2025 at Mountain View, California"
-    >
-      <li class="ml-4">Developed RAG-based AI assistant using Generative AI, Hugging Face transformers and LangChain for automated marketing content generation, reducing customer churn and accelerating campaign authoring workflows</li>
-      <li class="ml-4">Engineered self-service analytics platform processing clickstream data with PySpark and AWS EMR, building React dashboards that reduced production incidents by 40% and increased marketer productivity by 50%</li>
-      <li class="ml-4">Designed scalable data entities using PySpark enabling real-time multi-source data ingestion, eliminating schema approval bottlenecks</li>
-      <li class="ml-4">Implemented AWS Personalize machine learning recommendation system on clickstream data, improving personalization quality and reducing API latency by 20%</li>
-      <li class="ml-4">Built real-time Kafka event streaming pipeline integrated with Customer Data Platform with RBAC and approval workflows, generating $10M incremental revenue through dynamic audience targeting</li>
-      <li class="ml-4 mb-1">Trained and deployed XGBoost and Deep Neural Network models for predictive business health scoring, reducing investment risk by 23%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer 1 - QuickBooks at Intuit"
-      subtitle="From Jan 2020 to Jan 2021 at Mountain View, California"
-    >
-      <li class="ml-4">Implemented parallelized automated testing framework using Cypress for synthetic monitoring, preventing $10M potential revenue loss and ensuring pricing accuracy across platform</li>
-      <li class="ml-4">Developed machine learning models using XGBoost and Neural Networks for business health prediction, achieving 12% accuracy improvement over baseline models</li>
-      <li class="ml-4">Built predictive revenue forecasting model leveraging customer behavior simulations to estimate revenue impact from dynamic pricing strategies</li>
-      <li class="ml-4">Engineered automated customer segmentation pipeline using AWS Glue, Pandas and SQL to identify eligible cohorts for targeted pricing campaigns</li>
-      <li class="ml-4 mb-1">Developed full-stack pricing management platform using React, Spring Boot and AWS for offer configuration, price simulation and campaign execution, delivering $20M cost savings and increasing operational efficiency by 50%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer Intern - TurboTax at Intuit"
-      subtitle="From May 2019 to Aug 2019 at San Diego, California"
-    >
-      <li class="ml-4">Developed OCR-based document processing feature for W2 form upload in TurboTax onboarding flow, reducing customer tax preparation time by 20%</li>
-      <li class="ml-4 mb-1">Integrated machine learning Decision Engine for natural language intent classification, replacing third-party API and reducing response latency by 30%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer Co-op - TurboTax at Intuit"
-      subtitle="From May 2018 to Dec 2018 at San Diego, California"
-    >
-      <li class="ml-4">Engineered case deduplication microservice for customer support portal using machine learning algorithms, improving response time by 45% and reducing duplicate cases by 7%</li>
-      <li class="ml-4">Developed dynamic Smart Fields component using React and PHP backend to automate content publishing workflows, reducing deployment time by 30 minutes and decreasing support case volume by 10%</li>
-      <li class="ml-4 mb-1">Architected serverless URL redirect service using AWS Lambda, API Gateway and DynamoDB, improving routing efficiency by 35%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Developer at VoterCircle"
-      subtitle="From Nov 2016 to May 2017 at Bangalore, India"
-    >
-      <li class="ml-4">Developed distributed campaign management platform using Meteor.js and Angular framework, increasing canvassing operational efficiency and voter turnout by 15%</li>
-      <li class="ml-4 mb-1">Implemented ElasticSearch-powered contact matching algorithm integrating voter registration data with social media profiles, improving outreach effectiveness by 10%</li>
-    </TimeLineElement>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Projects</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Hermes Agent - Integrated Hermes Agent platform for managing home automation"
-      subtitle="Apr 2026"
-    >
-      <p class="ml-4 mb-1">Built an autonomous agent swarm using Hermes to create a helpful orchestrator that utilizes agentic AI to ship any feature end to end with a single prompt</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Naavik - Automated Job Search Platform"
-      subtitle="Feb 2026"
-    >
-      <p class="ml-4 mb-1">Vibecoded an entire automated job search platform using state of the art techniques for orchestrating multi agent systems to build an end to end product with selfhosting capabilties to easy the job search process by automating all the steps using AI agents</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Lumino - NixOS based Declarative Homelab Platform"
-      subtitle="June 2025"
-    >
-      <p class="ml-4 mb-1">Architected highly available NixOS-based homelab cluster with declarative infrastructure-as-code using Nix Flakes, deploying several self-hosted services such as n8n, Nextcloud, Home Assistant, Immich and OpenWebUI with automated rollbacks and zero-downtime updates</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Home Lab - Distributed Kubernetes Home Server"
-      subtitle="Dec 2024"
-    >
-      <p class="ml-4 mb-1">Designed hybrid homelab infrastructure using N100 mini PCs and Raspberry Pi cluster orchestrated with Kubernetes, integrating Proxmox virtualization, UnifiOS, Open Media Vault and Home Assistant with secure Tailscale mesh VPN and Cloudflare DNS</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Omnidirectional Autonomous Robot with Computer Vision"
-      subtitle="Jun 2024"
-    >
-      <p class="ml-4 mb-1">Engineered omnidirectional Raspberry Pi robot with servo-controlled 6-DOF robotic arm implementing inverse kinematics, OpenCV object detection, speech-to-text voice commands and autonomous navigation with obstacle avoidance</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Reinforcement Learning Transfer for Robotic Manipulation"
-      subtitle="Oct 2019"
-    >
-      <p class="ml-4 mb-1">Evaluated transfer learning effectiveness for robot arm simulation using PyTorch and OpenAI Gym, comparing Q-Learning, DQN, Policy Gradient and MCMC algorithms, achieving 35% faster convergence and 28% improved task performance</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Multi-Track Music Generation with Transformer Architecture"
-      subtitle="Apr 2019"
-    >
-      <p class="ml-4 mb-1">Developed novel multi-transformer neural architecture for polyphonic music generation with separate models for melody, bass, drums and harmony using custom global multi-headed attention, improving musical coherence by 45%</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Paragraph Embedding Generation using Variational Autoencoders"
-      subtitle="Apr 2018"
-    >
-      <p class="ml-4 mb-1">Implemented deep learning architectures in TensorFlow for unsupervised paragraph representation learning using VAE and bidirectional LSTM Seq2Seq models on Gutenberg Corpus, achieving 22% improvement in semantic similarity tasks</p>
-    </TimeLineElement>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank">Machine Learning Professional Certificate - General Assembly (June 2022)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank">Apache PySpark Certification - Databricks (Dec 2021)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank">AWS Certified Solutions Architect - Associate (Oct 2019)</a>
-    </li>
-  </ul>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Open Source Contributions</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <strong>Vicinae - Desktop Application Launcher (2025):</strong> Contributed features to high-performance desktop launcher built with C++ and Qt, implementing Raycast-compatible extension APIs, TypeScript SDK integration and Linux-native keyboard-driven productivity tools
-    </li>
-    <li>
-      <strong>Mopidy - Python Music Server (2024):</strong> Contributed features and bug fixes to extensible music server, implementing Spotify integration enhancements, playlist synchronization improvements and audio stream optimization for Raspberry Pi deployments
-    </li>
-  </ul>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Technical Skills</div>
-  </div>
-
-  <div class="mb-10">
-    <div class="mb-3">
-      <strong>Languages:</strong> Python, Java, JavaScript, TypeScript, Nix, Lua, SQL, Scala, Go, C/C++
+  <section class="mb-10" aria-labelledby="experience-heading">
+    <h2 id="experience-heading" class="mb-5 text-2xl font-bold">Experience</h2>
+    <div class="time-line-container space-y-4">
+      {experience.map((role) => (
+        <TimeLineElement title={role.title} subtitle={role.subtitle}>
+          <ul class="ml-5 list-disc space-y-2">
+            {role.achievements.map((achievement) => <li>{achievement}</li>)}
+          </ul>
+        </TimeLineElement>
+      ))}
     </div>
-    <div class="mb-3">
-      <strong>ML/AI:</strong> PyTorch, TensorFlow, Hugging Face, LangChain, OpenCV, Vespa, NLTK, ScikitLearn, Keras, Gensim
+  </section>
+
+  <section class="mb-10" aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="mb-5 text-2xl font-bold">Selected projects</h2>
+    <ul class="space-y-5">
+      {projects.map((project) => (
+        <li>
+          <h3 class="font-semibold"><a class="link link-hover" href={`/projects#${project.slug}`}>{project.data.title}</a></h3>
+          <p class="mt-1 leading-relaxed">{project.data.description}</p>
+        </li>
+      ))}
+    </ul>
+    <a href="/projects" class="link mt-5 inline-block">Explore the full portfolio</a>
+  </section>
+
+  <section class="mb-10" aria-labelledby="education-heading">
+    <h2 id="education-heading" class="mb-5 text-2xl font-bold">Education</h2>
+    <div class="time-line-container space-y-4">
+      {education.map((entry) => (
+        <TimeLineElement title={entry.title} subtitle={entry.subtitle}>
+          {entry.detail && <p>{entry.detail}</p>}
+        </TimeLineElement>
+      ))}
     </div>
-    <div class="mb-3">
-      <strong>Frameworks:</strong> Spring Boot, React.js, HTMX, Django, Node.js, REST, gRPC, Microservices
-    </div>
-    <div class="mb-3">
-      <strong>Big Data:</strong> PySpark, Kafka, Hadoop, Pandas, PyArrow, Hive, EventBus, RabbitMQ
-    </div>
-    <div class="mb-3">
-      <strong>Cloud:</strong> AWS (SageMaker, Lambda, Glue, Personalize, EMR, OpenSearch, Athena, Redshift), Docker, Kubernetes
-    </div>
-    <div class="mb-3">
-      <strong>Databases:</strong> PostgreSQL, DynamoDB, MySQL, SQLite, MongoDB, Redis, ElasticSearch, Vector Databases
-    </div>
-  </div>
+  </section>
+
+  <section class="mb-10" aria-labelledby="skills-heading">
+    <h2 id="skills-heading" class="mb-5 text-2xl font-bold">Technical skills</h2>
+    <dl class="space-y-4">
+      {skills.map(([label, detail]) => (
+        <div>
+          <dt class="font-semibold">{label}</dt>
+          <dd class="mt-1 leading-relaxed">{detail}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="mb-10" aria-labelledby="open-source-heading">
+    <h2 id="open-source-heading" class="mb-5 text-2xl font-bold">Open source contributions</h2>
+    <ul class="ml-5 list-disc space-y-2">
+      <li>Vicinae · Desktop application launcher · 2025</li>
+      <li>Mopidy · Python music server · 2024</li>
+    </ul>
+  </section>
 </BaseLayout>

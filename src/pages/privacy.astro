@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Privacy & analytics · CrypticSoul" description="What CrypticSoul measures, why it measures it, and how to turn analytics off.">
+  <article class="prose prose-lg max-w-prose">
+    <h1>Privacy &amp; analytics</h1>
+    <p>This site uses Netlify for hosting. When configured, it also uses Umami to understand which articles and projects are useful and how visitors find the site.</p>
+    <h2>What analytics measures</h2>
+    <p>Umami receives page paths and titles, referrer domains, browser and device information, and approximate location. The site also records article scroll milestones, whether an article stays open in a focused tab for about a minute, project-link clicks, résumé-download clicks, and contact-link clicks.</p>
+    <p>These signals describe interactions, not proof that an article was read, a file finished downloading, or an email was sent. Visitor and session counts are estimates; they do not identify visitors by name.</p>
+    <h2>What stays out</h2>
+    <p>This integration does not set analytics cookies, assign personal account IDs, record sessions, or capture form contents. Page query strings and URL fragments are removed from analytics payloads. External referrers are reduced to their domain, and contact events contain the contact method without the email address or phone number.</p>
+    <p>Analytics providers still receive network requests and process the information needed to provide their service. Netlify's hosting logs are separate from Umami. See <a href="https://umami.is/privacy">Umami's privacy policy</a> and <a href="https://www.netlify.com/privacy/">Netlify's privacy policy</a> for their practices.</p>
+    <h2>Your choice</h2>
+    <p>Collection stays off when your browser sends an enabled Do Not Track or Global Privacy Control preference, or when you opt out below. The opt-out is saved in this browser's local storage. Clearing site data removes that saved preference. This choice affects Umami collection; it does not disable hosting logs.</p>
+    <p data-analytics-status role="status">Analytics is off in this preview or has not been configured.</p>
+    <div class="not-prose"><button data-analytics-toggle hidden type="button" class="btn btn-outline">Turn off analytics in this browser</button></div>
+    <p>Local development, deployment previews, and draft articles are excluded from this integration. No analytics data is sent until the site's production tracker is configured.</p>
+    <h2>Questions</h2>
+    <p>You can reach me at <a href="mailto:shyam.padia930@gmail.com">shyam.padia930@gmail.com</a> with questions about this site's analytics.</p>
+  </article>
+</BaseLayout>

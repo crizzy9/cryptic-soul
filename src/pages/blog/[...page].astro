@@ -3,9 +3,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import HorizontalCard from "../../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug"
+import { isBlogPostVisible } from "../../lib/blog";
 
 export async function getStaticPaths({ paginate }) {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog", isBlogPostVisible);
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return paginate(posts, { pageSize: 10 });
 }
@@ -15,7 +16,7 @@ const { page } = Astro.props;
 
 <BaseLayout title="Blog" sideBarActiveItemID="blog">
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Blog</div>
+    <h1 class="text-3xl w-full font-bold">Blog</h1>
   </div>
 
   {
@@ -25,7 +26,7 @@ const { page } = Astro.props;
         <p>There are no blog posts to show at the moment. Check back later!</p>
       </div>
     ) : (
-      <ul>
+      <div>
         {page.data.map((post) => (
           <>
             <HorizontalCard
@@ -34,14 +35,15 @@ const { page } = Astro.props;
               desc={post.data.description}
               url={"/blog/" + createSlug(post.data.title, post.slug)}
               target="_self"
-              badges={post.data.badges}
               pubDate={post.data.pubDate}
               tags={post.data.tags}
+              tagLinks={true}
+              badges={[...(post.data.draft ? ["Draft"] : []), ...(post.data.badges || [])]}
             />
             <div class="divider my-0" />
           </>
         ))}
-      </ul>
+      </div>
     )
   }
 
