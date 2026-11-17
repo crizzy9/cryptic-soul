@@ -4,6 +4,7 @@ const projectSchema = z.object({
   description: z.string(),
   pubDate: z.coerce.date(),
   category: z.string(),
+  featured: z.boolean().default(false),
   updatedDate: z.string().optional(),
   heroImage: z.string().optional(),
   githubUrl: z.string().optional(),
@@ -20,8 +21,14 @@ const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
   pubDate: z.coerce.date(),
+  // Author-assigned article date; pubDate retains the actual release date for RSS.
+  editorialDate: z.coerce.date().optional(),
+  draft: z.boolean().default(false),
   updatedDate: z.string().optional(),
   heroImage: z.string().optional(),
+  heroImageAlt: z.string().optional(),
+  heroImageCredit: z.string().optional(),
+  heroImageSource: z.string().url().optional(),
   badges: z.array(z.string()).optional(),
   tags: z
     .array(z.string())

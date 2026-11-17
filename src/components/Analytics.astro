@@ -1,0 +1,18 @@
+---
+import { isValidTrackerUrl } from "../lib/analytics";
+import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "../config";
+
+const { excluded = false } = Astro.props;
+const websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID ?? UMAMI_WEBSITE_ID;
+const scriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL ?? UMAMI_SCRIPT_URL;
+const deploymentContext = process.env.CONTEXT;
+const enabled = import.meta.env.PROD && !excluded
+  && (!deploymentContext || deploymentContext === "production")
+  && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(websiteId)
+  && isValidTrackerUrl(scriptUrl);
+---
+
+<div id="analytics-config" hidden data-enabled={String(enabled)} data-website-id={websiteId} data-script-url={scriptUrl}></div>
+<script>
+  import "../scripts/analytics";
+</script>

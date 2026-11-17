@@ -71,6 +71,7 @@ Create new markdown files in `src/content/blog/` with proper frontmatter:
 title: "Your Post Title"
 description: "Post description"
 pubDate: 2024-01-01
+draft: true
 heroImage: "/post_img.webp"
 tags: ["tag1", "tag2"]
 ---
@@ -78,12 +79,78 @@ tags: ["tag1", "tag2"]
 Your content here...
 ```
 
+Blog images are self-hosted under `public/blog/`. Add descriptive `heroImageAlt`,
+`heroImageCredit`, and `heroImageSource` metadata; photo sources and licensing are
+recorded in [blog image credits](docs/blog-image-credits.md).
+
+Drafts appear in `pnpm dev` and Netlify PR deploy previews (`CONTEXT=deploy-preview`).
+PR previews are marked noindex, omit the sitemap, and disable analytics. The live
+production build excludes drafts from the homepage, blog index, tags, article routes,
+sitemap, and RSS.
+After editorial review, set `draft: false` and check the production build before
+publishing. RSS always includes published posts only, including during development.
+
 ### Projects
 Add new projects in `src/content/project/` following the same pattern.
+Set `featured: true` to include a project on the homepage. The CV project list is
+curated independently in `src/data/profile.ts`. Keep development or research status
+explicit, and omit repository links until verified.
+
+### Resume
+
+Public career facts live in `src/data/profile.ts`. The complete career and project
+record is maintained in `resume/FullProfile/cv.tex`; the website uses a curated
+project list and fuller experience details. All resume formats are linked from the CV:
+
+| Format | Editable source | Download |
+| --- | --- | --- |
+| Original one page | `resume/OnePage/cv.tex` | `public/Shyam-Padia-Resume.pdf` |
+| One page with summary | `resume/One Page Summary/cv.tex` | `public/Shyam-Padia-Resume-Summary.pdf` |
+| Two pages | `resume/Two Page/cv.tex` | `public/Shyam-Padia-Resume-Two-Page.pdf` |
+| Full profile | `resume/FullProfile/cv.tex` | `public/Shyam-Padia-Full-Profile.pdf` |
+
+All formats must retain the exact dense layout in `resume/OnePage/cv.tex`: its
+10pt font, original margins, centered header, black section rules, compact
+four-field job headings and hollow-circle bullets. Preserve the preamble and
+macros; adjust content and page breaks to fit, without redesigning the template.
+The original one-page version is preserved. The additional variants use the
+reviewed current experience and project facts, with development/research status
+kept explicit. Rebuild a source twice into a temporary directory, verify its page
+count and rendered pages, and copy the resulting PDF to its named resume-folder
+artifact and public download. For example:
+
+```sh
+mkdir -p /tmp/crypticsoul-resume
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/Two Page/cv.tex'
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/Two Page/cv.tex'
+pdfinfo /tmp/crypticsoul-resume/cv.pdf # Must report exactly 2 pages.
+pdftoppm -scale-to 1600 -png /tmp/crypticsoul-resume/cv.pdf /tmp/crypticsoul-resume/page
+cp /tmp/crypticsoul-resume/cv.pdf 'resume/Two Page/Shyam-Padia-Resume-Two-Page.pdf'
+cp /tmp/crypticsoul-resume/cv.pdf public/Shyam-Padia-Resume-Two-Page.pdf
+```
+
+## Analytics
+
+Umami integration measures page views, article progress and active time, project
+clicks, resume downloads, contact clicks, and outbound domains. It respects browser
+privacy preferences and offers an opt-out on `/privacy`. The owner's Umami Cloud
+tracking code is configured in `src/config.ts`; collection starts after production
+deployment. See
+[analytics setup and event reference](docs/analytics.md); `.env.example` lists the
+optional public build-time overrides for a later self-hosted instance. No account
+credentials or API keys belong in this repo.
 
 ## 🚀 Deployment
 
 The site is automatically deployed to Netlify on every push to the main branch.
+
+### Blog dates
+
+`pubDate` records the actual release date and controls RSS and publication ordering.
+Optional `editorialDate` assigns a displayed **Editorial date** for a collection released
+at once; it orders articles sharing a release date. It does not schedule or hide posts.
+Set `draft: false` to publish a reviewed article. PR previews remain noindex and do not
+collect analytics, including for published articles.
 
 ## 📄 License
 

@@ -2,88 +2,59 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
+import createSlug from "../lib/createSlug";
+import { compareBlogPosts, isBlogPostVisible } from "../lib/blog";
 
-const blogs = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const projects = (await getCollection("project")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const last_blogs = blogs.slice(0, 3);
-const last_projects = projects.slice(0, 3);
+const blogs = (await getCollection("blog", isBlogPostVisible))
+  .sort(compareBlogPosts).slice(0, 3);
+const projects = (await getCollection("project", ({ data }) => data.featured))
+  .sort((first, second) => second.data.pubDate.valueOf() - first.data.pubDate.valueOf());
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Shyam Padia</div>
-    <div class="text-3xl py-3 font-bold">Engineer and Entrepreneur</div>
-    <div class="py-2">
-      <text class="text-lg">
-        This is <b>CrypticSoul</b> a place to showcase my work, write blogs and talk about things that i like.
-        I am an Software Engineer by Heart and love to tinker with stuff. I am a Builder and a Budding Robotics Enthusiast.
-        I often devle into concepts involving Software Engineering at Large Scale and solve problems related to
-        Web Development, Big Data, AI, Robotics and Networking.
-      </text>
+  <section class="mt-5 pb-12" aria-labelledby="intro-heading">
+    <h1 id="intro-heading" class="text-4xl font-bold sm:text-5xl">I'm Shyam Padia</h1>
+    <p class="py-4 text-2xl font-semibold sm:text-3xl">Engineer, builder, and entrepreneur.</p>
+    <div class="max-w-prose space-y-4 text-lg leading-relaxed">
+      <p>I build AI systems, self-hosted infrastructure, and software that solves everyday problems. CrypticSoul is where I share the projects and the engineering behind them.</p>
+      <p>I'm an AI Technical Lead at MosaicApp, working on Chello's agent architecture, model routing, and billing. Before that, I built personalization, recommendation, and marketing platforms at Intuit.</p>
+      <p>Outside work, I'm building Avid for reading and listening, Plano for flight tracking, Naavik for job-search workflows, and Lumino for declarative infrastructure. I'm also exploring PupCam, a self-hosted pet-camera project.</p>
     </div>
-    <div class="mt-6">
-      <div class="mb-4">
-        <h4 class="text-lg font-bold mb-2">Currently working on:</h3>
-        <ul class="text-base space-y-1 list-none">
-          <i><li class="pl-4">AI Projects</li></i>
-          <i><li class="pl-4">Robotics</li></i>
-          <i><li class="pl-4">Home Servers</li></i>
-          <i><li class="pl-4">Opensource Software</li></i>
-        </ul>
-      </div>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href="/projects">Explore my projects</a>
+      <a class="btn btn-outline" href="/cv">View my resume</a>
+      <a class="btn btn-ghost" href="mailto:shyam.padia930@gmail.com">Get in touch</a>
     </div>
-    <div class="mt-8">
-      <a class="btn" href="https://bsky.app/profile/cryptic-soul.bsky.social" target="_blank"> Let's connect!</a>
-      <!-- <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5"> -->
-      <!--   Get This template -->
-      <!-- </a> -->
-    </div>
-  </div>
+  </section>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">My latest projects {"</>"}</div>
-  </div>
-
-  {
-    last_projects.map((proj) => (
+  <section aria-labelledby="projects-heading">
+    <div class="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+      <h2 id="projects-heading" class="text-3xl font-bold">What I'm building</h2>
+      <a href="/projects" class="link link-hover">All projects</a>
+    </div>
+    {projects.map((project) => (
       <>
-        <HorizontalCard
-          title={proj.data.title}
-          img={proj.data.heroImage}
-          desc={proj.data.description}
-          url={proj.data.githubUrl}
-          target="_blank"
-          badges={proj.data.badges}
-          pubDate={proj.data.pubDate}
-          tags={proj.data.tags}
-        />
+        <HorizontalCard title={project.data.title} img={project.data.heroImage}
+          desc={project.data.description} url={`/projects#${project.slug}`} target="_self"
+          badges={project.data.badges} pubDate={project.data.pubDate} tags={project.data.tags} />
         <div class="divider my-0" />
       </>
-    ))
-  }
+    ))}
+  </section>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Recent Blogs</div>
-  </div>
-
-  {
-    last_blogs.map((post) => (
+  <section class="mt-12" aria-labelledby="writing-heading">
+    <div class="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+      <h2 id="writing-heading" class="text-3xl font-bold">Recent writing</h2>
+      <a href="/blog" class="link link-hover">All posts</a>
+    </div>
+    {blogs.map((post) => (
       <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badges={post.data.badges}
-          pubDate={post.data.pubDate}
-          tags={post.data.tags}
-        />
+        <HorizontalCard title={post.data.title} img={post.data.heroImage} imgAlt={post.data.heroImageAlt} desc={post.data.description}
+          url={`/blog/${createSlug(post.data.title, post.slug)}`} target="_self"
+          badges={[...(post.data.draft ? ["Draft"] : []), ...(post.data.badges || [])]}
+          pubDate={post.data.pubDate} editorialDate={post.data.editorialDate} tags={post.data.tags} tagLinks={true} />
         <div class="divider my-0" />
       </>
-    ))
-  }
+    ))}
+  </section>
 </BaseLayout>

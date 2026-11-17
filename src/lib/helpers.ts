@@ -18,3 +18,13 @@ export function getBadgeClass(badgeText: string): string {
   }
   return "badge badge-success";
 }
+
+/** Date-only frontmatter is parsed as UTC; keep its calendar day in every timezone. */
+export function formatPublicationDate(pubDate: Date): string {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(pubDate);
+}

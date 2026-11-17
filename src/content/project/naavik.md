@@ -1,9 +1,11 @@
 ---
 title: "Naavik"
-description: "Vibecoded an entire automated job search platform using state of the art techniques for orchestrating multi agent systems to build an end to end product with selfhosting capabilties to easy the job search process by automating all the steps using AI agents"
+description: "A self-hosted career platform built with Python, FastAPI, HTMX and PostgreSQL. Combines profile management, explainable job matching, tailored resume and cover-letter generation, and application tracking, with Typst documents and a choice of hosted or local AI providers. V1 release qualification is ongoing."
 pubDate: "Feb 05 2026"
+updatedDate: "2026-11-16"
 category: "Software"
-heroImage: "/nixos.webp"
+featured: true
 githubUrl: "https://github.com/crizzy9/naavik"
-tags: ["htmx", "python", "jobs", "ai"]
+badges: ["In development"]
+tags: ["python", "fastapi", "htmx", "postgresql", "ai"]
 ---

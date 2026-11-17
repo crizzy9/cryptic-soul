@@ -3,9 +3,11 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
+import Analytics from "../components/Analytics.astro";
 import { ViewTransitions } from "astro:transitions";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
+import { IS_DEPLOY_PREVIEW } from "../lib/deployment";
 
 const {
   image,
@@ -14,13 +16,15 @@ const {
   includeSidebar = true,
   sideBarActiveItemID,
   ogType,
+  noIndex = false,
 } = Astro.props;
+const effectiveNoIndex = noIndex || IS_DEPLOY_PREVIEW;
 ---
 
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
-    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    <BaseHead title={title} description={description} image={image} ogType={ogType} noIndex={effectiveNoIndex} />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
@@ -37,5 +41,6 @@ const {
       </div>
       {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
     </div>
+    <Analytics excluded={effectiveNoIndex} />
   </body>
 </html>

@@ -1,204 +1,253 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/cv/TimeLine.astro";
+import AchievementList from "../components/cv/AchievementList.astro";
+import { getCollection } from "astro:content";
+import { certifications, cvProjectSelections, education, employers, openSourceContributions, skillGroups } from "../data/profile";
+import { RESUME_DOWNLOADS } from "../config";
+
+const projectEntries = await getCollection("project");
+const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: projectEntries.find((entry) => entry.id === selection.contentId) }));
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
-  </div>
+<BaseLayout title="Resume · Shyam Padia" description="Shyam Padia's work in AI engineering, personalization, distributed systems, and self-hosted infrastructure." sideBarActiveItemID="cv">
+  <div class="cv-page">
+    <header class="cv-intro">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <h1 class="text-4xl font-bold sm:text-5xl">Resume</h1>
+        <a class="btn btn-primary" href={RESUME_DOWNLOADS.original} download>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" /></svg>
+          Download resume
+        </a>
+      </div>
+      <nav class="resume-formats" aria-label="Resume formats">
+        <a class="link link-hover" href={RESUME_DOWNLOADS.summary} download>One page with summary</a>
+        <a class="link link-hover" href={RESUME_DOWNLOADS.two_page} download>Two pages</a>
+        <a class="link link-hover" href={RESUME_DOWNLOADS.full_profile} download>Full profile</a>
+      </nav>
+      <p class="intro-role">AI Technical Lead &amp; Software Engineer</p>
+      <p class="intro-summary">I build AI products and the systems that make them useful: agents that work with real tools, personalization backed by large-scale data, and infrastructure that can be understood and maintained.</p>
+      <p class="intro-summary">Currently leading AI engineering for Chello at MosaicApp. Previously at Intuit across Personalization, QuickBooks, and TurboTax. My independent work spans self-hosted software, robotics, and machine learning.</p>
+      <div class="intro-links">
+        <span>Boston, MA</span>
+        <div class="intro-socials" aria-label="Contact and profiles">
+          <a class="btn btn-ghost btn-sm" href="https://github.com/crizzy9" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z" /></svg>
+          </a>
+          <a class="btn btn-ghost btn-sm" href="https://linkedin.com/in/shyam-padia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="4.983" cy="5.009" r="2.188" /><path d="M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z" /></svg>
+          </a>
+          <a class="btn btn-ghost btn-sm" href="mailto:shyam.padia930@gmail.com" aria-label="Email" title="Email">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 50 50" fill="currentColor"><path d="M12 23.403V23.39 10.389L11.88 10.3h-.01L9.14 8.28C7.47 7.04 5.09 7.1 3.61 8.56 2.62 9.54 2 10.9 2 12.41v3.602L12 23.403zM38 23.39v.013l10-7.391V12.41c0-1.49-.6-2.85-1.58-3.83-1.46-1.457-3.765-1.628-5.424-.403L38.12 10.3 38 10.389V23.39zM14 24.868l10.406 7.692c.353.261.836.261 1.189 0L36 24.868V11.867L25 20l-11-8.133V24.868zM38 25.889V41c0 .552.448 1 1 1h6.5c1.381 0 2.5-1.119 2.5-2.5V18.497L38 25.889zM12 25.889L2 18.497V39.5C2 40.881 3.119 42 4.5 42H11c.552 0 1-.448 1-1V25.889z" /></svg>
+          </a>
+        </div>
+      </div>
+      <nav class="cv-nav" aria-label="Resume sections">
+        <a href="#cv-experience">Experience</a>
+        <a href="#cv-skills">Skills</a>
+        <a href="#cv-projects">Projects</a>
+        <a href="#cv-education">Education</a>
+        <a href="#cv-certifications">Certifications</a>
+        <a href="#cv-open-source">Open source</a>
+      </nav>
+    </header>
 
-  <div class="mb-10 text-justify">
-    Senior Software Engineer with 6+ years of experience specializing in AI/ML, large-scale distributed systems, and personalization platforms. 
-    Expert in leveraging Generative AI, machine learning, and big data technologies to build scalable solutions that drive business impact. 
-    Passionate about robotics, automation, and infrastructure engineering with a proven track record of leading cross-functional teams and 
-    delivering innovative products that generate millions in revenue and significantly improve operational efficiency.
-  </div>
+    <section id="cv-experience" class="cv-section" aria-labelledby="experience-heading">
+      <div class="section-heading"><h2 id="experience-heading">Experience</h2><p>AI products, data platforms, and engineering leadership.</p></div>
+      <div class="employer-list">
+        {employers.map((employer) => (
+          <article class="employer" aria-labelledby={employer.id + "-heading"}>
+            <header class="organization-heading">
+              <div class="organization-mark" aria-hidden="true">
+                {"logo" in employer ? <img src={employer.logo} alt="" width="56" height="56" loading="lazy" /> : <span>{employer.initials}</span>}
+              </div>
+              <div class="min-w-0">
+                <h3 id={employer.id + "-heading"} class="organization-name">{"website" in employer ? <a class="link-hover" href={employer.website} target="_blank" rel="noopener noreferrer">{employer.name}</a> : employer.name}</h3>
+                <p class="organization-context">{employer.context}</p>
+              </div>
+            </header>
+            <div class="role-list">
+              {employer.roles.map((role) => (
+                <section class="role" aria-label={role.title}>
+                  <span class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></span>
+                  <div class="role-heading">
+                    <h4>{role.title}</h4>
+                    {"current" in role && role.current && <span class="badge badge-primary badge-outline">Current</span>}
+                  </div>
+                  <p class="role-meta"><span>{role.period}</span><span>{role.location}</span></p>
+                  <AchievementList achievements={role.achievements} />
+                </section>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
+    <section id="cv-skills" class="cv-section" aria-labelledby="skills-heading">
+      <div class="section-heading"><h2 id="skills-heading">Technical skills</h2><p>The tools behind the work, grouped by what they help me build.</p></div>
+      <div class="skills-grid">
+        {skillGroups.map((group) => (
+          <section class="skill-group" aria-label={group.title}>
+            <h3>{group.title}</h3>
+            <p class="skill-description">{group.description}</p>
+            <ul class="skill-primary" aria-label={group.title + " technologies"}>
+              {group.primary.map((skill) => <li class="badge badge-outline">{skill}</li>)}
+            </ul>
+            <p class="skill-supporting">{group.supporting.join(" · ")}</p>
+          </section>
+        ))}
+      </div>
+    </section>
 
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Master of Science in Computer Science"
-      subtitle="Sept 2017 to Dec 2019 at Northeastern University, Khoury CCIS, Boston, MA | GPA: 3.2/4"
-    >
-      <p class="ml-4">Courses: NLP, Reinforcement Learning, Robotics, Machine Learning, Artificial Intelligence</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Bachelor of Engineering in Computer Engineering"
-      subtitle="Aug 2012 to June 2016 at University of Mumbai, Fr. CRCE, Mumbai, India | GPA: 7.4/10"
-    />
-  </div>
+    <section id="cv-projects" class="cv-section" aria-labelledby="projects-heading">
+      <div class="section-heading"><h2 id="projects-heading">Projects</h2><p>Independent software, infrastructure, and research.</p></div>
+      <ol class="projects-grid">
+        {projects.map((project, index) => (
+          <li class:list={["cv-project", { "project-lead": index < 2 }]}>
+            <h3>{project.entry ? <a class="link-hover" href={"/projects#" + project.entry.slug}>{project.title}<svg aria-hidden="true" class="project-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6h12v12" /></svg></a> : project.title}</h3>
+            <p class="project-category">{project.category}</p>
+            <p class="project-description">{project.description}</p>
+            <ul class="project-technologies" aria-label={project.title + " technologies"}>
+              {project.technologies.map((technology) => <li>{technology}</li>)}
+            </ul>
+          </li>
+        ))}
+      </ol>
+      <a href="/projects" class="link link-hover mt-5 inline-block">Explore the full portfolio</a>
+    </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
-  </div>
+    <section id="cv-education" class="cv-section" aria-labelledby="education-heading">
+      <div class="section-heading"><h2 id="education-heading">Education</h2></div>
+      <div class="education-list">
+        {education.map((entry) => (
+          <article class="education-entry">
+            <span class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span><span class="timeline-rail"></span></span>
+            <div class="organization-heading">
+              <div class="organization-mark" aria-hidden="true">
+                {"logo" in entry ? <img class:list={{ "organization-logo-monochrome": "logoMonochrome" in entry && entry.logoMonochrome }} src={entry.logo} alt="" width="56" height="56" loading="lazy" /> : <span>{entry.initials}</span>}
+              </div>
+              <div class="min-w-0"><h3 class="organization-name">{entry.institution}</h3><p class="organization-context">{entry.school}</p></div>
+            </div>
+            <div class="education-detail">
+              <h4>{entry.degree}</h4>
+              <p class="role-meta"><span>{entry.period}</span><span>{entry.location}</span></p>
+              <p class="education-gpa">GPA <strong>{entry.gpa}</strong></p>
+              {entry.courses.length > 0 && <ul class="course-list" aria-label="Coursework">{entry.courses.map((course) => <li>{course}</li>)}</ul>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
 
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Senior Software Engineer - Personalization at Intuit"
-      subtitle="From Jan 2025 to Present at Mountain View, California"
-    >
-      <li class="ml-4">Built an AI agent orchestrator harness akin to Hermes Agent with LangChain automating RTB, Oncall and DevOps workflows</li>
-      <li class="ml-4">Architected unified user profiles integrating third-party data with ML embedding models for similarity-based offer recommendations using Python and vector databases</li>
-      <li class="ml-4">Led cross-functional team of 6 engineers developing AI marketing agent using Symphony and LangChain to automate content generation and campaign deployment, accelerating go-live time by 90%</li>
-      <li class="ml-4">Managed team of 5 engineers delivering bulk content creation system with dynamic templates and audience segmentation, increasing content production capacity by 1400%</li>
-      <li class="ml-4">Designed and deployed AI powered content generation pipeline using LLMs to automate end-to-end marketing workflows, improving time-to-market by 75%</li>
-      <li class="ml-4 mb-1">Developed comprehensive AI strategy roadmap for personalization featuring intelligent content recommendations, predictive analytics and workflow automation</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer 2 - Personalization at Intuit"
-      subtitle="From Jan 2021 to Jan 2025 at Mountain View, California"
-    >
-      <li class="ml-4">Developed RAG-based AI assistant using Generative AI, Hugging Face transformers and LangChain for automated marketing content generation, reducing customer churn and accelerating campaign authoring workflows</li>
-      <li class="ml-4">Engineered self-service analytics platform processing clickstream data with PySpark and AWS EMR, building React dashboards that reduced production incidents by 40% and increased marketer productivity by 50%</li>
-      <li class="ml-4">Designed scalable data entities using PySpark enabling real-time multi-source data ingestion, eliminating schema approval bottlenecks</li>
-      <li class="ml-4">Implemented AWS Personalize machine learning recommendation system on clickstream data, improving personalization quality and reducing API latency by 20%</li>
-      <li class="ml-4">Built real-time Kafka event streaming pipeline integrated with Customer Data Platform with RBAC and approval workflows, generating $10M incremental revenue through dynamic audience targeting</li>
-      <li class="ml-4 mb-1">Trained and deployed XGBoost and Deep Neural Network models for predictive business health scoring, reducing investment risk by 23%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer 1 - QuickBooks at Intuit"
-      subtitle="From Jan 2020 to Jan 2021 at Mountain View, California"
-    >
-      <li class="ml-4">Implemented parallelized automated testing framework using Cypress for synthetic monitoring, preventing $10M potential revenue loss and ensuring pricing accuracy across platform</li>
-      <li class="ml-4">Developed machine learning models using XGBoost and Neural Networks for business health prediction, achieving 12% accuracy improvement over baseline models</li>
-      <li class="ml-4">Built predictive revenue forecasting model leveraging customer behavior simulations to estimate revenue impact from dynamic pricing strategies</li>
-      <li class="ml-4">Engineered automated customer segmentation pipeline using AWS Glue, Pandas and SQL to identify eligible cohorts for targeted pricing campaigns</li>
-      <li class="ml-4 mb-1">Developed full-stack pricing management platform using React, Spring Boot and AWS for offer configuration, price simulation and campaign execution, delivering $20M cost savings and increasing operational efficiency by 50%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer Intern - TurboTax at Intuit"
-      subtitle="From May 2019 to Aug 2019 at San Diego, California"
-    >
-      <li class="ml-4">Developed OCR-based document processing feature for W2 form upload in TurboTax onboarding flow, reducing customer tax preparation time by 20%</li>
-      <li class="ml-4 mb-1">Integrated machine learning Decision Engine for natural language intent classification, replacing third-party API and reducing response latency by 30%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Engineer Co-op - TurboTax at Intuit"
-      subtitle="From May 2018 to Dec 2018 at San Diego, California"
-    >
-      <li class="ml-4">Engineered case deduplication microservice for customer support portal using machine learning algorithms, improving response time by 45% and reducing duplicate cases by 7%</li>
-      <li class="ml-4">Developed dynamic Smart Fields component using React and PHP backend to automate content publishing workflows, reducing deployment time by 30 minutes and decreasing support case volume by 10%</li>
-      <li class="ml-4 mb-1">Architected serverless URL redirect service using AWS Lambda, API Gateway and DynamoDB, improving routing efficiency by 35%</li>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Software Developer at VoterCircle"
-      subtitle="From Nov 2016 to May 2017 at Bangalore, India"
-    >
-      <li class="ml-4">Developed distributed campaign management platform using Meteor.js and Angular framework, increasing canvassing operational efficiency and voter turnout by 15%</li>
-      <li class="ml-4 mb-1">Implemented ElasticSearch-powered contact matching algorithm integrating voter registration data with social media profiles, improving outreach effectiveness by 10%</li>
-    </TimeLineElement>
-  </div>
+    <section id="cv-certifications" class="cv-section" aria-labelledby="certifications-heading">
+      <div class="section-heading"><h2 id="certifications-heading">Certifications</h2></div>
+      <ul class="credential-list">
+        {certifications.map((certification) => (
+          <li>
+            <div class="credential-heading"><h3>{certification.title}</h3><span>{certification.date}</span></div>
+            <p class="credential-issuer">{certification.issuer}</p>
+            <p class="credential-description">{certification.description}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Projects</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Hermes Agent - Integrated Hermes Agent platform for managing home automation"
-      subtitle="Apr 2026"
-    >
-      <p class="ml-4 mb-1">Built an autonomous agent swarm using Hermes to create a helpful orchestrator that utilizes agentic AI to ship any feature end to end with a single prompt</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Naavik - Automated Job Search Platform"
-      subtitle="Feb 2026"
-    >
-      <p class="ml-4 mb-1">Vibecoded an entire automated job search platform using state of the art techniques for orchestrating multi agent systems to build an end to end product with selfhosting capabilties to easy the job search process by automating all the steps using AI agents</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Lumino - NixOS based Declarative Homelab Platform"
-      subtitle="June 2025"
-    >
-      <p class="ml-4 mb-1">Architected highly available NixOS-based homelab cluster with declarative infrastructure-as-code using Nix Flakes, deploying several self-hosted services such as n8n, Nextcloud, Home Assistant, Immich and OpenWebUI with automated rollbacks and zero-downtime updates</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Home Lab - Distributed Kubernetes Home Server"
-      subtitle="Dec 2024"
-    >
-      <p class="ml-4 mb-1">Designed hybrid homelab infrastructure using N100 mini PCs and Raspberry Pi cluster orchestrated with Kubernetes, integrating Proxmox virtualization, UnifiOS, Open Media Vault and Home Assistant with secure Tailscale mesh VPN and Cloudflare DNS</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Omnidirectional Autonomous Robot with Computer Vision"
-      subtitle="Jun 2024"
-    >
-      <p class="ml-4 mb-1">Engineered omnidirectional Raspberry Pi robot with servo-controlled 6-DOF robotic arm implementing inverse kinematics, OpenCV object detection, speech-to-text voice commands and autonomous navigation with obstacle avoidance</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Reinforcement Learning Transfer for Robotic Manipulation"
-      subtitle="Oct 2019"
-    >
-      <p class="ml-4 mb-1">Evaluated transfer learning effectiveness for robot arm simulation using PyTorch and OpenAI Gym, comparing Q-Learning, DQN, Policy Gradient and MCMC algorithms, achieving 35% faster convergence and 28% improved task performance</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Multi-Track Music Generation with Transformer Architecture"
-      subtitle="Apr 2019"
-    >
-      <p class="ml-4 mb-1">Developed novel multi-transformer neural architecture for polyphonic music generation with separate models for melody, bass, drums and harmony using custom global multi-headed attention, improving musical coherence by 45%</p>
-    </TimeLineElement>
-    <TimeLineElement
-      title="Paragraph Embedding Generation using Variational Autoencoders"
-      subtitle="Apr 2018"
-    >
-      <p class="ml-4 mb-1">Implemented deep learning architectures in TensorFlow for unsupervised paragraph representation learning using VAE and bidirectional LSTM Seq2Seq models on Gutenberg Corpus, achieving 22% improvement in semantic similarity tasks</p>
-    </TimeLineElement>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank">Machine Learning Professional Certificate - General Assembly (June 2022)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank">Apache PySpark Certification - Databricks (Dec 2021)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank">AWS Certified Solutions Architect - Associate (Oct 2019)</a>
-    </li>
-  </ul>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Open Source Contributions</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <strong>Vicinae - Desktop Application Launcher (2025):</strong> Contributed features to high-performance desktop launcher built with C++ and Qt, implementing Raycast-compatible extension APIs, TypeScript SDK integration and Linux-native keyboard-driven productivity tools
-    </li>
-    <li>
-      <strong>Mopidy - Python Music Server (2024):</strong> Contributed features and bug fixes to extensible music server, implementing Spotify integration enhancements, playlist synchronization improvements and audio stream optimization for Raspberry Pi deployments
-    </li>
-  </ul>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Technical Skills</div>
-  </div>
-
-  <div class="mb-10">
-    <div class="mb-3">
-      <strong>Languages:</strong> Python, Java, JavaScript, TypeScript, Nix, Lua, SQL, Scala, Go, C/C++
-    </div>
-    <div class="mb-3">
-      <strong>ML/AI:</strong> PyTorch, TensorFlow, Hugging Face, LangChain, OpenCV, Vespa, NLTK, ScikitLearn, Keras, Gensim
-    </div>
-    <div class="mb-3">
-      <strong>Frameworks:</strong> Spring Boot, React.js, HTMX, Django, Node.js, REST, gRPC, Microservices
-    </div>
-    <div class="mb-3">
-      <strong>Big Data:</strong> PySpark, Kafka, Hadoop, Pandas, PyArrow, Hive, EventBus, RabbitMQ
-    </div>
-    <div class="mb-3">
-      <strong>Cloud:</strong> AWS (SageMaker, Lambda, Glue, Personalize, EMR, OpenSearch, Athena, Redshift), Docker, Kubernetes
-    </div>
-    <div class="mb-3">
-      <strong>Databases:</strong> PostgreSQL, DynamoDB, MySQL, SQLite, MongoDB, Redis, ElasticSearch, Vector Databases
-    </div>
+    <section id="cv-open-source" class="cv-section" aria-labelledby="open-source-heading">
+      <div class="section-heading"><h2 id="open-source-heading">Open source</h2><p>Contributions to tools for Linux, productivity, and audio.</p></div>
+      <ul class="open-source-list">
+        {openSourceContributions.map((contribution) => (
+          <li>
+            <div class="credential-heading"><h3>{contribution.title}</h3><span>{contribution.year}</span></div>
+            <p class="project-category">{contribution.category}</p>
+            <p class="credential-description">{contribution.description}</p>
+            <ul class="project-technologies" aria-label={contribution.title + " technologies"}>{contribution.technologies.map((technology) => <li>{technology}</li>)}</ul>
+          </li>
+        ))}
+      </ul>
+    </section>
   </div>
 </BaseLayout>
+
+<style>
+  .cv-page { width: 100%; min-width: 0; overflow-wrap: anywhere; }
+  .cv-intro { padding: 1rem 0 0; }
+  .resume-formats { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1rem; font-size: .875rem; }
+  .resume-formats a:focus-visible { outline: 2px solid oklch(var(--p)); outline-offset: 4px; border-radius: 2px; }
+  .intro-role { margin: 1.5rem 0 .75rem; max-width: 32rem; font-size: 1.5rem; line-height: 1.35; font-weight: 650; }
+  .intro-summary { margin-top: .85rem; max-width: 68ch; line-height: 1.8; }
+  .intro-links { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; margin-top: 1.5rem; font-size: .925rem; }
+  .intro-links > span { opacity: .8; }
+  .intro-socials { display: flex; align-items: center; gap: .25rem; }
+  .intro-socials a { width: 2.75rem; height: 2.75rem; padding: .5rem; }
+  .intro-socials a:focus-visible { outline: 2px solid oklch(var(--p)); outline-offset: 3px; }
+  .cv-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding: 1.5rem 0; margin-top: 1.5rem; border-block: 1px solid oklch(var(--bc) / .15); font-size: .875rem; font-weight: 600; }
+  .cv-nav a:hover { color: oklch(var(--p)); }
+  .cv-nav a:focus-visible { outline: 2px solid oklch(var(--p)); outline-offset: 5px; border-radius: 2px; }
+  .cv-section { margin-top: 3.5rem; scroll-margin-top: 6rem; }
+  .section-heading { margin-bottom: 1.75rem; }
+  .section-heading h2 { font-size: 1.75rem; line-height: 1.25; font-weight: 700; }
+  .section-heading > p { margin-top: .5rem; max-width: 65ch; font-size: .95rem; line-height: 1.65; opacity: .85; }
+  .employer-list { position: relative; padding-left: 1.75rem; isolation: isolate; }
+  .employer-list::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(.375rem - 1px); width: 2px; background: oklch(var(--p) / .4); z-index: -1; }
+  /* Mask only the lead-in and tail of the shared rail, regardless of heading/content height. */
+  .employer:first-child > .organization-heading { position: relative; }
+  .employer:first-child > .organization-heading::before { content: ""; position: absolute; top: 0; bottom: calc(-1.5rem - .4rem); left: -1.75rem; width: .75rem; background: oklch(var(--b1)); }
+  .employer + .employer { border-top: 1px solid oklch(var(--bc) / .15); margin-top: 2.25rem; padding-top: 2.25rem; }
+  .organization-heading { display: flex; align-items: center; gap: 1rem; }
+  .organization-mark { display: flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; flex: 0 0 3.5rem; }
+  .organization-mark img { width: 100%; height: 100%; object-fit: contain; }
+  :global(:is([data-theme="dark"], [data-theme="synthwave"], [data-theme="halloween"], [data-theme="forest"], [data-theme="aqua"], [data-theme="black"], [data-theme="luxury"], [data-theme="dracula"], [data-theme="business"], [data-theme="night"], [data-theme="coffee"])) .organization-logo-monochrome { filter: invert(1); }
+  .organization-mark > span { display: grid; place-content: center; height: 100%; width: 100%; background: oklch(var(--b2)); color: oklch(var(--bc)); font-size: 1.1rem; font-weight: 750; border: 1px solid oklch(var(--bc) / .2); border-radius: .65rem; }
+  .organization-name { font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+  .organization-context { margin-top: .25rem; line-height: 1.5; font-size: .9rem; opacity: .85; }
+  .role-list { display: grid; gap: 1.75rem; margin-top: 1.5rem; }
+  .role { position: relative; min-width: 0; }
+  .timeline-marker { position: absolute; top: .4rem; bottom: -2.15rem; left: 0; width: .75rem; pointer-events: none; }
+  .role > .timeline-marker { left: -1.75rem; bottom: 0; }
+  .employer:last-child .role:last-child > .timeline-marker::after { content: ""; position: absolute; top: .75rem; bottom: 0; left: 0; width: .75rem; background: oklch(var(--b1)); }
+  .timeline-dot { display: block; width: .75rem; height: .75rem; border-radius: 50%; background: oklch(var(--p)); }
+  .timeline-rail { position: absolute; top: .75rem; bottom: 0; left: calc(50% - 1px); width: 2px; background: oklch(var(--p) / .4); }
+  .education-entry:last-child > .timeline-marker > .timeline-rail { display: none; }
+  .role-heading { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; }
+  .role-heading h4, .education-detail h4 { font-weight: 650; font-size: 1.06rem; line-height: 1.5; }
+  .role-meta { display: flex; flex-wrap: wrap; gap: .2rem 1rem; margin: .4rem 0 1rem; font-size: .875rem; line-height: 1.6; opacity: .8; font-variant-numeric: tabular-nums; }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; }
+  .skill-group { min-width: 0; padding: 1.35rem 0; border-bottom: 1px solid oklch(var(--bc) / .12); }
+  .skill-group:first-child, .skill-group:nth-child(2) { border-top: 1px solid oklch(var(--bc) / .12); }
+  .skill-group h3 { font-size: 1.05rem; font-weight: 650; }
+  .skill-description { font-size: .875rem; margin-top: .3rem; opacity: .8; line-height: 1.5; }
+  .skill-primary { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .85rem; }
+  .skill-primary .badge { min-height: 1.6rem; height: auto; padding: .3rem .55rem; font-size: .8rem; font-weight: 500; border-color: oklch(var(--bc) / .3); }
+  .skill-supporting { margin-top: .75rem; font-size: .875rem; line-height: 1.85; opacity: .85; }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
+  .cv-project { min-width: 0; padding: 1.5rem 0; border-bottom: 1px solid oklch(var(--bc) / .12); }
+  .cv-project h3 { font-size: 1.1rem; line-height: 1.45; font-weight: 650; }
+  .project-lead h3 { font-size: 1.35rem; }
+  .project-arrow { display: inline-block; vertical-align: middle; margin-left: .35rem; color: oklch(var(--p)); }
+  .project-category { margin-top: .4rem; font-size: .8rem; line-height: 1.55; color: oklch(var(--p)); font-weight: 600; }
+  .project-description { margin-top: .75rem; font-size: .925rem; line-height: 1.8; }
+  .project-technologies { display: flex; flex-wrap: wrap; column-gap: .85rem; row-gap: .25rem; margin-top: .85rem; font-size: .75rem; line-height: 1.6; opacity: .8; }
+  .project-technologies > li + li::before { content: "·"; margin-right: .75rem; }
+  .education-list { display: grid; gap: 2rem; }
+  .education-entry { position: relative; min-width: 0; padding-left: 1.75rem; }
+  .education-entry > .timeline-marker { bottom: -2.4rem; }
+  .education-detail { margin-top: 1.25rem; }
+  .education-gpa { font-size: .875rem; }
+  .education-gpa strong { margin-left: .4rem; font-weight: 600; }
+  .course-list { display: flex; flex-wrap: wrap; gap: .45rem 1rem; margin-top: 1rem; font-size: .85rem; line-height: 1.6; opacity: .85; }
+  .credential-list, .open-source-list { display: grid; gap: 1.5rem; }
+  .credential-list > li + li, .open-source-list > li + li { padding-top: 1.5rem; border-top: 1px solid oklch(var(--bc) / .12); }
+  .credential-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .35rem 1rem; }
+  .credential-heading h3 { font-size: 1.05rem; font-weight: 650; line-height: 1.5; }
+  .credential-heading > span { font-size: .8rem; opacity: .8; font-variant-numeric: tabular-nums; }
+  .credential-issuer { margin-top: .25rem; font-size: .875rem; color: oklch(var(--p)); }
+  .credential-description { margin-top: .65rem; font-size: .925rem; line-height: 1.8; max-width: 70ch; }
+  @media (min-width: 640px) { .education-detail { margin-left: 4.5rem; } }
+  @media (max-width: 639px) {
+    .skills-grid, .projects-grid { grid-template-columns: minmax(0, 1fr); }
+    .skill-group:nth-child(2) { border-top: 0; }
+    .cv-section { margin-top: 3rem; }
+    .cv-nav { gap: .65rem 1.25rem; }
+    .intro-role { font-size: 1.3rem; }
+  }
+</style>

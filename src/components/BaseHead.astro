@@ -2,15 +2,23 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
+import { IS_DEPLOY_PREVIEW, getDeployPreviewOrigin } from "../lib/deployment";
 
 export interface Props {
 	title: string;
 	description: string;
 	image?: string;
 	ogType?: string;
+  noIndex?: boolean;
 }
 
-const { title, description, image = '/potrait.webp', ogType = 'website' } = Astro.props;
+const { title, description, image = '/potrait.webp', ogType = 'website', noIndex = false } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const metadataOrigin = IS_DEPLOY_PREVIEW
+  ? getDeployPreviewOrigin(process.env.DEPLOY_PRIME_URL)
+  : Astro.site;
+const socialUrl = metadataOrigin ? new URL(Astro.url.pathname, metadataOrigin) : undefined;
+const socialImage = metadataOrigin ? new URL(image, metadataOrigin) : undefined;
 ---
 
 <!-- Global Metadata -->
@@ -23,17 +31,20 @@ const { title, description, image = '/potrait.webp', ogType = 'website' } = Astr
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+{!noIndex && <link rel="canonical" href={canonicalUrl} />}
+<link rel="alternate" type="application/rss+xml" title="CrypticSoul blog" href="/rss.xml" />
+{noIndex && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogType} />
-<meta property="og:url" content={Astro.url} />
+{socialUrl && <meta property="og:url" content={socialUrl} />}
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+{socialImage && <meta property="og:image" content={socialImage} />}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
+{socialUrl && <meta property="twitter:url" content={socialUrl} />}
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+{socialImage && <meta property="twitter:image" content={socialImage} />}
