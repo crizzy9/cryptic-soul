@@ -98,16 +98,31 @@ explicit, and omit repository links until verified.
 
 ### Resume
 
-Public career facts live in `src/data/profile.ts`, aligned with
-`resume/OnePage/cv.tex`. The CV includes the fuller source details, including substantive commented bullets,
-and an independently curated project list. The download is
-`public/Shyam-Padia-Resume.pdf`; regenerate it after reviewing resume changes:
+Public career facts live in `src/data/profile.ts`. The complete career and project
+record is maintained in `resume/FullProfile/cv.tex`; the website uses a curated
+project list and fuller experience details. All resume formats are linked from the CV:
+
+| Format | Editable source | Download |
+| --- | --- | --- |
+| Original one page | `resume/OnePage/cv.tex` | `public/Shyam-Padia-Resume.pdf` |
+| One page with summary | `resume/One Page Summary/cv.tex` | `public/Shyam-Padia-Resume-Summary.pdf` |
+| Two pages | `resume/Two Page/cv.tex` | `public/Shyam-Padia-Resume-Two-Page.pdf` |
+| Full profile | `resume/FullProfile/cv.tex` | `public/Shyam-Padia-Full-Profile.pdf` |
+
+The original one-page version is preserved. The additional variants use the
+reviewed current experience and project facts, with development/research status
+kept explicit. Rebuild a source twice into a temporary directory, verify its page
+count and rendered pages, and copy the resulting PDF to its named resume-folder
+artifact and public download. For example:
 
 ```sh
 mkdir -p /tmp/crypticsoul-resume
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume resume/OnePage/cv.tex
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume resume/OnePage/cv.tex
-cp /tmp/crypticsoul-resume/cv.pdf public/Shyam-Padia-Resume.pdf
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/Two Page/cv.tex'
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/Two Page/cv.tex'
+pdfinfo /tmp/crypticsoul-resume/cv.pdf # Must report exactly 2 pages.
+pdftoppm -scale-to 1600 -png /tmp/crypticsoul-resume/cv.pdf /tmp/crypticsoul-resume/page
+cp /tmp/crypticsoul-resume/cv.pdf 'resume/Two Page/Shyam-Padia-Resume-Two-Page.pdf'
+cp /tmp/crypticsoul-resume/cv.pdf public/Shyam-Padia-Resume-Two-Page.pdf
 ```
 
 ## Analytics

@@ -1,4 +1,4 @@
-import { ANALYTICS_HOSTS, ANALYTICS_OPT_OUT_KEY } from "../config";
+import { ANALYTICS_HOSTS, ANALYTICS_OPT_OUT_KEY, RESUME_DOWNLOADS } from "../config";
 import { analyticsPath, analyticsReferrer } from "../lib/analytics";
 
 type Payload = Record<string, unknown>;
@@ -181,10 +181,12 @@ function trackClick(event: MouseEvent): void {
   const link = target?.closest<HTMLAnchorElement>("a[href]");
   if (!link || !allowed()) return;
   const destination = new URL(link.href, location.href);
+  const resumeFormat = Object.entries(RESUME_DOWNLOADS)
+    .find(([, pathname]) => pathname === destination.pathname)?.[0];
   if (destination.protocol === "mailto:" || destination.protocol === "tel:") {
     send("contact_click", { method: destination.protocol === "mailto:" ? "email" : "phone" });
-  } else if (destination.origin === location.origin && destination.pathname === "/Shyam-Padia-Resume.pdf") {
-    send("resume_download");
+  } else if (destination.origin === location.origin && resumeFormat) {
+    send("resume_download", { format: resumeFormat });
   } else if (destination.pathname === "/projects" && destination.origin === location.origin
     && /^#[a-z0-9_-]+$/.test(destination.hash)) {
     send("project_click", { project: destination.hash.slice(1) });

@@ -1,0 +1,82 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=.42in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{titlesec,enumitem,tabularx,needspace}
+\usepackage[svgnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\definecolor{accent}{HTML}{273E5A}
+\hypersetup{colorlinks=true,urlcolor=accent,pdftitle={Shyam Padia - Resume},pdfauthor={Shyam Padia}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1.8em}
+\raggedbottom
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing*{\section}{0pt}{7pt}{4pt}
+\setlist[itemize]{leftmargin=1.15em,label=\textbullet,itemsep=1pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+\newcommand{\role}[4]{\Needspace{5\baselineskip}\vspace{4pt}\textbf{#1}\hfill\textbf{#3}\\{\itshape #2}\hfill{\small #4}\par}
+\newcommand{\project}[2]{\Needspace{4\baselineskip}\vspace{6pt}\textbf{#1}\hfill{\small #2}\par}
+\newcommand{\education}[3]{\Needspace{3\baselineskip}\textbf{#1}\hfill{\small #3}\\#2\par}
+\pagestyle{empty}
+\begin{document}
+\fontsize{9.5}{10.8}\selectfont
+{\centering
+{\fontsize{21}{25}\selectfont\bfseries SHYAM PADIA}\par
+\vspace{2pt}{\bfseries AI Technical Lead | Software Engineer}\par
+\vspace{3pt}{\small Boston, MA | +1 (857) 294-9264 | \href{mailto:shyam.padia930@gmail.com}{shyam.padia930@gmail.com}}\par
+{\small \href{https://crypticsoul.dev}{crypticsoul.dev} | \href{https://github.com/crizzy9}{github.com/crizzy9} | \href{https://linkedin.com/in/shyam-padia}{linkedin.com/in/shyam-padia}}\par
+}
+\section{Summary}
+AI technical lead building agent systems, recommendation platforms, and data products. Delivered 60\% lower AI costs, \$10M in incremental revenue, and \$20M in pricing cost savings across MosaicApp and Intuit.
+\section{Experience}
+\role{MosaicApp}{AI Technical Lead}{Aug 2025 - Present}{San Francisco, CA}
+\begin{itemize}
+\item Rearchitected Chello's AI execution layer, improving performance by 25\% while reducing costs by 60\%.
+\item Expanded MCP capabilities with 27 cross-system tools and delivered Slack and Microsoft Teams integrations.
+\item Extended LangChain with agent caching, subagents and task management; introduced complexity-based model routing.
+\item Enabled tiered billing through Stripe and MonetizeNow integrations.
+\end{itemize}
+\role{Intuit}{Senior Software Engineer | Personalization}{Jan 2025 - Aug 2025}{Mountain View, CA}
+\begin{itemize}
+\item Led five engineers on a bulk content platform, increasing capacity by 1,400\%; built AI marketing workflows that cut campaign go-live time by 90\%.
+\item Architected unified profiles and GPU-backed embeddings; led a recommendation platform using Vespa, gRPC and OpenSearch.
+\item Built a LangChain orchestrator for operational workflows and an LLM content pipeline that improved time-to-market by 75\%.
+\end{itemize}
+\role{Intuit}{Software Engineer 2 | Personalization}{Jan 2021 - Jan 2025}{Mountain View, CA}
+\begin{itemize}
+\item Built Kafka targeting pipelines generating \$10M in incremental revenue; delivered recommendations with 20\% lower API latency.
+\item Engineered PySpark/AWS EMR analytics reducing incidents and impression loss by 40\%; built a LangChain RAG assistant.
+\end{itemize}
+\role{Intuit}{Software Engineer 1 | QuickBooks}{Jan 2020 - Jan 2021}{Mountain View, CA}
+\begin{itemize}
+\item Built React/Spring Boot pricing tools and AWS segmentation pipelines, delivering \$20M in savings and 50\% higher operational efficiency.
+\end{itemize}
+\role{Intuit}{Software Engineer Intern | TurboTax}{May 2019 - Aug 2019}{San Diego, CA}
+\begin{itemize}
+\item Delivered W2 OCR and NLP intent classification, reducing tax preparation time by 20\% and classification latency by 30\%.
+\end{itemize}
+\role{Intuit}{Software Engineer Co-op | TurboTax}{May 2018 - Dec 2018}{San Diego, CA}
+\begin{itemize}
+\item Built help-portal deduplication and publishing automation, improving response time by 45\% and reducing support cases by 10\%.
+\end{itemize}
+\role{OutreachCircle}{Software Developer}{Nov 2016 - May 2017}{Bangalore, India}
+\begin{itemize}
+\item Developed campaign outreach with Meteor.js, Angular and Elasticsearch, improving outreach by 10\% and canvassing/turnout by 15\%.
+\end{itemize}
+\section{Technical Skills}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+AI / ML & LangChain, MCP, RAG, PyTorch, TensorFlow, Hugging Face, Vespa \\
+Languages / Web & Python, TypeScript, Java, SQL, Go, Nix; React, Spring Boot, FastAPI \\
+Data / Infrastructure & PySpark, Kafka, PostgreSQL, Redis, AWS, Docker, Kubernetes, NixOS \\
+\end{tabularx}
+\section{Projects}
+Lumino - declarative NixOS infrastructure; Naavik - self-hosted AI career workflows; Plano - Go/React Native flight tracking (in development).
+\section{Education}
+\textbf{Northeastern University} | M.S. Computer Science \hfill 2017 - 2019\\
+\textbf{University of Mumbai} | B.E. Computer Engineering \hfill 2012 - 2016
+\end{document}

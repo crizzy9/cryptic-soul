@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import AchievementList from "../components/cv/AchievementList.astro";
 import { getCollection } from "astro:content";
 import { certifications, cvProjectSelections, education, employers, openSourceContributions, skillGroups } from "../data/profile";
+import { RESUME_DOWNLOADS } from "../config";
 
 const projectEntries = await getCollection("project");
 const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: projectEntries.find((entry) => entry.id === selection.contentId) }));
@@ -13,19 +14,32 @@ const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: 
     <header class="cv-intro">
       <div class="flex flex-wrap items-center justify-between gap-4">
         <h1 class="text-4xl font-bold sm:text-5xl">Resume</h1>
-        <a class="btn btn-primary" href="/Shyam-Padia-Resume.pdf" download>
+        <a class="btn btn-primary" href={RESUME_DOWNLOADS.original} download>
           <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" /></svg>
           Download resume
         </a>
       </div>
+      <nav class="resume-formats" aria-label="Resume formats">
+        <a class="link link-hover" href={RESUME_DOWNLOADS.summary} download>One page with summary</a>
+        <a class="link link-hover" href={RESUME_DOWNLOADS.two_page} download>Two pages</a>
+        <a class="link link-hover" href={RESUME_DOWNLOADS.full_profile} download>Full profile</a>
+      </nav>
       <p class="intro-role">AI Technical Lead &amp; Software Engineer</p>
       <p class="intro-summary">I build AI products and the systems that make them useful: agents that work with real tools, personalization backed by large-scale data, and infrastructure that can be understood and maintained.</p>
       <p class="intro-summary">Currently leading AI engineering for Chello at MosaicApp. Previously at Intuit across Personalization, QuickBooks, and TurboTax. My independent work spans self-hosted software, robotics, and machine learning.</p>
       <div class="intro-links">
         <span>Boston, MA</span>
-        <a class="link link-hover" href="mailto:shyam.padia930@gmail.com">Email me</a>
-        <a class="link link-hover" href="https://github.com/crizzy9" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="link link-hover" href="https://linkedin.com/in/shyam-padia" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div class="intro-socials" aria-label="Contact and profiles">
+          <a class="btn btn-ghost btn-sm" href="https://github.com/crizzy9" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z" /></svg>
+          </a>
+          <a class="btn btn-ghost btn-sm" href="https://linkedin.com/in/shyam-padia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="4.983" cy="5.009" r="2.188" /><path d="M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z" /></svg>
+          </a>
+          <a class="btn btn-ghost btn-sm" href="mailto:shyam.padia930@gmail.com" aria-label="Email" title="Email">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 50 50" fill="currentColor"><path d="M12 23.403V23.39 10.389L11.88 10.3h-.01L9.14 8.28C7.47 7.04 5.09 7.1 3.61 8.56 2.62 9.54 2 10.9 2 12.41v3.602L12 23.403zM38 23.39v.013l10-7.391V12.41c0-1.49-.6-2.85-1.58-3.83-1.46-1.457-3.765-1.628-5.424-.403L38.12 10.3 38 10.389V23.39zM14 24.868l10.406 7.692c.353.261.836.261 1.189 0L36 24.868V11.867L25 20l-11-8.133V24.868zM38 25.889V41c0 .552.448 1 1 1h6.5c1.381 0 2.5-1.119 2.5-2.5V18.497L38 25.889zM12 25.889L2 18.497V39.5C2 40.881 3.119 42 4.5 42H11c.552 0 1-.448 1-1V25.889z" /></svg>
+          </a>
+        </div>
       </div>
       <nav class="cv-nav" aria-label="Resume sections">
         <a href="#cv-experience">Experience</a>
@@ -54,7 +68,7 @@ const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: 
             <div class="role-list">
               {employer.roles.map((role) => (
                 <section class="role" aria-label={role.title}>
-                  <span class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span><span class="timeline-rail"></span></span>
+                  <span class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></span>
                   <div class="role-heading">
                     <h4>{role.title}</h4>
                     {"current" in role && role.current && <span class="badge badge-primary badge-outline">Current</span>}
@@ -110,7 +124,7 @@ const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: 
             <span class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span><span class="timeline-rail"></span></span>
             <div class="organization-heading">
               <div class="organization-mark" aria-hidden="true">
-                {"logo" in entry ? <img src={entry.logo} alt="" width="56" height="56" loading="lazy" /> : <span>{entry.initials}</span>}
+                {"logo" in entry ? <img class:list={{ "organization-logo-monochrome": "logoMonochrome" in entry && entry.logoMonochrome }} src={entry.logo} alt="" width="56" height="56" loading="lazy" /> : <span>{entry.initials}</span>}
               </div>
               <div class="min-w-0"><h3 class="organization-name">{entry.institution}</h3><p class="organization-context">{entry.school}</p></div>
             </div>
@@ -157,10 +171,15 @@ const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: 
 <style>
   .cv-page { width: 100%; min-width: 0; overflow-wrap: anywhere; }
   .cv-intro { padding: 1rem 0 0; }
+  .resume-formats { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1rem; font-size: .875rem; }
+  .resume-formats a:focus-visible { outline: 2px solid oklch(var(--p)); outline-offset: 4px; border-radius: 2px; }
   .intro-role { margin: 1.5rem 0 .75rem; max-width: 32rem; font-size: 1.5rem; line-height: 1.35; font-weight: 650; }
   .intro-summary { margin-top: .85rem; max-width: 68ch; line-height: 1.8; }
-  .intro-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1.5rem; font-size: .925rem; }
+  .intro-links { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; margin-top: 1.5rem; font-size: .925rem; }
   .intro-links > span { opacity: .8; }
+  .intro-socials { display: flex; align-items: center; gap: .25rem; }
+  .intro-socials a { width: 2.75rem; height: 2.75rem; padding: .5rem; }
+  .intro-socials a:focus-visible { outline: 2px solid oklch(var(--p)); outline-offset: 3px; }
   .cv-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding: 1.5rem 0; margin-top: 1.5rem; border-block: 1px solid oklch(var(--bc) / .15); font-size: .875rem; font-weight: 600; }
   .cv-nav a:hover { color: oklch(var(--p)); }
   .cv-nav a:focus-visible { outline: 2px solid oklch(var(--p)); outline-offset: 5px; border-radius: 2px; }
@@ -168,19 +187,27 @@ const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: 
   .section-heading { margin-bottom: 1.75rem; }
   .section-heading h2 { font-size: 1.75rem; line-height: 1.25; font-weight: 700; }
   .section-heading > p { margin-top: .5rem; max-width: 65ch; font-size: .95rem; line-height: 1.65; opacity: .85; }
+  .employer-list { position: relative; padding-left: 1.75rem; isolation: isolate; }
+  .employer-list::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(.375rem - 1px); width: 2px; background: oklch(var(--p) / .4); z-index: -1; }
+  /* Mask only the lead-in and tail of the shared rail, regardless of heading/content height. */
+  .employer:first-child > .organization-heading { position: relative; }
+  .employer:first-child > .organization-heading::before { content: ""; position: absolute; top: 0; bottom: calc(-1.5rem - .4rem); left: -1.75rem; width: .75rem; background: oklch(var(--b1)); }
   .employer + .employer { border-top: 1px solid oklch(var(--bc) / .15); margin-top: 2.25rem; padding-top: 2.25rem; }
   .organization-heading { display: flex; align-items: center; gap: 1rem; }
   .organization-mark { display: flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; flex: 0 0 3.5rem; }
   .organization-mark img { width: 100%; height: 100%; object-fit: contain; }
+  :global(:is([data-theme="dark"], [data-theme="synthwave"], [data-theme="halloween"], [data-theme="forest"], [data-theme="aqua"], [data-theme="black"], [data-theme="luxury"], [data-theme="dracula"], [data-theme="business"], [data-theme="night"], [data-theme="coffee"])) .organization-logo-monochrome { filter: invert(1); }
   .organization-mark > span { display: grid; place-content: center; height: 100%; width: 100%; background: oklch(var(--b2)); color: oklch(var(--bc)); font-size: 1.1rem; font-weight: 750; border: 1px solid oklch(var(--bc) / .2); border-radius: .65rem; }
   .organization-name { font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
   .organization-context { margin-top: .25rem; line-height: 1.5; font-size: .9rem; opacity: .85; }
   .role-list { display: grid; gap: 1.75rem; margin-top: 1.5rem; }
-  .role { position: relative; min-width: 0; padding-left: 1.75rem; }
+  .role { position: relative; min-width: 0; }
   .timeline-marker { position: absolute; top: .4rem; bottom: -2.15rem; left: 0; width: .75rem; pointer-events: none; }
+  .role > .timeline-marker { left: -1.75rem; bottom: 0; }
+  .employer:last-child .role:last-child > .timeline-marker::after { content: ""; position: absolute; top: .75rem; bottom: 0; left: 0; width: .75rem; background: oklch(var(--b1)); }
   .timeline-dot { display: block; width: .75rem; height: .75rem; border-radius: 50%; background: oklch(var(--p)); }
   .timeline-rail { position: absolute; top: .75rem; bottom: 0; left: calc(50% - 1px); width: 2px; background: oklch(var(--p) / .4); }
-  .role:last-child > .timeline-marker > .timeline-rail, .education-entry:last-child > .timeline-marker > .timeline-rail { display: none; }
+  .education-entry:last-child > .timeline-marker > .timeline-rail { display: none; }
   .role-heading { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; }
   .role-heading h4, .education-detail h4 { font-weight: 650; font-size: 1.06rem; line-height: 1.5; }
   .role-meta { display: flex; flex-wrap: wrap; gap: .2rem 1rem; margin: .4rem 0 1rem; font-size: .875rem; line-height: 1.6; opacity: .8; font-variant-numeric: tabular-nums; }
@@ -215,7 +242,7 @@ const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: 
   .credential-heading > span { font-size: .8rem; opacity: .8; font-variant-numeric: tabular-nums; }
   .credential-issuer { margin-top: .25rem; font-size: .875rem; color: oklch(var(--p)); }
   .credential-description { margin-top: .65rem; font-size: .925rem; line-height: 1.8; max-width: 70ch; }
-  @media (min-width: 640px) { .role-list, .education-detail { margin-left: 4.5rem; } }
+  @media (min-width: 640px) { .education-detail { margin-left: 4.5rem; } }
   @media (max-width: 639px) {
     .skills-grid, .projects-grid { grid-template-columns: minmax(0, 1fr); }
     .skill-group:nth-child(2) { border-top: 0; }

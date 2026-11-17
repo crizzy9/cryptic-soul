@@ -42,6 +42,12 @@ pnpm-debug.log*
 *.run.xml
 *.pdf
 !public/Shyam-Padia-Resume.pdf
+!public/Shyam-Padia-Resume-Summary.pdf
+!public/Shyam-Padia-Resume-Two-Page.pdf
+!public/Shyam-Padia-Full-Profile.pdf
+!resume/One Page Summary/Shyam-Padia-Resume-Summary.pdf
+!resume/Two Page/Shyam-Padia-Resume-Two-Page.pdf
+!resume/FullProfile/Shyam-Padia-Full-Profile.pdf
 
 # Devenv
 .devenv*

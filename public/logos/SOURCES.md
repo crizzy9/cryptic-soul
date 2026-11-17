@@ -33,5 +33,16 @@ All published marks use PNG with tight artwork bounds and preserved proportions.
   bounds. The official founder announcement confirms the VoterCircle rename;
   the current client site still uses this mark. This is unrelated to Outreach.io.
 
-University of Mumbai retains a clearly textual initial mark. Its official website
-was unavailable during verification, so no logo from an unverified source was added.
+- University of Mumbai: `mumbai-university.png` (191 × 192), its shield-and-tower
+  crest, including the open book, 1857 date and motto ribbon.
+  University identity reference: https://mu.ac.in/
+  Official brochure cross-check: https://mu.ac.in/old/wp-content/uploads/2025/05/New-Mumbai-University-Admission-EBrochure-2025-FIN.pdf
+  Accessible vector source: https://en.wikipedia.org/wiki/File:University_of_Mumbai_coat_of_arms.svg
+  Original asset: https://upload.wikimedia.org/wikipedia/en/7/7a/University_of_Mumbai_coat_of_arms.svg
+  Processing: rasterized the monochrome vector, trimmed the transparent border,
+  and resized proportionally to a 192px maximum dimension. The CV inverts this
+  monochrome mark in its dark theme for legibility; no white tile is added.
+  The official homepage timed out during retrieval. The university's indexed
+  official brochure confirms the same crest; the downloaded file is Wikimedia's
+  university-identification logo, not a logo of an affiliated college. Copyright
+  and trademark remain with the university; no general reuse license is claimed.

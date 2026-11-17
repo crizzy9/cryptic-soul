@@ -15,7 +15,7 @@ The configured integration becomes active when deployed to the production domain
 | How far do readers get? | `article_progress` with `percent` at 25, 50, 75, 90; once each per article navigation |
 | Which visits show sustained attention? | `article_engaged` with `seconds: 60`; once per navigation after 60 accumulated visible, focused seconds |
 | Which projects get clicks? | `project_click` with the public project slug, including project links from home/CV and repository links from project entries |
-| Does the resume attract interest? | `resume_download` when its PDF link is clicked |
+| Does the resume attract interest? | `resume_download` when a PDF link is clicked; `format` identifies `original`, `summary`, `two_page`, or `full_profile` |
 | Do visitors try to contact me? | `contact_click` with `method: email` or `phone`; no address/number |
 | Which other sites do visitors open? | `outbound_click` with the destination hostname only |
 
