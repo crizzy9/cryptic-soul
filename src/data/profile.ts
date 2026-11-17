@@ -130,7 +130,7 @@ export const education = [
   },
   {
     institution: "University of Mumbai",
-    school: "Fr. Conceição Rodrigues College of Engineering",
+    school: "Fr. Conceicao Rodrigues College of Engineering",
     degree: "Bachelor of Engineering in Computer Engineering",
     period: "Aug 2012 – June 2016",
     location: "Mumbai, India",
