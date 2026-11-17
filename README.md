@@ -79,22 +79,29 @@ tags: ["tag1", "tag2"]
 Your content here...
 ```
 
-Drafts appear in `pnpm dev` with a review banner. Production builds exclude them
-from the homepage, blog index, tag pages, article routes, sitemap, and RSS.
+Blog images are self-hosted under `public/blog/`. Add descriptive `heroImageAlt`,
+`heroImageCredit`, and `heroImageSource` metadata; photo sources and licensing are
+recorded in [blog image credits](docs/blog-image-credits.md).
+
+Drafts appear in `pnpm dev` and Netlify PR deploy previews (`CONTEXT=deploy-preview`).
+PR previews are marked noindex, omit the sitemap, and disable analytics. The live
+production build excludes drafts from the homepage, blog index, tags, article routes,
+sitemap, and RSS.
 After editorial review, set `draft: false` and check the production build before
 publishing. RSS always includes published posts only, including during development.
 
 ### Projects
 Add new projects in `src/content/project/` following the same pattern.
-Set `featured: true` to include a project on the homepage and résumé page. Keep
-development or research status explicit, and omit repository links until verified.
+Set `featured: true` to include a project on the homepage. The CV project list is
+curated independently in `src/data/profile.ts`. Keep development or research status
+explicit, and omit repository links until verified.
 
-### Résumé
+### Resume
 
 Public career facts live in `src/data/profile.ts`, aligned with
-`resume/OnePage/cv.tex`. The résumé page reuses featured project entries so that
-portfolio descriptions stay consistent. The download is
-`public/Shyam-Padia-Resume.pdf`; regenerate it after reviewing résumé changes:
+`resume/OnePage/cv.tex`. The CV includes the fuller source details, including substantive commented bullets,
+and an independently curated project list. The download is
+`public/Shyam-Padia-Resume.pdf`; regenerate it after reviewing resume changes:
 
 ```sh
 mkdir -p /tmp/crypticsoul-resume
@@ -106,7 +113,7 @@ cp /tmp/crypticsoul-resume/cv.pdf public/Shyam-Padia-Resume.pdf
 ## Analytics
 
 Umami integration measures page views, article progress and active time, project
-clicks, résumé downloads, contact clicks, and outbound domains. It respects browser
+clicks, resume downloads, contact clicks, and outbound domains. It respects browser
 privacy preferences and offers an opt-out on `/privacy`. The owner's Umami Cloud
 tracking code is configured in `src/config.ts`; collection starts after production
 deployment. See

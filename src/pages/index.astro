@@ -22,7 +22,7 @@ const projects = (await getCollection("project", ({ data }) => data.featured))
     </div>
     <div class="mt-6 flex flex-wrap gap-3">
       <a class="btn btn-primary" href="/projects">Explore my projects</a>
-      <a class="btn btn-outline" href="/cv">View my résumé</a>
+      <a class="btn btn-outline" href="/cv">View my resume</a>
       <a class="btn btn-ghost" href="mailto:shyam.padia930@gmail.com">Get in touch</a>
     </div>
   </section>
@@ -49,7 +49,7 @@ const projects = (await getCollection("project", ({ data }) => data.featured))
     </div>
     {blogs.map((post) => (
       <>
-        <HorizontalCard title={post.data.title} img={post.data.heroImage} desc={post.data.description}
+        <HorizontalCard title={post.data.title} img={post.data.heroImage} imgAlt={post.data.heroImageAlt} desc={post.data.description}
           url={`/blog/${createSlug(post.data.title, post.slug)}`} target="_self"
           badges={[...(post.data.draft ? ["Draft"] : []), ...(post.data.badges || [])]}
           pubDate={post.data.pubDate} tags={post.data.tags} tagLinks={true} />

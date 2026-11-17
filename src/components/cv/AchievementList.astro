@@ -1,0 +1,20 @@
+---
+interface Props {
+  achievements: string[];
+}
+const { achievements } = Astro.props;
+const metricPattern = /(\$\d+(?:M|B)|\d[\d,.]*%|\b\d+ CRUD tools\b)/g;
+---
+
+<ul class="achievement-list">
+  {achievements.map((achievement) => (
+    <li>{achievement.split(metricPattern).map((part, index) => index % 2 ? <strong>{part}</strong> : part)}</li>
+  ))}
+</ul>
+
+<style>
+  .achievement-list { display: grid; gap: .65rem; padding-left: 1.1rem; list-style: disc; }
+  li { padding-left: .25rem; line-height: 1.7; }
+  li::marker { color: oklch(var(--p)); font-size: .8em; }
+  strong { color: oklch(var(--bc)); font-weight: 650; }
+</style>

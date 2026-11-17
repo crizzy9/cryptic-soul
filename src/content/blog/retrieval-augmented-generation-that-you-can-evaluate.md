@@ -4,6 +4,10 @@ description: "Design retrieval-augmented generation around source identity, perm
 pubDate: "2026-11-16"
 draft: true
 tags: ["ai", "rag", "retrieval", "search", "evaluation"]
+heroImage: "/blog/rag-library-retrieval.webp"
+heroImageAlt: "Curved library shelves filled with books beside a walkway."
+heroImageCredit: "Susan Q Yin on Unsplash"
+heroImageSource: "https://unsplash.com/photos/books-on-brown-wooden-shelf-2JIvboGLeho"
 ---
 
 A RAG demo can answer a question from a PDF in an afternoon. A useful system has to keep answering when the PDF changes, a user loses access, the question contains an exact error code, or the available documents disagree.

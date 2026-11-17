@@ -4,6 +4,10 @@ description: "Use Nix development shells and pinned inputs to make toolchains ex
 pubDate: "2026-11-16"
 draft: true
 tags: ["nix", "development", "reproducibility", "devops"]
+heroImage: "/blog/nix-development-workspace.webp"
+heroImageAlt: "A laptop displaying source code in a dark editor."
+heroImageCredit: "Luca Bravo on Unsplash"
+heroImageSource: "https://unsplash.com/photos/turned-on-gray-laptop-computer-XJXWbfSo2f0"
 ---
 
 A setup guide is often an unofficial dependency manager. It says which Python to install, which compiler happened to work, and which missing library someone discovered last week. The application has a lock file; the machine needed to run it has a collection of memories.

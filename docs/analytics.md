@@ -15,7 +15,7 @@ The configured integration becomes active when deployed to the production domain
 | How far do readers get? | `article_progress` with `percent` at 25, 50, 75, 90; once each per article navigation |
 | Which visits show sustained attention? | `article_engaged` with `seconds: 60`; once per navigation after 60 accumulated visible, focused seconds |
 | Which projects get clicks? | `project_click` with the public project slug, including project links from home/CV and repository links from project entries |
-| Does the résumé attract interest? | `resume_download` when its PDF link is clicked |
+| Does the resume attract interest? | `resume_download` when its PDF link is clicked |
 | Do visitors try to contact me? | `contact_click` with `method: email` or `phone`; no address/number |
 | Which other sites do visitors open? | `outbound_click` with the destination hostname only |
 
@@ -49,7 +49,7 @@ form capture, error payloads, or per-user `identify()` calls in this integration
    already-built deployment; the site must be rebuilt.
 6. Visit the published website with DNT/GPC off and without an ad blocker. Confirm
    one page view in the Umami dashboard, navigate to another page, and confirm one
-   more view. Check Events after clicking a project, résumé, and contact link.
+   more view. Check Events after clicking a project, resume, and contact link.
 7. On `/privacy`, turn analytics off; confirm subsequent navigation sends no Umami
    collection calls. Re-enable there if desired. Use this opt-out in your own
    browser to keep your editing visits out of production statistics.
@@ -66,7 +66,7 @@ Use the website overview for visitors, visits, referrers, pages, devices, browse
 operating systems, approximate countries, and time trends. Use **Events** and its
 **Properties** view for progress percentages, active-time milestones, project slugs,
 and contact methods. Filter by page URL to compare particular articles. Configure
-available goals/funnels around project clicks, résumé downloads, and contact clicks.
+available goals/funnels around project clicks, resume downloads, and contact clicks.
 Do not assume a report or paid feature is available on every plan/version.
 
 At the time of setup, the official pricing page lists Hobby at $0/month for one

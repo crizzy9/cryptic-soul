@@ -4,6 +4,10 @@ description: "What it takes to move from a model loop to a capable coding agent:
 pubDate: "2026-11-16"
 draft: true
 tags: ["ai", "agents", "harness", "evaluation", "software-engineering"]
+heroImage: "/blog/agent-harness-workspace.webp"
+heroImageAlt: "A home office desk with a monitor, headphones, and plants."
+heroImageCredit: "Matúš Gocman on Unsplash"
+heroImageSource: "https://unsplash.com/photos/a-modern-home-office-setup-with-a-computer-and-plants-pPyzrH_DJT8"
 ---
 
 If the goal is to build an agent that competes with products such as Claude Code, a clever system prompt is only the beginning. The system must find the right context, operate useful tools, recover after interruptions, verify its work, and explain what happened.

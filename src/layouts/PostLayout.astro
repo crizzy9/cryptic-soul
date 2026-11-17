@@ -5,7 +5,7 @@ import { getBadges, getBadgeClass, formatPublicationDate } from "../lib/helpers"
 
 export interface Props extends BlogSchema {}
 
-const { title, description, pubDate, updatedDate, heroImage, badges, tags = [], draft = false } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroImageAlt, heroImageCredit, heroImageSource, badges, tags = [], draft = false } = Astro.props;
 const displayDate = formatPublicationDate(pubDate);
 const displayBadges = getBadges(pubDate, badges);
 import { Image } from "astro:assets";
@@ -14,26 +14,19 @@ import { Image } from "astro:assets";
 <BaseLayout title={title} description={description} image={heroImage} ogType="article" noIndex={draft} sideBarActiveItemID="blog">
   <div class="md:flex md:justify-center">
     <article data-blog-article class="prose prose-lg min-w-0 max-w-[750px] prose-img:mx-auto">
-      {draft && <div class="not-prose mb-6 rounded-lg border border-base-content/20 p-4"><strong>Draft for review.</strong> This post is available in local development and excluded from the production site.</div>}
-      {heroImage && <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-6" />}
-      <h1 class="title my-2 text-4xl font-bold">{title}</h1>
-      {pubDate && <time datetime={pubDate.toISOString()}>{displayDate}</time>}
-      <br />
-      {displayBadges.length > 0 && (
-        <div class="flex flex-wrap gap-1 my-1">
-          {displayBadges.map((badge) => (
-            <div class={getBadgeClass(badge)}>{badge}</div>
-          ))}
-        </div>
-      )}
-      {
-        tags &&
-          tags.map((tag) => (
-            <a href={`/blog/tag/${encodeURIComponent(tag)}`} class="badge badge-outline ml-2 no-underline">
-              {tag}
-            </a>
-          ))
-      }
+      {heroImage && <figure class="not-prose mb-8 mt-0">
+        <Image width={1200} height={675} format="webp" src={heroImage} alt={heroImageAlt || title} class="aspect-video w-full rounded-xl object-cover" />
+        {heroImageCredit && <figcaption class="mt-2 text-sm text-base-content/70">Photo: {heroImageSource ? <a href={heroImageSource} class="link link-hover" target="_blank" rel="noopener noreferrer">{heroImageCredit}</a> : heroImageCredit}</figcaption>}
+      </figure>}
+      <h1 class="title my-3 text-3xl font-bold sm:text-4xl">{title}</h1>
+      <div class="not-prose my-4 flex flex-wrap items-center gap-3 text-sm text-base-content/70">
+        {pubDate && <time datetime={pubDate.toISOString()}>{displayDate}</time>}
+        {draft && <span class="badge badge-outline">Draft for review</span>}
+        {displayBadges.map((badge) => <span class={getBadgeClass(badge)}>{badge}</span>)}
+      </div>
+      <div class="not-prose my-4 flex flex-wrap gap-2">
+        {tags.map((tag) => <a href={`/blog/tag/${encodeURIComponent(tag)}`} class="badge badge-outline no-underline">{tag}</a>)}
+      </div>
       {
         updatedDate && (
           <div>

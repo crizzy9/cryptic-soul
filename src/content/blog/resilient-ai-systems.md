@@ -4,6 +4,10 @@ description: "A practical architecture for durable agent work, bounded retries, 
 pubDate: "2026-11-16"
 draft: true
 tags: ["ai", "architecture", "reliability", "caching", "distributed-systems"]
+heroImage: "/blog/resilient-ai-infrastructure.webp"
+heroImageAlt: "Rows of network racks with cables and illuminated status lights."
+heroImageCredit: "Taylor Vick on Unsplash"
+heroImageSource: "https://unsplash.com/photos/cable-network-M5tzZtFCOfs"
 ---
 
 An AI demo usually has one request, one model call, and an answer. A useful production system has many requests, long-running work, changing permissions, unreliable dependencies, and users who expect cancellation to mean something.

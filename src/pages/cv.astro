@@ -1,75 +1,218 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/cv/TimeLine.astro";
+import AchievementList from "../components/cv/AchievementList.astro";
 import { getCollection } from "astro:content";
-import { education, experience, skills } from "../data/profile";
+import { certifications, cvProjectSelections, education, employers, openSourceContributions, skillGroups } from "../data/profile";
 
-const projects = (await getCollection("project", ({ data }) => data.featured))
-  .sort((first, second) => second.data.pubDate.valueOf() - first.data.pubDate.valueOf());
+const projectEntries = await getCollection("project");
+const projects = cvProjectSelections.map((selection) => ({ ...selection, entry: projectEntries.find((entry) => entry.id === selection.contentId) }));
 ---
 
-<BaseLayout title="Résumé · Shyam Padia" description="Shyam Padia's experience in AI engineering, personalization, distributed systems, and self-hosted software." sideBarActiveItemID="cv">
-  <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
-    <h1 class="text-3xl font-bold">Résumé</h1>
-    <a class="btn btn-primary" href="/Shyam-Padia-Resume.pdf" download>Download résumé (PDF)</a>
+<BaseLayout title="Resume · Shyam Padia" description="Shyam Padia's work in AI engineering, personalization, distributed systems, and self-hosted infrastructure." sideBarActiveItemID="cv">
+  <div class="cv-page">
+    <header class="cv-intro">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <h1 class="text-4xl font-bold sm:text-5xl">Resume</h1>
+        <a class="btn btn-primary" href="/Shyam-Padia-Resume.pdf" download>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" /></svg>
+          Download resume
+        </a>
+      </div>
+      <p class="intro-role">AI Technical Lead &amp; Software Engineer</p>
+      <p class="intro-summary">I build AI products and the systems that make them useful: agents that work with real tools, personalization backed by large-scale data, and infrastructure that can be understood and maintained.</p>
+      <p class="intro-summary">Currently leading AI engineering for Chello at MosaicApp. Previously at Intuit across Personalization, QuickBooks, and TurboTax. My independent work spans self-hosted software, robotics, and machine learning.</p>
+      <div class="intro-links">
+        <span>Boston, MA</span>
+        <a class="link link-hover" href="mailto:shyam.padia930@gmail.com">Email me</a>
+        <a class="link link-hover" href="https://github.com/crizzy9" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="link link-hover" href="https://linkedin.com/in/shyam-padia" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <nav class="cv-nav" aria-label="Resume sections">
+        <a href="#cv-experience">Experience</a>
+        <a href="#cv-skills">Skills</a>
+        <a href="#cv-projects">Projects</a>
+        <a href="#cv-education">Education</a>
+        <a href="#cv-certifications">Certifications</a>
+        <a href="#cv-open-source">Open source</a>
+      </nav>
+    </header>
+
+    <section id="cv-experience" class="cv-section" aria-labelledby="experience-heading">
+      <div class="section-heading"><h2 id="experience-heading">Experience</h2><p>AI products, data platforms, and engineering leadership.</p></div>
+      <div class="employer-list">
+        {employers.map((employer) => (
+          <article class="employer" aria-labelledby={employer.id + "-heading"}>
+            <header class="organization-heading">
+              <div class="organization-mark" aria-hidden="true">
+                {"logo" in employer ? <img src={employer.logo} alt="" width="56" height="56" loading="lazy" /> : <span>{employer.initials}</span>}
+              </div>
+              <div class="min-w-0">
+                <h3 id={employer.id + "-heading"} class="organization-name">{"website" in employer ? <a class="link-hover" href={employer.website} target="_blank" rel="noopener noreferrer">{employer.name}</a> : employer.name}</h3>
+                <p class="organization-context">{employer.context}</p>
+              </div>
+            </header>
+            <div class="role-list">
+              {employer.roles.map((role) => (
+                <section class="role" aria-label={role.title}>
+                  <div class="role-heading">
+                    <h4>{role.title}</h4>
+                    {"current" in role && role.current && <span class="badge badge-primary badge-outline">Current</span>}
+                  </div>
+                  <p class="role-meta"><span>{role.period}</span><span>{role.location}</span></p>
+                  <AchievementList achievements={role.achievements} />
+                </section>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="cv-skills" class="cv-section" aria-labelledby="skills-heading">
+      <div class="section-heading"><h2 id="skills-heading">Technical skills</h2><p>The tools behind the work, grouped by what they help me build.</p></div>
+      <div class="skills-grid">
+        {skillGroups.map((group) => (
+          <section class="skill-group" aria-label={group.title}>
+            <h3>{group.title}</h3>
+            <p class="skill-description">{group.description}</p>
+            <ul class="skill-primary" aria-label={group.title + " technologies"}>
+              {group.primary.map((skill) => <li class="badge badge-outline">{skill}</li>)}
+            </ul>
+            <p class="skill-supporting">{group.supporting.join(" · ")}</p>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section id="cv-projects" class="cv-section" aria-labelledby="projects-heading">
+      <div class="section-heading"><h2 id="projects-heading">Projects</h2><p>Independent software, infrastructure, and research.</p></div>
+      <ol class="projects-grid">
+        {projects.map((project, index) => (
+          <li class:list={["cv-project", { "project-lead": index < 2 }]}>
+            <h3>{project.entry ? <a class="link-hover" href={"/projects#" + project.entry.slug}>{project.title}<svg aria-hidden="true" class="project-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6h12v12" /></svg></a> : project.title}</h3>
+            <p class="project-category">{project.category}</p>
+            <p class="project-description">{project.description}</p>
+            <ul class="project-technologies" aria-label={project.title + " technologies"}>
+              {project.technologies.map((technology) => <li>{technology}</li>)}
+            </ul>
+          </li>
+        ))}
+      </ol>
+      <a href="/projects" class="link link-hover mt-5 inline-block">Explore the full portfolio</a>
+    </section>
+
+    <section id="cv-education" class="cv-section" aria-labelledby="education-heading">
+      <div class="section-heading"><h2 id="education-heading">Education</h2></div>
+      <div class="education-list">
+        {education.map((entry) => (
+          <article class="education-entry">
+            <div class="organization-heading">
+              <div class="organization-mark" aria-hidden="true">
+                {"logo" in entry ? <img src={entry.logo} alt="" width="56" height="56" loading="lazy" /> : <span>{entry.initials}</span>}
+              </div>
+              <div class="min-w-0"><h3 class="organization-name">{entry.institution}</h3><p class="organization-context">{entry.school}</p></div>
+            </div>
+            <div class="education-detail">
+              <h4>{entry.degree}</h4>
+              <p class="role-meta"><span>{entry.period}</span><span>{entry.location}</span></p>
+              <p class="education-gpa">GPA <strong>{entry.gpa}</strong></p>
+              {entry.courses.length > 0 && <ul class="course-list" aria-label="Coursework">{entry.courses.map((course) => <li>{course}</li>)}</ul>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="cv-certifications" class="cv-section" aria-labelledby="certifications-heading">
+      <div class="section-heading"><h2 id="certifications-heading">Certifications</h2></div>
+      <ul class="credential-list">
+        {certifications.map((certification) => (
+          <li>
+            <div class="credential-heading"><h3>{certification.title}</h3><span>{certification.date}</span></div>
+            <p class="credential-issuer">{certification.issuer}</p>
+            <p class="credential-description">{certification.description}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="cv-open-source" class="cv-section" aria-labelledby="open-source-heading">
+      <div class="section-heading"><h2 id="open-source-heading">Open source</h2><p>Contributions to tools for Linux, productivity, and audio.</p></div>
+      <ul class="open-source-list">
+        {openSourceContributions.map((contribution) => (
+          <li>
+            <div class="credential-heading"><h3>{contribution.title}</h3><span>{contribution.year}</span></div>
+            <p class="project-category">{contribution.category}</p>
+            <p class="credential-description">{contribution.description}</p>
+            <ul class="project-technologies" aria-label={contribution.title + " technologies"}>{contribution.technologies.map((technology) => <li>{technology}</li>)}</ul>
+          </li>
+        ))}
+      </ul>
+    </section>
   </div>
-  <p class="mb-4 max-w-prose text-lg leading-relaxed">AI Technical Lead at MosaicApp, building agent systems and the infrastructure around them. Previously a Senior Software Engineer at Intuit, working across personalization, recommendations, marketing automation, and pricing.</p>
-  <p class="mb-10 max-w-prose leading-relaxed">My work connects AI and data engineering with product delivery: from Chello's agent architecture and model routing to platforms that turn large-scale data into useful customer experiences. Outside work, I build self-hosted software, developer tools, and robotics projects.</p>
-
-  <section class="mb-10" aria-labelledby="experience-heading">
-    <h2 id="experience-heading" class="mb-5 text-2xl font-bold">Experience</h2>
-    <div class="time-line-container space-y-4">
-      {experience.map((role) => (
-        <TimeLineElement title={role.title} subtitle={role.subtitle}>
-          <ul class="ml-5 list-disc space-y-2">
-            {role.achievements.map((achievement) => <li>{achievement}</li>)}
-          </ul>
-        </TimeLineElement>
-      ))}
-    </div>
-  </section>
-
-  <section class="mb-10" aria-labelledby="projects-heading">
-    <h2 id="projects-heading" class="mb-5 text-2xl font-bold">Selected projects</h2>
-    <ul class="space-y-5">
-      {projects.map((project) => (
-        <li>
-          <h3 class="font-semibold"><a class="link link-hover" href={`/projects#${project.slug}`}>{project.data.title}</a></h3>
-          <p class="mt-1 leading-relaxed">{project.data.description}</p>
-        </li>
-      ))}
-    </ul>
-    <a href="/projects" class="link mt-5 inline-block">Explore the full portfolio</a>
-  </section>
-
-  <section class="mb-10" aria-labelledby="education-heading">
-    <h2 id="education-heading" class="mb-5 text-2xl font-bold">Education</h2>
-    <div class="time-line-container space-y-4">
-      {education.map((entry) => (
-        <TimeLineElement title={entry.title} subtitle={entry.subtitle}>
-          {entry.detail && <p>{entry.detail}</p>}
-        </TimeLineElement>
-      ))}
-    </div>
-  </section>
-
-  <section class="mb-10" aria-labelledby="skills-heading">
-    <h2 id="skills-heading" class="mb-5 text-2xl font-bold">Technical skills</h2>
-    <dl class="space-y-4">
-      {skills.map(([label, detail]) => (
-        <div>
-          <dt class="font-semibold">{label}</dt>
-          <dd class="mt-1 leading-relaxed">{detail}</dd>
-        </div>
-      ))}
-    </dl>
-  </section>
-
-  <section class="mb-10" aria-labelledby="open-source-heading">
-    <h2 id="open-source-heading" class="mb-5 text-2xl font-bold">Open source contributions</h2>
-    <ul class="ml-5 list-disc space-y-2">
-      <li>Vicinae · Desktop application launcher · 2025</li>
-      <li>Mopidy · Python music server · 2024</li>
-    </ul>
-  </section>
 </BaseLayout>
+
+<style>
+  .cv-page { width: 100%; min-width: 0; overflow-wrap: anywhere; }
+  .cv-intro { padding: 1rem 0 0; }
+  .intro-role { margin: 1.5rem 0 .75rem; max-width: 32rem; font-size: 1.5rem; line-height: 1.35; font-weight: 650; }
+  .intro-summary { margin-top: .85rem; max-width: 68ch; line-height: 1.8; }
+  .intro-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1.5rem; font-size: .925rem; }
+  .intro-links > span { opacity: .8; }
+  .cv-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding: 1.5rem 0; margin-top: 1.5rem; border-block: 1px solid oklch(var(--bc) / .15); font-size: .875rem; font-weight: 600; }
+  .cv-nav a:hover { color: oklch(var(--p)); }
+  .cv-nav a:focus-visible { outline: 2px solid oklch(var(--p)); outline-offset: 5px; border-radius: 2px; }
+  .cv-section { margin-top: 3.5rem; scroll-margin-top: 6rem; }
+  .section-heading { margin-bottom: 1.75rem; }
+  .section-heading h2 { font-size: 1.75rem; line-height: 1.25; font-weight: 700; }
+  .section-heading > p { margin-top: .5rem; max-width: 65ch; font-size: .95rem; line-height: 1.65; opacity: .85; }
+  .employer + .employer { border-top: 1px solid oklch(var(--bc) / .15); margin-top: 2.25rem; padding-top: 2.25rem; }
+  .organization-heading { display: flex; align-items: center; gap: 1rem; }
+  .organization-mark { display: flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; flex: 0 0 3.5rem; border-radius: .65rem; background: white; overflow: hidden; }
+  .organization-mark img { width: 100%; height: 100%; object-fit: contain; }
+  .organization-mark > span { display: grid; place-content: center; height: 100%; width: 100%; background: oklch(var(--b2)); color: oklch(var(--bc)); font-size: 1.1rem; font-weight: 750; border: 1px solid oklch(var(--bc) / .2); border-radius: .65rem; }
+  .organization-name { font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+  .organization-context { margin-top: .25rem; line-height: 1.5; font-size: .9rem; opacity: .85; }
+  .role-list { margin-top: 1.5rem; }
+  .role + .role { padding-top: 1.75rem; margin-top: 1.75rem; border-top: 1px solid oklch(var(--bc) / .1); }
+  .role-heading { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; }
+  .role-heading h4, .education-detail h4 { font-weight: 650; font-size: 1.06rem; line-height: 1.5; }
+  .role-meta { display: flex; flex-wrap: wrap; gap: .2rem 1rem; margin: .4rem 0 1rem; font-size: .875rem; line-height: 1.6; opacity: .8; font-variant-numeric: tabular-nums; }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; }
+  .skill-group { min-width: 0; padding: 1.35rem 0; border-bottom: 1px solid oklch(var(--bc) / .12); }
+  .skill-group:first-child, .skill-group:nth-child(2) { border-top: 1px solid oklch(var(--bc) / .12); }
+  .skill-group h3 { font-size: 1.05rem; font-weight: 650; }
+  .skill-description { font-size: .875rem; margin-top: .3rem; opacity: .8; line-height: 1.5; }
+  .skill-primary { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .85rem; }
+  .skill-primary .badge { min-height: 1.6rem; height: auto; padding: .3rem .55rem; font-size: .8rem; font-weight: 500; border-color: oklch(var(--bc) / .3); }
+  .skill-supporting { margin-top: .75rem; font-size: .875rem; line-height: 1.85; opacity: .85; }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
+  .cv-project { min-width: 0; padding: 1.5rem 0; border-bottom: 1px solid oklch(var(--bc) / .12); }
+  .cv-project h3 { font-size: 1.1rem; line-height: 1.45; font-weight: 650; }
+  .project-lead h3 { font-size: 1.35rem; }
+  .project-arrow { display: inline-block; vertical-align: middle; margin-left: .35rem; color: oklch(var(--p)); }
+  .project-category { margin-top: .4rem; font-size: .8rem; line-height: 1.55; color: oklch(var(--p)); font-weight: 600; }
+  .project-description { margin-top: .75rem; font-size: .925rem; line-height: 1.8; }
+  .project-technologies { display: flex; flex-wrap: wrap; column-gap: .85rem; row-gap: .25rem; margin-top: .85rem; font-size: .75rem; line-height: 1.6; opacity: .8; }
+  .project-technologies > li + li::before { content: "·"; margin-right: .75rem; }
+  .education-entry + .education-entry { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid oklch(var(--bc) / .12); }
+  .education-detail { margin-top: 1.25rem; }
+  .education-gpa { font-size: .875rem; }
+  .education-gpa strong { margin-left: .4rem; font-weight: 600; }
+  .course-list { display: flex; flex-wrap: wrap; gap: .45rem 1rem; margin-top: 1rem; font-size: .85rem; line-height: 1.6; opacity: .85; }
+  .credential-list, .open-source-list { display: grid; gap: 1.5rem; }
+  .credential-list > li + li, .open-source-list > li + li { padding-top: 1.5rem; border-top: 1px solid oklch(var(--bc) / .12); }
+  .credential-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .35rem 1rem; }
+  .credential-heading h3 { font-size: 1.05rem; font-weight: 650; line-height: 1.5; }
+  .credential-heading > span { font-size: .8rem; opacity: .8; font-variant-numeric: tabular-nums; }
+  .credential-issuer { margin-top: .25rem; font-size: .875rem; color: oklch(var(--p)); }
+  .credential-description { margin-top: .65rem; font-size: .925rem; line-height: 1.8; max-width: 70ch; }
+  @media (min-width: 640px) { .role-list, .education-detail { margin-left: 4.5rem; } }
+  @media (max-width: 639px) {
+    .skills-grid, .projects-grid { grid-template-columns: minmax(0, 1fr); }
+    .skill-group:nth-child(2) { border-top: 0; }
+    .cv-section { margin-top: 3rem; }
+    .cv-nav { gap: .65rem 1.25rem; }
+    .intro-role { font-size: 1.3rem; }
+  }
+</style>

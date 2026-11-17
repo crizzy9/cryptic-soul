@@ -4,6 +4,10 @@ description: "A practical Python agent with typed tools, trusted runtime context
 pubDate: "2026-11-16"
 draft: true
 tags: ["ai", "langchain", "agents", "python", "architecture"]
+heroImage: "/blog/langchain-tools-code.webp"
+heroImageAlt: "Lines of PHP source code on a computer monitor."
+heroImageCredit: "Ilya Pavlov on Unsplash"
+heroImageSource: "https://unsplash.com/photos/monitor-showing-java-programming-OqtafYT5kTw"
 ---
 
 A useful first agent has a small job and an observable outcome. Consider a support assistant that answers questions from an account's approved policies. It can search those policies and cite what it finds. It cannot issue refunds, change subscriptions, or browse another account's documents.

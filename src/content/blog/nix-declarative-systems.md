@@ -4,6 +4,10 @@ description: "Explore declarative services, reusable modules, Home Manager, virt
 pubDate: "2026-11-16"
 draft: true
 tags: ["nix", "nixos", "home-manager", "infrastructure", "testing"]
+heroImage: "/blog/nix-declarative-hardware.webp"
+heroImageAlt: "Close-up of chips and components on a computer circuit board."
+heroImageCredit: "Alexandre Debiève on Unsplash"
+heroImageSource: "https://unsplash.com/photos/macro-photography-of-black-circuit-board-FO7JIlwjOtU"
 ---
 
 A machine usually has two configurations: the one in the documentation and the one left behind by months of commands. When they disagree, rebuilding the machine becomes a reconstruction exercise.

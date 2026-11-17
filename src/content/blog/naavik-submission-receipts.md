@@ -4,6 +4,10 @@ description: "Building Naavik's application workflow around review, dry-run evid
 pubDate: "2026-11-16"
 draft: true
 tags: ["naavik", "python", "automation", "reliability"]
+heroImage: "/blog/naavik-application-planning.webp"
+heroImageAlt: "Hands sketching notes on paper beside open laptops."
+heroImageCredit: "Scott Graham on Unsplash"
+heroImageSource: "https://unsplash.com/photos/person-holding-pencil-near-laptop-computer-5fNmWej4tAA"
 ---
 
 The hardest part of application automation is deciding what happened after the final click.
@@ -16,7 +20,7 @@ At that point, blindly retrying can submit twice. Marking the application succes
 
 Naavik separates document preparation from application submission. Its queue can generate the application documents, then check whether the target board has an automatic submission adapter. When support is missing, the workflow hands the prepared documents back to the user with a reason and the next action.
 
-This is a product decision as much as an implementation detail. Unsupported automation should still leave useful work behind. A résumé and cover letter can be ready even when the remaining step requires a person to open the posting.
+This is a product decision as much as an implementation detail. Unsupported automation should still leave useful work behind. A resume and cover letter can be ready even when the remaining step requires a person to open the posting.
 
 The queue also rechecks conditions at dispatch time. A score can change after a job is queued, settings can pause automation, and daily limits can be reached. The decision made when the item entered the queue cannot stand in for the conditions that exist when an external action is about to happen.
 

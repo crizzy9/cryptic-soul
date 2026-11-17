@@ -8,6 +8,6 @@ import netlify from "@astrojs/netlify";
 // https://astro.build/config
 export default defineConfig({
   site: "https://crypticsoul.dev",
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [mdx(), ...(process.env.CONTEXT === "deploy-preview" ? [] : [sitemap()]), tailwind()],
   adapter: netlify(),
 });

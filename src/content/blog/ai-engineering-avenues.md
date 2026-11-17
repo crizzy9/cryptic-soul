@@ -4,6 +4,10 @@ description: "A practical map of prediction, retrieval, generation, multimodal m
 pubDate: "2026-11-16"
 draft: true
 tags: ["ai", "machine-learning", "architecture", "evaluation"]
+heroImage: "/blog/ai-approaches-robotics.webp"
+heroImageAlt: "A white humanoid robot with a tablet in front of a wooden wall."
+heroImageCredit: "Alex Knight on Unsplash"
+heroImageSource: "https://unsplash.com/photos/white-robot-near-brown-wall-2EJCSULRwC8"
 ---
 
 “Add AI” is an incomplete product requirement. It does not say whether the system should rank a list, predict a number, find a document, create a draft, interpret an image, or take an action. Those are different engineering problems even when a single model can participate in several of them.

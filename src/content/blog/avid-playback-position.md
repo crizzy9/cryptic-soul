@@ -4,6 +4,10 @@ description: "What building Avid taught me about source clocks, reading anchors,
 pubDate: "2026-11-16"
 draft: true
 tags: ["avid", "typescript", "architecture", "audio"]
+heroImage: "/blog/avid-reading-listening.webp"
+heroImageAlt: "A reader holds an open book in front of their face."
+heroImageCredit: "Nubelson Fernandes on Unsplash"
+heroImageSource: "https://unsplash.com/photos/a-man-reading-a-book-with-headphones-on-his-head-rfoH17_F7F8"
 ---
 
 A reading app makes a deceptively simple promise: come back later and continue where you stopped. Building [Avid](/projects), my reading and audiobook application, has made me much more careful about what “where” actually means.

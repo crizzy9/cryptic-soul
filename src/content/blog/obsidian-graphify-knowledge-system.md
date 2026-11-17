@@ -4,6 +4,10 @@ description: "Build a useful knowledge system with authored notes, explicit rela
 pubDate: "2026-11-16"
 draft: true
 tags: ["obsidian", "graphify", "knowledge-management", "retrieval"]
+heroImage: "/blog/obsidian-knowledge-notes.webp"
+heroImageAlt: "Research photos, charts, and colorful handwritten notes arranged on a wall."
+heroImageCredit: "Jo Szczepanska on Unsplash"
+heroImageSource: "https://unsplash.com/photos/sticky-notes-bjemWZcNF34"
 ---
 
 A knowledge system should help answer questions that matter: Why did I choose this design? Which decision superseded the old one? What evidence supports the current plan?

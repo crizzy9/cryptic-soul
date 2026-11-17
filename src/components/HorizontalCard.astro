@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import { getBadges, getBadgeClass, formatPublicationDate } from "../lib/helpers";
 
-const { title, img, desc, url, badges, tags = [], pubDate, target = "_blank", tagLinks = false, id } = Astro.props;
+const { title, img, imgAlt = "", desc, url, badges, tags = [], pubDate, target = "_blank", tagLinks = false, id } = Astro.props;
 const displayBadges = getBadges(pubDate, badges);
 const displayDate = pubDate ? formatPublicationDate(pubDate) : undefined;
 ---
@@ -10,8 +10,8 @@ const displayDate = pubDate ? formatPublicationDate(pubDate) : undefined;
 <article id={id} class="scroll-mt-20 rounded-lg bg-base-100">
   <div class="flex flex-col gap-4 p-4 md:flex-row md:gap-6">
     {img && (
-      <Image src={img} width={750} height={422} format="webp" alt=""
-        class="w-full rounded-lg object-cover md:max-h-36 md:w-52" />
+      <Image src={img} width={750} height={422} format="webp" alt={imgAlt}
+        class="aspect-video w-full rounded-lg object-cover md:max-h-36 md:w-52 md:shrink-0" />
     )}
     <div class="flex min-w-0 grow flex-col">
       <div class="flex flex-wrap items-start justify-between gap-2">

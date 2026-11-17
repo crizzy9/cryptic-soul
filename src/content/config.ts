@@ -24,6 +24,9 @@ const blogSchema = z.object({
   draft: z.boolean().default(false),
   updatedDate: z.string().optional(),
   heroImage: z.string().optional(),
+  heroImageAlt: z.string().optional(),
+  heroImageCredit: z.string().optional(),
+  heroImageSource: z.string().url().optional(),
   badges: z.array(z.string()).optional(),
   tags: z
     .array(z.string())
