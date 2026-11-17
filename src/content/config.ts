@@ -21,6 +21,8 @@ const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
   pubDate: z.coerce.date(),
+  // Author-assigned article date; pubDate retains the actual release date for RSS.
+  editorialDate: z.coerce.date().optional(),
   draft: z.boolean().default(false),
   updatedDate: z.string().optional(),
   heroImage: z.string().optional(),

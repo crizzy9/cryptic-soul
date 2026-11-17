@@ -2,7 +2,8 @@
 title: "An Obsidian knowledge system with Graphify and traceable sources"
 description: "Build a useful knowledge system with authored notes, explicit relationships, a scoped Graphify index, and answers that lead back to current evidence."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-11-02"
+draft: false
 tags: ["obsidian", "graphify", "knowledge-management", "retrieval"]
 heroImage: "/blog/obsidian-knowledge-notes.webp"
 heroImageAlt: "Research photos, charts, and colorful handwritten notes arranged on a wall."

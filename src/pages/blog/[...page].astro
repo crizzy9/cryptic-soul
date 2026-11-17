@@ -3,11 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import HorizontalCard from "../../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug"
-import { isBlogPostVisible } from "../../lib/blog";
+import { compareBlogPosts, isBlogPostVisible } from "../../lib/blog";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("blog", isBlogPostVisible);
-  posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  posts.sort(compareBlogPosts);
   return paginate(posts, { pageSize: 10 });
 }
 
@@ -36,7 +36,7 @@ const { page } = Astro.props;
               desc={post.data.description}
               url={"/blog/" + createSlug(post.data.title, post.slug)}
               target="_self"
-              pubDate={post.data.pubDate}
+              pubDate={post.data.pubDate} editorialDate={post.data.editorialDate}
               tags={post.data.tags}
               tagLinks={true}
               badges={[...(post.data.draft ? ["Draft"] : []), ...(post.data.badges || [])]}

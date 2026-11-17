@@ -2,7 +2,8 @@
 title: "Nix turns a development environment into a reviewable dependency"
 description: "Use Nix development shells and pinned inputs to make toolchains explicit, while understanding what reproducibility does and does not guarantee."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-10-06"
+draft: false
 tags: ["nix", "development", "reproducibility", "devops"]
 heroImage: "/blog/nix-development-workspace.webp"
 heroImageAlt: "A laptop displaying source code in a dark editor."

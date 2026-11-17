@@ -5,7 +5,7 @@ export const employers = [
     id: "mosaic",
     name: "MosaicApp",
     website: "https://www.mosaicapp.com/",
-    logo: "/logos/mosaic.webp",
+    logo: "/logos/mosaic.png",
     initials: "M",
     context: "Chello · AI planning and agent systems",
     roles: [
@@ -95,9 +95,11 @@ export const employers = [
     ],
   },
   {
-    id: "votercircle",
-    name: "VoterCircle",
-    initials: "VC",
+    id: "outreachcircle",
+    name: "OutreachCircle",
+    website: "https://outreachcircle.com/",
+    logo: "/logos/outreachcircle.png",
+    initials: "OC",
     context: "Campaign software and constituent outreach",
     roles: [
       {

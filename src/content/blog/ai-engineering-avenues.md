@@ -2,7 +2,8 @@
 title: "Choosing the right kind of AI system"
 description: "A practical map of prediction, retrieval, generation, multimodal models, and agents, with a method for choosing the smallest system that can solve the problem."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-10-13"
+draft: false
 tags: ["ai", "machine-learning", "architecture", "evaluation"]
 heroImage: "/blog/ai-approaches-robotics.webp"
 heroImageAlt: "A white humanoid robot with a tablet in front of a wooden wall."

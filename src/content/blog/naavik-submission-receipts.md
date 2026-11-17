@@ -2,7 +2,8 @@
 title: "When an application submit has no receipt"
 description: "Building Naavik's application workflow around review, dry-run evidence, and the uncomfortable gap between clicking Submit and knowing it worked."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-11-16"
+draft: false
 tags: ["naavik", "python", "automation", "reliability"]
 heroImage: "/blog/naavik-application-planning.webp"
 heroImageAlt: "Hands sketching notes on paper beside open laptops."

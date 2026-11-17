@@ -2,7 +2,8 @@
 title: "Building a LangChain agent from tools to a dependable workflow"
 description: "A practical Python agent with typed tools, trusted runtime context, structured output, checkpoints, and tests that examine what it actually does."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-10-20"
+draft: false
 tags: ["ai", "langchain", "agents", "python", "architecture"]
 heroImage: "/blog/langchain-tools-code.webp"
 heroImageAlt: "Lines of PHP source code on a computer monitor."

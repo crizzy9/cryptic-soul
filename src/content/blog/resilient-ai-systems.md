@@ -2,7 +2,8 @@
 title: "Resilient AI systems are built around state, budgets, and evidence"
 description: "A practical architecture for durable agent work, bounded retries, useful caching, model routing, and observability without pretending every action is exactly once."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-11-05"
+draft: false
 tags: ["ai", "architecture", "reliability", "caching", "distributed-systems"]
 heroImage: "/blog/resilient-ai-infrastructure.webp"
 heroImageAlt: "Rows of network racks with cables and illuminated status lights."

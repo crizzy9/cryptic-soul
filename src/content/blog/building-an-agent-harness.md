@@ -2,7 +2,8 @@
 title: "Build an agent harness you can measure, recover, and trust"
 description: "What it takes to move from a model loop to a capable coding agent: scoped tools, durable state, context recovery, verification, and honest comparison."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-11-09"
+draft: false
 tags: ["ai", "agents", "harness", "evaluation", "software-engineering"]
 heroImage: "/blog/agent-harness-workspace.webp"
 heroImageAlt: "A home office desk with a monitor, headphones, and plants."

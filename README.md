@@ -125,6 +125,14 @@ credentials or API keys belong in this repo.
 
 The site is automatically deployed to Netlify on every push to the main branch.
 
+### Blog dates
+
+`pubDate` records the actual release date and controls RSS and publication ordering.
+Optional `editorialDate` assigns a displayed **Editorial date** for a collection released
+at once; it orders articles sharing a release date. It does not schedule or hide posts.
+Set `draft: false` to publish a reviewed article. PR previews remain noindex and do not
+collect analytics, including for published articles.
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -2,9 +2,10 @@
 import { Image } from "astro:assets";
 import { getBadges, getBadgeClass, formatPublicationDate } from "../lib/helpers";
 
-const { title, img, imgAlt = "", desc, url, badges, tags = [], pubDate, target = "_blank", tagLinks = false, id } = Astro.props;
+const { title, img, imgAlt = "", desc, url, badges, tags = [], pubDate, editorialDate, target = "_blank", tagLinks = false, id } = Astro.props;
 const displayBadges = getBadges(pubDate, badges);
-const displayDate = pubDate ? formatPublicationDate(pubDate) : undefined;
+const articleDate = editorialDate || pubDate;
+const displayDate = articleDate ? formatPublicationDate(articleDate) : undefined;
 ---
 
 <article id={id} class="scroll-mt-20 rounded-lg bg-base-100">
@@ -27,7 +28,7 @@ const displayDate = pubDate ? formatPublicationDate(pubDate) : undefined;
       </div>
       <p class="py-2 leading-relaxed">{desc}</p>
       <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
-        {displayDate && <time datetime={new Date(pubDate).toISOString()} class="text-sm text-base-content/70">{displayDate}</time>}
+        {displayDate && <time datetime={new Date(articleDate).toISOString()} class="text-sm text-base-content/70">{editorialDate && "Editorial date · "}{displayDate}</time>}
         <div class="flex flex-wrap gap-2">
           {tags.map((tag) => tagLinks ? (
             <a href={`/blog/tag/${encodeURIComponent(tag)}`} class="badge badge-outline link-hover">{tag}</a>

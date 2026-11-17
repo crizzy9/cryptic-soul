@@ -2,7 +2,8 @@
 title: "Building a RAG system you can evaluate and maintain"
 description: "Design retrieval-augmented generation around source identity, permissions, hybrid search, grounded answers, and an evaluation loop that reveals where failures start."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-10-27"
+draft: false
 tags: ["ai", "rag", "retrieval", "search", "evaluation"]
 heroImage: "/blog/rag-library-retrieval.webp"
 heroImageAlt: "Curved library shelves filled with books beside a walkway."

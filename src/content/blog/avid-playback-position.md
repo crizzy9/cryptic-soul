@@ -2,7 +2,8 @@
 title: "A playback position is more than a percentage"
 description: "What building Avid taught me about source clocks, reading anchors, and keeping playback state owned by the right account."
 pubDate: "2026-11-16"
-draft: true
+editorialDate: "2026-11-12"
+draft: false
 tags: ["avid", "typescript", "architecture", "audio"]
 heroImage: "/blog/avid-reading-listening.webp"
 heroImageAlt: "A reader holds an open book in front of their face."

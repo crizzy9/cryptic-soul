@@ -5,8 +5,9 @@ import { getBadges, getBadgeClass, formatPublicationDate } from "../lib/helpers"
 
 export interface Props extends BlogSchema {}
 
-const { title, description, pubDate, updatedDate, heroImage, heroImageAlt, heroImageCredit, heroImageSource, badges, tags = [], draft = false } = Astro.props;
-const displayDate = formatPublicationDate(pubDate);
+const { title, description, pubDate, editorialDate, updatedDate, heroImage, heroImageAlt, heroImageCredit, heroImageSource, badges, tags = [], draft = false } = Astro.props;
+const articleDate = editorialDate || pubDate;
+const displayDate = formatPublicationDate(articleDate);
 const displayBadges = getBadges(pubDate, badges);
 import { Image } from "astro:assets";
 ---
@@ -20,7 +21,7 @@ import { Image } from "astro:assets";
       </figure>}
       <h1 class="title my-3 text-3xl font-bold sm:text-4xl">{title}</h1>
       <div class="not-prose my-4 flex flex-wrap items-center gap-3 text-sm text-base-content/70">
-        {pubDate && <time datetime={pubDate.toISOString()}>{displayDate}</time>}
+        {pubDate && <time datetime={articleDate.toISOString()}>{editorialDate && "Editorial date · "}{displayDate}</time>}
         {draft && <span class="badge badge-outline">Draft for review</span>}
         {displayBadges.map((badge) => <span class={getBadgeClass(badge)}>{badge}</span>)}
       </div>
