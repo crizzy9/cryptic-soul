@@ -1,6 +1,6 @@
 # Two Page
 
-A two-page resume using the original dense layout from `resume/OnePage/cv.tex`.
+A two-page resume using the original dense layout from `resume/CV/OnePage/cv.tex`.
 Its preamble, macros and three-line contact header are copied verbatim: the same
 10pt font stack, 0.3in side margins, 0.25in top/bottom margins, black small-cap
 section headings and rules, compact four-field job rows, circle bullets and no
@@ -18,9 +18,9 @@ Build from the repository root, keeping auxiliary files outside the source folde
 
 ```sh
 mkdir -p /tmp/crypticsoul-resume-build
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume-build 'resume/Two Page/cv.tex'
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume-build 'resume/Two Page/cv.tex'
-cp /tmp/crypticsoul-resume-build/cv.pdf 'resume/Two Page/Shyam-Padia-Resume-Two-Page.pdf'
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume-build 'resume/CV/Two Page/cv.tex'
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume-build 'resume/CV/Two Page/cv.tex'
+cp /tmp/crypticsoul-resume-build/cv.pdf 'resume/CV/Two Page/Shyam-Padia-Resume-Two-Page.pdf'
 ```
 
 Verify exactly two pages, render both pages, and check for clipped text or stranded

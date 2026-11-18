@@ -99,33 +99,36 @@ explicit, and omit repository links until verified.
 ### Resume
 
 Public career facts live in `src/data/profile.ts`. The complete career and project
-record is maintained in `resume/FullProfile/cv.tex`; the website uses a curated
+record is maintained in `resume/CV/FullProfile/cv.tex`; the website uses a curated
 project list and fuller experience details. All resume formats are linked from the CV:
 
 | Format | Editable source | Download |
 | --- | --- | --- |
-| Original one page | `resume/OnePage/cv.tex` | `public/Shyam-Padia-Resume.pdf` |
-| One page with summary | `resume/One Page Summary/cv.tex` | `public/Shyam-Padia-Resume-Summary.pdf` |
-| Two pages | `resume/Two Page/cv.tex` | `public/Shyam-Padia-Resume-Two-Page.pdf` |
-| Full profile | `resume/FullProfile/cv.tex` | `public/Shyam-Padia-Full-Profile.pdf` |
+| Original one page | `resume/CV/OnePage/cv.tex` | `public/Shyam-Padia-Resume.pdf` |
+| One page with summary | `resume/CV/One Page Summary/cv.tex` | `public/Shyam-Padia-Resume-Summary.pdf` |
+| Two pages | `resume/CV/Two Page/cv.tex` | `public/Shyam-Padia-Resume-Two-Page.pdf` |
+| Full profile | `resume/CV/FullProfile/cv.tex` | `public/Shyam-Padia-Full-Profile.pdf` |
 
-All formats must retain the exact dense layout in `resume/OnePage/cv.tex`: its
+All formats must retain the exact dense layout in `resume/CV/OnePage/cv.tex`: its
 10pt font, original margins, centered header, black section rules, compact
 four-field job headings and hollow-circle bullets. Preserve the preamble and
 macros; adjust content and page breaks to fit, without redesigning the template.
 The original one-page version is preserved. The additional variants use the
 reviewed current experience and project facts, with development/research status
-kept explicit. Rebuild a source twice into a temporary directory, verify its page
-count and rendered pages, and copy the resulting PDF to its named resume-folder
+kept explicit. The summary version copies the FullProfile summary verbatim; its
+selected achievements use the same facts and updated wording, shortened only
+where needed to fit one page. Keep shared billing wording consistent across all
+current formats and the website. Rebuild a source twice into a temporary directory,
+verify its page count and rendered pages, and copy the resulting PDF to its named resume-folder
 artifact and public download. For example:
 
 ```sh
 mkdir -p /tmp/crypticsoul-resume
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/Two Page/cv.tex'
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/Two Page/cv.tex'
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/CV/Two Page/cv.tex'
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/crypticsoul-resume 'resume/CV/Two Page/cv.tex'
 pdfinfo /tmp/crypticsoul-resume/cv.pdf # Must report exactly 2 pages.
 pdftoppm -scale-to 1600 -png /tmp/crypticsoul-resume/cv.pdf /tmp/crypticsoul-resume/page
-cp /tmp/crypticsoul-resume/cv.pdf 'resume/Two Page/Shyam-Padia-Resume-Two-Page.pdf'
+cp /tmp/crypticsoul-resume/cv.pdf 'resume/CV/Two Page/Shyam-Padia-Resume-Two-Page.pdf'
 cp /tmp/crypticsoul-resume/cv.pdf public/Shyam-Padia-Resume-Two-Page.pdf
 ```
 
