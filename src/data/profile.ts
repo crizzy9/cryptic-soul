@@ -1,4 +1,4 @@
-// Public CV detail from resume/OnePage/cv.tex, including the owner's commented bullets.
+// Public CV detail from resume/CV/FullProfile/cv.tex, including the owner's fuller experience record.
 // The website has room for the fuller record; the downloadable PDF stays concise.
 export const employers = [
   {
@@ -21,7 +21,7 @@ export const employers = [
           "Extended the LangChain harness with subagents and task management to coordinate multi-step planning workflows.",
           "Delivered Slack and Microsoft Teams integrations, bringing Chello's planning capabilities into team collaboration workflows.",
           "Introduced query-complexity-based model routing to reduce token usage and inference cost.",
-          "Enabled tiered billing for Chello by integrating Stripe and MonetizeNow.",
+          "Implemented tiered billing for Chello through Stripe and MonetizeNow integrations.",
         ],
       },
     ],
