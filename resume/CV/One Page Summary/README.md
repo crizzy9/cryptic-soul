@@ -23,10 +23,9 @@ must remain one page and the Two Page version exactly two; FullProfile has no pa
 
 Career facts come from the existing resume sources and shared `src/data/profile.ts`,
 including substantive commented bullets in the original one-page source. Projects
-are reconciled with `src/content/project/`; development previews, ongoing qualification
-and research are labeled. Portfolio publication dates are not treated as project
-completion dates. Older conflicting model-direction and role-placement claims are
-not combined. No private application or archived employer notes are embedded.
+use their start month and year in the right column. Older conflicting
+model-direction and role-placement claims are not combined. No private
+application or archived employer notes are embedded.
 
 ## Pinned layout
 

@@ -88,7 +88,7 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \jobentry{MosaicApp}{AI Technical Lead}{San Francisco, CA}{Aug 2026 - Present}
 \begin{itemize}
 \item Rearchitected Chello's AI execution layer, improving performance by 25\% while reducing costs by 60\%.
-\item Expanded Chello's Model Context Protocol (MCP) capabilities across connected systems, delivering 27 tools for agents to retrieve and update planning data through a shared interface.
+\item Expanded Chello's MCP across systems with 27 tools for agents to retrieve and update planning data through a shared interface.
 \item Redesigned agent caching to reuse prior work and reduce repeated processing within the LangChain harness.
 \item Extended the LangChain harness with subagents and task management to coordinate multi-step planning workflows.
 \item Delivered Slack and Microsoft Teams integrations, bringing Chello's planning capabilities into team collaboration workflows.
@@ -100,22 +100,22 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \begin{itemize}
 \item Built a LangChain agent orchestrator for RTB, on-call, and DevOps workflows.
 \item Architected unified user profiles with multi-source ingestion and real-time user embeddings on GPU-optimized EMR.
-\item Led a cross-regional team building a unified recommendation platform with Vespa, gRPC, and OpenSearch, replacing legacy systems.
-\item Developed an AI marketing agent with a six-person team using SymphonyAI, LangChain, and MCP, cutting campaign go-live time by 90\%.
-\item Led five engineers building a bulk content system with dynamic templates and audience segmentation, increasing capacity by 1,400\%.
+\item Led a cross-regional team replacing legacy systems with a unified Vespa, gRPC, and OpenSearch recommendation platform.
+\item Built an AI marketing agent on a six-person team (SymphonyAI, LangChain, MCP), cutting campaign go-live time by 90\%.
+\item Led five engineers building a bulk content system with dynamic templates and audience segmentation, raising capacity by 1,400\%.
 \item Built an LLM-powered content pipeline that automated marketing workflows and improved time-to-market by 75\%.
 \item Created an MCP server for AI-powered marketing campaign creation, real-time content generation, and automated deployment.
-\item Defined and presented the personalization AI strategy across content generation, recommendations, predictive analytics, and workflow automation.
+\item Defined and presented a personalization AI strategy for content, recommendations, predictive analytics, and automation.
 \end{itemize}
 
 \jobentry{Intuit, Personalization}{Software Engineer 2}{Mountain View, CA}{Jan 2021 - Jan 2025}
 \begin{itemize}
-\item Engineered a self-service analytics platform with PySpark, AWS EMR, and React, reducing incidents and impression loss by 40\% and improving marketer productivity by 50\%.
+\item Built self-service PySpark/EMR/React analytics: 40\% fewer incidents and lost impressions, 50\% higher marketer productivity.
 \item Developed a RAG assistant with Hugging Face and LangChain for marketing content generation, reducing authoring time.
 \item Designed scalable PySpark data entities for real-time multi-source ingestion, eliminating approval bottlenecks.
 \item Implemented AWS Personalize on clickstream data with 20\% lower API latency.
 \item Built a Kafka event pipeline for targeted offers that generated \$10M in incremental revenue through dynamic audience targeting.
-\item Trained and deployed XGBoost and neural-network models for predictive business-health scoring, reducing investment risk by 23\%.
+\item Trained and deployed XGBoost and neural networks for business-health scoring, reducing investment risk by 23\%.
 \end{itemize}
 
 \jobentry{Intuit, QuickBooks}{Software Engineer 1}{Mountain View, CA}{Jan 2020 - Jan 2021}
@@ -127,9 +127,6 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \item Implemented a parallelized synthetic-testing framework with Cypress, preventing \$10M in potential revenue loss.
 \end{itemize}
 
-\newpage
-\section{Work Experience (continued)}
-
 \jobentry{Intuit, TurboTax}{Software Engineer Intern}{San Diego, CA}{May 2019 - Aug 2019}
 \begin{itemize}
 \item Developed OCR document processing for W2 uploads in TurboTax onboarding, reducing tax preparation time by 20\%.
@@ -138,8 +135,8 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 
 \jobentry{Intuit, TurboTax}{Software Engineer Co-op}{San Diego, CA}{May 2018 - Dec 2018}
 \begin{itemize}
-\item Engineered a rule-based case-deduplication service for the Intuit Help Portal, improving response time by 45\% and reducing duplicates by 7\%.
-\item Developed Smart Fields with React and PHP to automate content publishing, saving 30 minutes in the publishing workflow and reducing support cases by 10\%.
+\item Built rule-based case deduplication for Intuit Help Portal, improving response time by 45\% and reducing duplicates by 7\%.
+\item Automated publishing with React/PHP Smart Fields, saving 30 minutes and reducing support cases by 10\%.
 \item Architected a serverless URL-redirect service with AWS Lambda and DynamoDB, improving routing efficiency by 35\%.
 \end{itemize}
 
@@ -149,6 +146,24 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 \item Developed a campaign outreach platform with Meteor.js and Angular, improving canvassing efficiency and voter turnout by 15\%.
 \end{itemize}
 
+\section{Certifications}
+
+\projectentry{Machine Learning Professional Certificate - General Assembly}{June 2022}
+\begin{itemize}
+\item Applied supervised and unsupervised learning, neural networks, ensembles, and model evaluation in Python.
+\end{itemize}
+
+\projectentry{Apache PySpark Certification - Databricks}{Dec 2021}
+\begin{itemize}
+\item Covered distributed data processing, Spark SQL, DataFrames, and pipeline optimization on Databricks.
+\end{itemize}
+
+\projectentry{AWS Certified Solutions Architect - Associate}{Oct 2019}
+\begin{itemize}
+\item Covered distributed systems, cost optimization, and scalable application architecture on AWS.
+\end{itemize}
+
+\newpage
 \section{Technical Skills}
 \noindent
 \begin{tabularx}{\textwidth}{@{} l X @{}}
@@ -163,52 +178,94 @@ AI technical lead building agent systems, retrieval and recommendation platforms
 
 \section{Projects}
 
-\projectentry{Lumino}{Declarative infrastructure}
+\projectentry{Lumino}{June 2025}\\
+\textit{Declarative infrastructure}
 \begin{itemize}
-\item Developed a YAML-driven NixOS platform using Flakes, Home Manager and sops-nix for reproducible desktop and service configuration.
+\item Built a declarative NixOS platform for reproducible and recoverable desktop and self-hosted service configurations.
+\item Unified host, service, and user setup with YAML-driven modules, Nix Flakes, Home Manager, and sops-nix.
 \end{itemize}
 
-\projectentry{Naavik}{AI-powered career workflows}
+\projectentry{Naavik}{Feb 2026}\\
+\textit{AI-powered career workflows}
 \begin{itemize}
-\item Built explainable job matching, tailored documents and reviewed application workflows with FastAPI, HTMX, PostgreSQL and Typst; V1 qualification ongoing.
+\item Built a self-hosted career platform with profile management, explainable job matching, and tailored resumes and cover letters.
+\item Implemented workflows using Python, FastAPI, HTMX, PostgreSQL, and Typst.
+\item Separated reviewed preparation and dry runs from confirmed submissions, recording receipts and uncertain outcomes.
+\item Extending outreach and interview tracking while V1 release qualification remains ongoing.
 \end{itemize}
 
-\projectentry{Plano}{Flight tracking | In development}
+\projectentry{Plano}{Nov 2026}\\
+\textit{Flight tracking}
 \begin{itemize}
-\item Built Go/SQLite flight tracking with an Expo/React Native app and synthetic demo; live-source and device qualification ongoing.
+\item Built a Go/SQLite backend and Expo/React Native app for flight status, inbound aircraft, telemetry, and travel history.
+\item Provided a credential-free synthetic demo while live-source and device qualification remain in progress.
 \end{itemize}
 
-\projectentry{Omnidirectional Autonomous Robot}{Robotics \& computer vision}
+\projectentry{Avid}{Oct 2026}\\
+\textit{Reading and audiobook application}
 \begin{itemize}
-\item Engineered a Raspberry Pi robot with a 6-DOF arm, inverse kinematics, OpenCV perception, voice commands and obstacle avoidance.
+\item Built React/TypeScript EPUB, PDF, and comic readers with BookOrbit integration and local EPUB-to-audiobook alignment.
+\item Built a Capacitor mobile and Tauri desktop preview with device qualification and offline support still in progress.
 \end{itemize}
 
-\projectentry{Reinforcement Learning for Robotic Manipulation}{Transfer-learning research}
+\projectentry{PupCam}{Nov 2026}\\
+\textit{Self-hosted pet camera research}
 \begin{itemize}
-\item Evaluated robot-arm transfer learning with PyTorch and OpenAI Gym, achieving 35\% faster convergence and 28\% improved task performance.
+\item Researching an owner-controlled pet camera with self-hosted media and intelligence.
+\item Evaluating hardware feasibility, access and recovery constraints, and scope before implementation.
 \end{itemize}
 
-\projectentry{Multi-Track Music Generation}{Transformer architectures}
+\projectentry{Hermes Agent}{Apr 2026}\\
+\textit{Multi-agent workflow integration}
 \begin{itemize}
-\item Developed four-track transformer models with global multi-headed attention, improving musical coherence by 45\%.
+\item Configured a Hermes agent swarm for task coordination and home-automation workflows.
 \end{itemize}
 
-\projectentry{Paragraph Embeddings with Variational Autoencoders}{Natural language processing}
+\projectentry{Omnidirectional Autonomous Robot}{June 2024}\\
+\textit{Robotics \& computer vision}
 \begin{itemize}
-\item Built TensorFlow VAE and LSTM sequence-to-sequence paragraph models on Gutenberg, improving semantic-similarity performance by 22\%.
+\item Engineered a Raspberry Pi robot with a servo-controlled 6-DOF arm, inverse kinematics, and OpenCV object detection.
+\item Added speech-to-text commands, autonomous navigation, and obstacle avoidance.
 \end{itemize}
 
-\projectentry{Fan Forge | Comic-Con Museum}{Community software \& team leadership}
+\projectentry{Reinforcement Learning for Robotic Manipulation}{Oct 2019}\\
+\textit{Transfer-learning research}
 \begin{itemize}
-\item Led five engineers on an Express.js/AWS Lambda platform for community-curated Comic-Con Museum exhibit and artifact ideas.
+\item Compared Q-Learning, DQN, Policy Gradient, and MCMC for robot-arm simulation using PyTorch and OpenAI Gym.
+\item Achieved 35\% faster convergence and 28\% better task performance through transfer learning.
 \end{itemize}
 
-\section{Certifications}
+\projectentry{Multi-Track Music Generation}{Apr 2019}\\
+\textit{Transformer architectures}
+\begin{itemize}
+\item Developed separate transformer models for melody, bass, drums, and harmony to generate polyphonic music.
+\item Connected models with custom global multi-headed attention, improving musical coherence by 45\%.
+\end{itemize}
 
-\projectentry{Machine Learning Professional Certificate - General Assembly}{June 2022}
+\projectentry{Paragraph Embeddings with Variational Autoencoders}{Apr 2018}\\
+\textit{Natural language processing}
+\begin{itemize}
+\item Built unsupervised TensorFlow paragraph models on Gutenberg, comparing VAE and LSTM sequence-to-sequence approaches.
+\item Improved semantic-similarity performance by 22\%.
+\end{itemize}
 
-\projectentry{Apache PySpark Certification - Databricks}{Dec 2021}
+\projectentry{Fan Forge | Comic-Con Museum}{Apr 2018}\\
+\textit{Community software \& team leadership}
+\begin{itemize}
+\item Led a five-person backend team building an open-source platform with Express.js and AWS Lambda.
+\item Enabled fans to curate exhibit and artifact ideas for the Comic-Con Museum in San Diego.
+\end{itemize}
 
-\projectentry{AWS Certified Solutions Architect - Associate}{Oct 2019}
+\section{Open Source Contributions}
+
+\projectentry{Vicinae}{2025}
+\begin{itemize}
+\item Contributed to a C++/Qt launcher with Raycast-compatible extension APIs, a TypeScript SDK, and Linux keyboard tools.
+\end{itemize}
+
+\projectentry{Mopidy}{2024}
+\begin{itemize}
+\item Contributed Spotify integration, playlist synchronization, and audio-stream improvements for Raspberry Pi deployments.
+\end{itemize}
 
 \end{document}

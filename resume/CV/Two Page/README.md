@@ -7,10 +7,10 @@ section headings and rules, compact four-field job rows, circle bullets and no
 page numbering. Fit the content to this pinned layout; do not alter its visual
 parameters.
 
-Coverage: summary, all seven roles and 33 experience bullets, full education,
-seven skill rows, eight curated projects and three certifications. The original
-one-page source is preserved separately. A deliberate break before the early
-TurboTax roles keeps each role together and yields exactly two pages.
+Page one contains the summary, education, all seven roles and 33 experience
+bullets, and three certifications. Page two contains seven skill rows, eleven
+projects, and two open-source contributions. Project rows show the starting
+month and year on the right and the subtitle below the title.
 
 Editable source: `cv.tex`. Final PDF: `Shyam-Padia-Resume-Two-Page.pdf`.
 

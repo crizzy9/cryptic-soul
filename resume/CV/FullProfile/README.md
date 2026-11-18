@@ -1,6 +1,6 @@
 # FullProfile
 
-An unconstrained full profile with all seven roles and 33 experience bullets, 18 project entries, seven skill groups, education/coursework, certifications and open-source contributions.
+An unconstrained full profile with all seven roles and 37 experience bullets, 19 project entries, seven skill groups, education/coursework, certifications and open-source contributions.
 
 Editable source: `cv.tex`. Final PDF: `Shyam-Padia-Full-Profile.pdf`.
 The original `resume/CV/OnePage/cv.tex` is preserved separately.
@@ -19,9 +19,10 @@ must remain one page and the Two Page version exactly two; FullProfile has no pa
 
 Career facts come from the existing resume sources and shared `src/data/profile.ts`,
 including substantive commented bullets in the original one-page source. Projects
-are reconciled with `src/content/project/`; development previews, ongoing qualification
-and research are labeled. Portfolio publication dates are not treated as project
-completion dates. Older conflicting model-direction and role-placement claims are
+are reconciled with `src/content/project/`. Project rows place the start month and
+year beside the title when an earlier resume or project record supports it. The
+subtitle and any development or research context go below the title. Older
+conflicting model-direction and role-placement claims are
 not combined. No private application or archived employer notes are embedded.
 
 Layout is pinned to `resume/CV/OnePage/cv.tex`: the same original dense preamble,

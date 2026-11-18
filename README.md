@@ -113,14 +113,14 @@ All formats must retain the exact dense layout in `resume/CV/OnePage/cv.tex`: it
 10pt font, original margins, centered header, black section rules, compact
 four-field job headings and hollow-circle bullets. Preserve the preamble and
 macros; adjust content and page breaks to fit, without redesigning the template.
-The original one-page version is preserved. The additional variants use the
-reviewed current experience and project facts, with development/research status
-kept explicit. The summary version copies the FullProfile summary verbatim; its
-selected achievements use the same facts and updated wording, shortened only
-where needed to fit one page. Keep shared billing wording consistent across all
-current formats and the website. Rebuild a source twice into a temporary directory,
-verify its page count and rendered pages, and copy the resulting PDF to its named resume-folder
-artifact and public download. For example:
+The summary version copies the FullProfile summary verbatim and uses concise
+versions of the same achievements. Use a verified project start month and year
+in the right-hand column. In longer resumes, place any project subtitle below its
+title and keep status or qualification details in the description. Prefer one
+line per bullet and use a second line when needed to keep a substantive detail.
+Rebuild a source twice into a temporary directory, verify the page count and
+rendered pages, and copy the PDF to its named resume-folder artifact and public
+download. For example:
 
 ```sh
 mkdir -p /tmp/crypticsoul-resume
