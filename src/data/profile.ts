@@ -11,7 +11,7 @@ export const employers = [
     roles: [
       {
         title: "AI Technical Lead",
-        period: "Aug 2025 – Present",
+        period: "Aug 2026 – Present",
         location: "San Francisco, CA",
         current: true,
         achievements: [
@@ -36,7 +36,7 @@ export const employers = [
     roles: [
       {
         title: "Senior Software Engineer · Personalization",
-        period: "Jan 2025 – Aug 2025",
+        period: "Jan 2025 – Aug 2026",
         location: "Mountain View, CA",
         achievements: [
           "Built a LangChain agent orchestrator for RTB, on-call, and DevOps workflows.",
